@@ -1,0 +1,3 @@
+# Module cardsmule
+# RPC service class, partial path of RPC policy file
+com.sweng.cardsmule.client.GreetingService, 6C345B690B377931D36B6DE2103BB3DB.gwt.rpc
