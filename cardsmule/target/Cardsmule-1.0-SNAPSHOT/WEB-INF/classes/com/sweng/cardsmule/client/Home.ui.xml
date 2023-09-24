@@ -35,6 +35,12 @@
 		li a:hover::after{
 		  background-color: black;
 		}
+		
+		#Sedi{
+			background-color: white;
+		}
+		
+		
 	</ui:style>
 	
 	<g:HTMLPanel>
