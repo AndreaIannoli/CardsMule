@@ -1,0 +1,95 @@
+/** Add css rules here for your application. */
+*{
+	font-family: 'Young Serif', serif;
+}
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+#nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+}
+
+#nav > div {
+	flex-grow: 1;
+}
+
+
+#nav .gwt-Button{
+	background: black;
+	color: white;
+	height:100px !important;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#nav .gwt-Button:hover{
+	border: 1px outset white;
+	opacity: 30%;
+}
+
+#nav #navbar #Login .gwt-Button{
+	background: white;
+	border-radius: 25px;
+	color: black;
+	height:100% !important;
+	border: none;
+	width: 120px !important;
+}
+
+#nav #navbar #Login {
+	margin-left: auto;
+}
+
+#nav #navbar #Register {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+#nav #navbar #Register .gwt-Button{
+	background: white;
+	border-radius: 25px;
+	color: black;
+	height:100% !important;
+	border: none;
+	width: 120px !important;
+}
+
+#nav #navbar {
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
