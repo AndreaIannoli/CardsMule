@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.client.activities;
 
 import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.views.LoginView;
 import com.sweng.cardsmule.client.views.PreAuthenticationView;
@@ -63,7 +64,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
                 public void onSuccess(CredentialsPayload result) {
                     view.setAuthToken(result.getToken());
                     user.setCredentials(result.getToken(), result.getUsername());
-                    goTo(new PreAuthenticationPlace());
+                    goTo(new HomePlace());
                 }
             };
             authenticationService.signIn(username, password, asyncCallback);
