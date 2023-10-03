@@ -137,11 +137,11 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
 
     @Override
     public CredentialsPayload signIn(String username, String password) throws AuthenticationException {
-    	/*
+    	
         if (validateCredentials(username, password)) {
             throw new AuthenticationException("Invalid credentials");
         }
-        */
+        
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = accountMap.get(username);
@@ -154,11 +154,11 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         if (account == null) {
             throw new AuthenticationException("User not found" + accountMap.toString());
         }
-        /*
+        
         if (!BCrypt.checkpw(password, account.getPassword())) {
             throw new AuthenticationException("Password don't match");
         }
-        */
+        
         return new CredentialsPayload(generateAndStoreLoginToken(account), username);
     }
 

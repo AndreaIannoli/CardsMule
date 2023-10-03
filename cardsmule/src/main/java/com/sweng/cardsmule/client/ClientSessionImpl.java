@@ -6,10 +6,13 @@ import com.sweng.cardsmule.client.views.PreAuthenticationView;
 import com.sweng.cardsmule.client.views.PreAuthenticationViewImpl;
 import com.sweng.cardsmule.client.views.RegistrationView;
 import com.sweng.cardsmule.client.views.RegistrationViewImpl;
+import com.sweng.cardsmule.client.views.HomeView;
+import com.sweng.cardsmule.client.views.HomeViewImpl;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.sweng.cardsmule.client.views.LoginViewImpl;
+
 
 public class ClientSessionImpl implements ClientSession{
     private static final EventBus eventBus = new SimpleEventBus();
@@ -18,6 +21,7 @@ public class ClientSessionImpl implements ClientSession{
     private static final PreAuthenticationView preAuthenticationView = new PreAuthenticationViewImpl();
     private static final LoginView loginView = new LoginViewImpl();
     private static final RegistrationView registrationView = new RegistrationViewImpl();
+    private static final HomeView homeView = new HomeViewImpl();
     
     @Override
     public EventBus getEventBus() {
@@ -47,5 +51,9 @@ public class ClientSessionImpl implements ClientSession{
 	@Override
 	public RegistrationView getRegistrationView() {
 		return registrationView;
-	}   
+	}
+	@Override
+	public HomeView getHomeView() {
+		return homeView;
+	}
 }
