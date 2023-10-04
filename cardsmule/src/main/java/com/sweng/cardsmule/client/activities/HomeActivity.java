@@ -16,15 +16,15 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
     private final HomeView view;
     private final User user;
     private final PlaceController placeController;
-    private final CardServiceAsync cardService;
+   
     
 
 
-    public HomeActivity(HomeView view,User user,PlaceController placeController,CardServiceAsync cardService) {
+    public HomeActivity(HomeView view,User user,PlaceController placeController) {
         this.view = view;
         this.user = user;
         this.placeController = placeController;
-        this.cardService= cardService;
+        
     }
 
     @Override

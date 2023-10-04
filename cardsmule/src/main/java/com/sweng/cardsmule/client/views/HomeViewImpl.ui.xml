@@ -8,10 +8,12 @@
 	}
 	.searchContainer{
 		width: 50%;
+		margin: 10px;
 
 	}
 	.filtersContainer{
 		width: 50%;
+		margin: 10px;
 
 	}
 	.filterBar{

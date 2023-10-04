@@ -44,8 +44,8 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         return matcher.find();
     }
 
-    private boolean validateCredentials(String email, String password) {
-        return (email == null || email.isBlank() || !validateEmail(email)) ||
+    private boolean validateCredentials(String username, String password) {
+        return (username == null || username.isBlank()) ||
                 (password == null || password.isBlank() || password.length() < 8);
     }
     
@@ -137,9 +137,10 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
 
     @Override
     public CredentialsPayload signIn(String username, String password) throws AuthenticationException {
-    	
+    	System.out.println(username + " " + password);
         if (validateCredentials(username, password)) {
-            throw new AuthenticationException("Invalid credentials");
+        	System.out.println(username + " " + password);
+            throw new AuthenticationException("Invalid credentials" + username + " " + password);
         }
         
         Map<String, Account> accountMap = db.getPersistentMap(

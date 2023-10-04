@@ -23,8 +23,10 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
             return defaultPlace;
         } else if (token.equals(loginLink) && !user.isLoggedIn()) {
             return new LoginPlace();
-        } else if (token.equals(loginLink) && !user.isLoggedIn()) {
+        } else if (token.equals(registrationLink) && !user.isLoggedIn()) {
         	return new RegistrationPlace();
+        } else if (token.equals(homeLink)&& user.isLoggedIn() ) {
+        	return new HomePlace();
         }
         
         return defaultPlace;

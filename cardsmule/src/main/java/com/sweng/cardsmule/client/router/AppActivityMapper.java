@@ -35,7 +35,7 @@ public class AppActivityMapper implements ActivityMapper {
         else if (place instanceof RegistrationPlace)
         	return new RegistrationActivity(clientSession.getRegistrationView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(AuthenticationService.class));
         else if (place instanceof HomePlace)
-        	return new HomeActivity(clientSession.getHomeView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(CardService.class));
+        	return new HomeActivity(clientSession.getHomeView(), clientSession.getUser(), clientSession.getPlaceController());
         return null;
     }
 }
