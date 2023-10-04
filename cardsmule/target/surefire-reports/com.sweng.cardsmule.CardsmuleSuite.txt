@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sweng.cardsmule.CardsmuleSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.52 s - in com.sweng.cardsmule.CardsmuleSuite
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.85 s - in com.sweng.cardsmule.CardsmuleSuite

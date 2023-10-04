@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt = 'urn:import:com.google.gwt.user.client.ui'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.searchBar{
+			
+	}
+	.searchContainer{
+		width: 50%;
+
+	}
+	.filtersContainer{
+		width: 50%;
+
+	}
+	.filterBar{
+	
+	}
+	
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<div>
+			<div class="{style.searchContainer}">
+				<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
+					
+				</g:TextBox>
+			</div>
+			<div class= "{style.filtersContainer}">
+				<g:RadioButton styleName="{style.filterBar}" ui:field="magicRadio" name="radio">
+					Magic
+				</g:RadioButton>
+				<g:RadioButton styleName="{style.filterBar}" ui:field="pokemonRadio" name="radio">
+					Pokemon
+				</g:RadioButton>
+				<g:RadioButton styleName="{style.filterBar}" ui:field="YuGiOhRadio" name="radio">
+					YuGiOh
+				</g:RadioButton>
+			</div>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

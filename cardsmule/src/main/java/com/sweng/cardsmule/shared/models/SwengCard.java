@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-//DA MODIFICARE!!!!!!!!!!!!!!!!
+
 public abstract class SwengCard implements Serializable {
     private static final long serialVersionUID = -6914752354287411438L;//versione di serializzazione
     private static final AtomicInteger uniqueId = new AtomicInteger();

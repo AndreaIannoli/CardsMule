@@ -1,2 +1,0 @@
-serviceClass: com.sweng.cardsmule.client.GreetingService
-path: 6C345B690B377931D36B6DE2103BB3DB.gwt.rpc

@@ -23,7 +23,7 @@ public class SwengListenerImpl implements ServletContextListener, MapDBConst {
 
     public SwengListenerImpl() {
         db = new DBImplements();
-        path = "CardExchange-1.0-SNAPSHOT/WEB-INF/classes/json/";
+        path = "./WEB-INF/classes/Json/";
     }
 
     public SwengListenerImpl(MapDB db, String path) {
@@ -54,6 +54,7 @@ public class SwengListenerImpl implements ServletContextListener, MapDBConst {
 
         SwengParseJson parser = new SwengParseJson(new SwengParseYiGiOhCard(), gson);
         try {
+        	System.out.println("Working Directory = " + System.getProperty("user.dir"));
             uploadDataToDB(yuGiOhMap, parser.parseJSON(path + "yugioh_cards.json"));
             parser.setParseStrategy(new SwengParseMagic());
             uploadDataToDB(magicMap, parser.parseJSON(path + "magic_cards.json"));

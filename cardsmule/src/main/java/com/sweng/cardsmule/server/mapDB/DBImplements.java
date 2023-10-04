@@ -7,6 +7,7 @@ import org.mapdb.Serializer;
 import javax.servlet.ServletContext;
 import java.util.Map;
 import java.util.function.Function;
+import java.io.File;
 
 
 public class DBImplements implements MapDB, MapDBConst {
@@ -18,7 +19,9 @@ public class DBImplements implements MapDB, MapDBConst {
                 if (dbType.equals(DB_MEMORY)) {
                     db = DBMaker.memoryDB().make();
                 } else if (dbType.equals(DB_FILE)) {
-                    db = DBMaker.fileDB(DB_NAME).transactionEnable().closeOnJvmShutdown().make();
+                	String path= System.getenv("DB_FILE_PATH") + "/mapDB.db";
+                	File dbFile = new File(path);
+                    db = DBMaker.fileDB(dbFile).transactionEnable().closeOnJvmShutdown().make();
                 }
                 ctx.setAttribute(dbType + "_CTX_ATTRIBUTE", db);
             }

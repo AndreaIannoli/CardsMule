@@ -10,11 +10,23 @@
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>com.sweng.cardsmule.server.GreetingServiceImpl</servlet-class>
   </servlet>
+      <servlet>
+        <servlet-name>com.sweng.cardsmule.CardsMule UserService</servlet-name>
+        <servlet-class>com.sweng.cardsmule.server.services.AuthenticationServiceImpl</servlet-class>
+    </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/cardsmule/greet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>com.sweng.cardsmule.CardsMule UserService</servlet-name>
+    <url-pattern>/cardsmule/users</url-pattern>
+  </servlet-mapping>
+  
+  <listener>
+      <listener-class>com.sweng.cardsmule.server.SwengListenerImpl</listener-class>
+  </listener>
   
   <!-- Default page to serve -->
   <welcome-file-list>
