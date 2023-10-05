@@ -19,11 +19,33 @@
 	.filterBar{
 	
 	}
+	.topContainer{
+		background-color:black;
+		
+	}
+	.container{
+		display: flex;
+		flex-direction: column;
+		width: 100vw;
+		flex-grow: 1;
+
+	}
+	.scrollPaneContainer{
+		flex-grow: 1;
+		background-color: red; 
+
+	}
+	.Panel{
+		flex-grow: 1;
+		flex-direction:column;
+		display:flex;
+	}
 	
 	
 	</ui:style>
-	<g:HTMLPanel>
-		<div>
+	<g:HTMLPanel styleName="{style.Panel}">
+		<div class="{style.container}">
+		<div class ="{style.topContainer}">
 			<div class="{style.searchContainer}">
 				<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
 					
@@ -40,6 +62,9 @@
 					YuGiOh
 				</g:RadioButton>
 			</div>
+		</div>
+		<div class="{style.scrollPaneContainer}">
+		</div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

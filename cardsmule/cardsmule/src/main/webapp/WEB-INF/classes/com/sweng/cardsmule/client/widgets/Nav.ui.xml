@@ -3,21 +3,18 @@
 	xmlns:gwt = 'urn:import:com.google.gwt.user.client.ui'
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		#navbar{
+		.navBar{
 		  list-style-type: none;
 		  margin: 0;
 		  padding: 0;
 		  overflow: hidden;
 		  background-color: #303030;
 		}
-		
-		.btn{
-			background-color: transparent;
+		.list{
+			float: left;
+	
 		}
 		
-		.btn:hover{
-			opacity: 70%;
-		}
 		
 		li {
 			float: left;
@@ -38,18 +35,18 @@
 	</ui:style>
 	
 	<g:HTMLPanel>
-		<ul id="navbar">
-	    	<li  id="Home">
-	    		<gwt:Button ui:field = "btnHome" text="Home"/>
+		<ul class="{style.navBar}" id="navbar">
+	    	<li class="{style.list}" id="Home">
+	    		<g:Button ui:field = "btnHome" text="Home"/>
 	    	</li>
-	    	<li  id="Git">
-	    		<gwt:Button ui:field = "btnGit" text="GitHub"/>
+	    	<li class="{style.list}"  id="Deck">
+	    		<g:Button ui:field = "btnDeck" text="Deck"/>
 	    	</li>
-	    	<li  id="Login">
-	    		<gwt:Button ui:field = "btnLogin" text="Login"/>
+	    	<li class="{style.list}" id="Login">
+	    		<g:Button ui:field = "btnLogin" text="Login"/>
         	</li>
-        	<li  id="Register">
-	    		<gwt:Button ui:field = "btnRegister" text="Registrati"/>
+        	<li class="{style.list}" id="Register">
+	    		<g:Button ui:field = "btnRegister" text="Registrati"/>
         	</li>
 	    </ul>
 	</g:HTMLPanel>
