@@ -10,7 +10,11 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiTemplate;
 
 import com.google.gwt.uibinder.client.UiField;
+import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
+import com.sweng.cardsmule.shared.models.SwengCardMagic;
+import com.sweng.cardsmule.shared.models.SwengPokemonCard;
+import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
 
 
 
@@ -37,26 +41,26 @@ public class SwengCardWidget extends Composite {
         String details = createDetailHTML("Type", card.getType());
         StringBuilder properties = new StringBuilder();
         String imageUrl = "";
-        CradsmuleGame game;
+        CardsmuleGame game;
 
-        if (card instanceof YuGiOhCard) {
-            imageUrl = ((YuGiOhCard) card).getImageUrl();
-            details += createDetailHTML("Race", ((YuGiOhCard) card).getRace());
-            game = Game.YUGIOH;
-        } else if (card instanceof PokemonCard) {
-            imageUrl = ((PokemonCard) card).getImageUrl();
-            details += createDetailHTML("Artist", ((PokemonCard) card).getArtist());
-            details += createDetailHTML("Rarity", ((PokemonCard) card).getRarity());
-            game = Game.POKEMON;
-        } else if (card instanceof MagicCard) {
-            details += createDetailHTML("Artist", ((MagicCard) card).getArtist());
-            details += createDetailHTML("Rarity", ((MagicCard) card).getRarity());
-            game = Game.MAGIC;
+        if (card instanceof SwengYuGiOhCard) {
+            imageUrl = ((SwengYuGiOhCard) card).getImageUrl();
+            details += createDetailHTML("Race", ((SwengYuGiOhCard) card).getRace());
+            game = CardsmuleGame.YUGIOH;
+        } else if (card instanceof SwengPokemonCard) {
+            imageUrl = ((SwengPokemonCard) card).getImageUrl();
+            details += createDetailHTML("Artist", ((SwengPokemonCard) card).getArtist());
+            details += createDetailHTML("Rarity", ((SwengPokemonCard) card).getRarity());
+            game = CardsmuleGame.POKEMON;
+        } else if (card instanceof SwengCardMagic) {
+            details += createDetailHTML("Artist", ((SwengCardMagic) card).getArtist());
+            details += createDetailHTML("Rarity", ((SwengCardMagic) card).getRarity());
+            game = CardsmuleGame.MAGIC;
         } else {
             game = null;
         }
 
-        for (String variant : card.getVariants()) {
+        for (String variant : card.getState()) {
             properties.append("<div>").append(variant).append("</div>");
         }
 
