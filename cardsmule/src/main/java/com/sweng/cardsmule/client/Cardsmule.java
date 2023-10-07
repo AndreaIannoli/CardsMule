@@ -31,6 +31,7 @@ import com.sweng.cardsmule.shared.AuthenticationService;
 import com.sweng.cardsmule.client.router.AppActivityMapper;
 import com.sweng.cardsmule.client.router.AppPlaceHistoryMapper;
 
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
@@ -74,8 +75,9 @@ public class Cardsmule implements EntryPoint {
         historyHandler.register(placeController, eventBus, new PreAuthenticationPlace());
 
         RootPanel root = RootPanel.get("main");
-        appWidget.setStyleName("main");
         
+        appWidget.setStyleName("main");
+
         root.add(appWidget);
 
         // Goes to place represented on URL or default place

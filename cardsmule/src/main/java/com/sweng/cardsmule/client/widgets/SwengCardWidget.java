@@ -37,7 +37,7 @@ public class SwengCardWidget extends Composite {
         String details = createDetailHTML("Type", card.getType());
         StringBuilder properties = new StringBuilder();
         String imageUrl = "";
-        Game game;
+        CradsmuleGame game;
 
         if (card instanceof YuGiOhCard) {
             imageUrl = ((YuGiOhCard) card).getImageUrl();

@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -27,19 +28,17 @@ public class NavWidget extends Composite {
 	Button btnLogin;
 
 	@UiField
-	Button btnRegister;
+	Button btnExchenge;
 	Button button;
 
 	@UiTemplate("Nav.ui.xml")
 	interface NavUiBinder extends UiBinder<Widget, NavWidget> {
 	}
-
+	@UiConstructor
 	public NavWidget() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//button = new Button("Logout", (ClickHandler) event -> parent.onClickLogout());
-        button.setStyleName("");
-		btnHome.getElement().getStyle().setHeight(50.0, Unit.PX);
-		btnHome.getElement().getStyle().setWidth(70.0, Unit.PX);
+
 		/*btnGit.getElement().getStyle().setHeight(50.0, Unit.PX);
 		btnGit.getElement().getStyle().setWidth(70.0, Unit.PX);
 		btnLogin.getElement().getStyle().setHeight(50.0, Unit.PX);
@@ -47,11 +46,7 @@ public class NavWidget extends Composite {
 		btnRegister.getElement().getStyle().setHeight(50.0, Unit.PX);
 		btnRegister.getElement().getStyle().setWidth(70.0, Unit.PX);*/
 	}
-	@UiHandler("btnHome")
-	void doClickHome(ClickEvent event) {
-		RootPanel.get("container").clear();
-		RootPanel.get("container").add(new NavWidget());
-	}
+	
 
 	/*@UiHandler("btnHome")
 	void doClickHome(ClickEvent event) {
