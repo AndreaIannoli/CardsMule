@@ -59,6 +59,7 @@ public class HomeViewImpl extends Composite implements HomeView{
     SpanElement attributeSpan ;
     @UiField
     public ListBox typeOptions;
+    
     public List<CheckBox> checkBoxes;
     @UiField
     Button applyFiltersButton;
@@ -75,10 +76,12 @@ public class HomeViewImpl extends Composite implements HomeView{
 	
     public HomeViewImpl() {
     	initWidget(uiBinder.createAndBindUi(this));
-    	magicRadio.addValueChangeHandler(e->changeGame(CardsmuleGame.MAGIC));
-    	pokemonRadio.addValueChangeHandler(e->changeGame(CardsmuleGame.POKEMON));
-    	YuGiOhRadio.addValueChangeHandler(e->changeGame(CardsmuleGame.YUGIOH));
-        cleanFiltersButton.addClickHandler(e -> cleanFilters());
+    	magicRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.MAGIC));
+    	pokemonRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.POKEMON));
+    	YuGiOhRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.YUGIOH));
+        //cleanFiltersButton.addClickHandler(e -> cleanFilters());
+        //applyFiltersButton.addClickHandler(e -> applyFilters());
+
 
     	attributeList = new HashMap<>();
     	attributeList.put(CardsmuleGame.MAGIC, Arrays.asList("Name","Artist"));
@@ -159,20 +162,32 @@ public class HomeViewImpl extends Composite implements HomeView{
 		specialAttributes.forEach(specialAttribute -> specialAttributeOptions.addItem(specialAttribute));
 		types.forEach(type -> typeOptions.addItem(type));
 	}
-	/* private void cleanFilters() {
+	 private void cleanFilters() {
 	        specialAttributeOptions.setItemSelected(0, true);
 	        typeOptions.setItemSelected(0, true);
-	        filters.textOptions.setItemSelected(0, true);
-	        filters.textInput.setText("");
+	        artistOrName.setItemSelected(0, true);
+	        SearchBar.setText("");
 	        checkBoxes.forEach(checkBox -> checkBox.setValue(false));
-	        setData(presenter.filterGameCards(
+	        /*setData(presenter.filterGameCards(
 	                filters.specialAttributeOptions.getSelectedValue(),
 	                filters.typeOptions.getSelectedValue(),
 	                filters.textOptions.getSelectedValue(),
 	                filters.textInput.getText(),
 	                Collections.emptyList(),
 	                Collections.emptyList()
-	        ));
-	    }*/
-	
+	        ));*/
+	    }
+	 private void applyFilters() {
+		 	List<String> booleanInputNames = new ArrayList<>();
+	        List<Boolean> booleanInputValues = new ArrayList<>();
+	        for (CheckBox checkBox : checkBoxes) {
+	            booleanInputNames.add(checkBox.getText());
+	            booleanInputValues.add(checkBox.getValue());
+	        }
+	 
+	 }
+	private void isGameChanged(CardsmuleGame game) {
+		changeGame(game);
+        isGameChanged = false;
+	}
 }

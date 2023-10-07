@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
 public interface HomeView extends IsWidget{
 	
@@ -13,5 +14,6 @@ public interface HomeView extends IsWidget{
 
 	 interface Presenter {
 	        void goTo(Place place);
+	        void fetchCardsValues(CardsmuleGame game);
 	    }
 }

@@ -2,15 +2,16 @@ package com.sweng.cardsmule.client.activities;
 
 
 import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.shared.models.*;
+
 import com.sweng.cardsmule.client.views.HomeView;
 import com.sweng.cardsmule.shared.CardServiceAsync;
-import com.sweng.cardsmule.shared.models.*;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
+import java.util.List;
 
 public class HomeActivity extends AbstractActivity implements HomeView.Presenter {
     private final HomeView view;
@@ -33,6 +34,7 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
         acceptsOneWidget.setWidget(view.asWidget());
  
     }
+    
 
     @Override
     public void onStop() {
@@ -42,4 +44,18 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
     public void goTo(Place place) {
         placeController.goTo(place);
     }
+
+	public void fetchCardsValues(CardsmuleGame game) {
+		if(game == null) {
+    		throw new IllegalArgumentException("game cannot be null");
+    	}
+    	/*rpcService.getGameCards(game, new BaseAsyncCallback<List<SwengCards>>() {
+            @Override
+            public void onSuccess(List<SwengCards> result) {
+                view.setData(result);
+                cards = result;
+            }
+        });*/
+		
+	}
 }
