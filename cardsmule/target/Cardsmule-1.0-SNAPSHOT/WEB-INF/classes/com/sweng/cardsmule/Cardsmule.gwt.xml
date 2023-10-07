@@ -8,7 +8,6 @@
 <module rename-to='cardsmule'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
-  <inherits name="com.google.gwt.uibinder.UiBinder"/>
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
@@ -19,9 +18,6 @@
   <inherits name='com.google.gwt.user.theme.dark.Dark'/>
 
   <!-- Other module inherits                                      -->
-  <inherits name="com.google.gwt.activity.Activity"/>
-  <inherits name="com.google.gwt.place.Place"/>
-  <inherits name="com.google.gwt.logging.Logging"/>
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.sweng.cardsmule.client.Cardsmule'/>

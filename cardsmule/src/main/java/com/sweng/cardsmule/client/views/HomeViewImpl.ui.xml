@@ -66,5 +66,7 @@
 		<div class="{style.scrollPaneContainer}">
 		</div>
 		</div>
+		        <g:HTMLPanel styleName="{style.cards}" ui:field='cardsPanel'/>
+		
 	</g:HTMLPanel>
 </ui:UiBinder> 

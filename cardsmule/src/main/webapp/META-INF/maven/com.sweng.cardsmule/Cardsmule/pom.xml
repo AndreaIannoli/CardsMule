@@ -68,6 +68,11 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.10</version>
 	</dependency>
+	<dependency>
+	    <groupId>org.mindrot</groupId>
+	    <artifactId>jbcrypt</artifactId>
+	    <version>0.4</version>
+     </dependency>
   </dependencies>
 
   <build>
@@ -97,6 +102,12 @@
                a different source language for java compilation -->
           <sourceLevel>1.8</sourceLevel>
           <!-- Compiler configuration -->
+	  		<jvmArgs>
+	            <jvmArg>--add-opens</jvmArg>
+	            <jvmArg>java.base/java.util=ALL-UNNAMED</jvmArg>
+	            <jvmArg>--add-opens</jvmArg>
+	            <jvmArg>java.base/java.lang=ALL-UNNAMED</jvmArg>
+	    	</jvmArgs>
           <compilerArgs>
             <!-- Ask GWT to create the Story of Your Compile (SOYC) (gwt:compile) -->
             <arg>-compileReport</arg>
