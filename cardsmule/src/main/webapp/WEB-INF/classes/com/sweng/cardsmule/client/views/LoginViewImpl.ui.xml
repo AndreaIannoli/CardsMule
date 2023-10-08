@@ -1,0 +1,84 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt = 'urn:import:com.google.gwt.user.client.ui'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.listAuth {
+		list-style-type: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-flow: column;
+		padding-left: 0;
+		
+	}
+	
+	.authButtons {
+		background: black;
+		border-radius: 25px;
+		color: white;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		font-size: 22px;
+		padding: 5px 10px;
+	}
+	
+	.authButtons:hover {
+		opacity: 80%;
+		cursor: pointer;
+	}
+	
+	.authButtonsContainer {
+		background: white;
+		border-radius: 25px;
+		width: 33%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+	.wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 80vh;
+	}
+	
+	.backContainer {
+		display: flex;
+		justify-content: start;
+		align-items: center;
+	}
+	
+	.backButton {
+		background: transparent;
+		border: 0;
+		font-size: 30px;
+	}
+	.backButton:hover {
+		color: white;
+		transition: all 0.8s;
+		cursor: pointer;
+	}
+		
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="{style.backContainer}">
+			<g:Button ui:field = "btnBack" text="↩" styleName="{style.backButton}"/>
+		</div>
+		<div class="{style.wrapper}">
+			<div class="{style.authButtonsContainer}">
+				<ul class="{style.listAuth}">
+			    	<li>
+			    		<g:TextBox ui:field = "username"/>
+		        	</li>
+		        	<li>
+			    		<g:PasswordTextBox ui:field = "password"/>
+		        	</li>
+		        	<li  id="Login">
+			    		<g:Button ui:field = "btnLogin" text="Login" styleName="{style.authButtons}"/>
+		        	</li>
+			    </ul>
+		    </div>
+	    </div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

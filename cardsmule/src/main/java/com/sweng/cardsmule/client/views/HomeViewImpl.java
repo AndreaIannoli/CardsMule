@@ -26,6 +26,7 @@ import com.sweng.cardsmule.shared.models.SwengCard;
 import com.sweng.cardsmule.shared.models.SwengCardMagic;
 import com.sweng.cardsmule.shared.models.SwengPokemonCard;
 import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
+import com.sweng.cardsmule.client.widgets.SwengCardWidget;
 
 import java.util.List;
 import java.util.Set;
@@ -65,6 +66,8 @@ public class HomeViewImpl extends Composite implements HomeView{
     Button applyFiltersButton;
     @UiField
     Button cleanFiltersButton;
+    @UiField
+    HTMLPanel cardsPanel;
     private final NavWidget navbarWidget = new NavWidget();
     Map<CardsmuleGame,List<String>> attributeList;
     Map<CardsmuleGame, List<String>> gameCharacters;
@@ -146,7 +149,7 @@ public class HomeViewImpl extends Composite implements HomeView{
         });
 
         cards.forEach(card -> {
-            //cardsPanel.add(new CardWidget(this, card));
+            cardsPanel.add(new SwengCardWidget(card));
         });
         if (!isGameChanged) {
             setFilters(specialAttributes, types);
@@ -189,5 +192,6 @@ public class HomeViewImpl extends Composite implements HomeView{
 	private void isGameChanged(CardsmuleGame game) {
 		changeGame(game);
         isGameChanged = false;
+        presenter.fetchCardsValues(game);
 	}
 }

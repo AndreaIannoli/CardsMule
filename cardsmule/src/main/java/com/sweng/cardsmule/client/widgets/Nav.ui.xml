@@ -3,17 +3,18 @@
 	xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		.navBar {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #303030;
-			display: flex;
+		.navBar{
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #303030;
 		}
-		.list {
-			float: right;
+		.list{
+			float: left;
+
 		}
+		
 		li {
 			float: left;
 		}
@@ -45,8 +46,8 @@
 				<li class="{style.list}" id="Login">
 					<g:Button styleName="{style.button}" ui:field="btnLogin" text="Login"/>
 				</li>
-				<li class="{style.list}" id="Exchenge">
-					<g:Button styleName="{style.button}" ui:field="btnExchenge" text="Exchenge"/>
+				<li class="{style.list}" id="Register">
+					<g:Button styleName="{style.button}" ui:field="btnRegister" text="Registrati"/>
 				</li>
 			</ul>
 		</div>

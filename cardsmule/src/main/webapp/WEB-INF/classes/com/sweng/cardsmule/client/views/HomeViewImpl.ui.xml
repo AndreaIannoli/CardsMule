@@ -1,0 +1,70 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt = 'urn:import:com.google.gwt.user.client.ui'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.searchBar{
+			
+	}
+	.searchContainer{
+		width: 50%;
+		margin: 10px;
+
+	}
+	.filtersContainer{
+		width: 50%;
+		margin: 10px;
+
+	}
+	.filterBar{
+	
+	}
+	.topContainer{
+		background-color:black;
+		
+	}
+	.container{
+		display: flex;
+		flex-direction: column;
+		width: 100vw;
+		flex-grow: 1;
+
+	}
+	.scrollPaneContainer{
+		flex-grow: 1;
+		background-color: red; 
+
+	}
+	.Panel{
+		flex-grow: 1;
+		flex-direction:column;
+		display:flex;
+	}
+	
+	
+	</ui:style>
+	<g:HTMLPanel styleName="{style.Panel}">
+		<div class="{style.container}">
+		<div class ="{style.topContainer}">
+			<div class="{style.searchContainer}">
+				<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
+					
+				</g:TextBox>
+			</div>
+			<div class= "{style.filtersContainer}">
+				<g:RadioButton styleName="{style.filterBar}" ui:field="magicRadio" name="radio">
+					Magic
+				</g:RadioButton>
+				<g:RadioButton styleName="{style.filterBar}" ui:field="pokemonRadio" name="radio">
+					Pokemon
+				</g:RadioButton>
+				<g:RadioButton styleName="{style.filterBar}" ui:field="YuGiOhRadio" name="radio">
+					YuGiOh
+				</g:RadioButton>
+			</div>
+		</div>
+		<div class="{style.scrollPaneContainer}">
+		</div>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 
