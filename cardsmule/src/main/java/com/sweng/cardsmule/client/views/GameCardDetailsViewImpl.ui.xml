@@ -1,0 +1,116 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .wrapper {
+            padding: 1.5rem 3rem 0.5rem 3rem;
+            height: 100%;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .details {
+            display: flex;
+            border-radius: 50px;
+            background-color: white;
+            padding: 50px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .gameAndProperties {
+            color: white;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding: 20px;
+            border-radius: 50px;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        img {
+            width: 20%;
+        }
+
+        .cardInformation {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 16px;
+            color: white;
+            background-color: black;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .cardOptions {
+            display: flex;
+            flex-direction: row;
+            gap: 3.5rem;
+        }
+
+        .cardOptions > div > div, .optionOtherProperties > div {
+            justify-self: end;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .addCardToDeckContainer {
+            align-self: center;
+        }
+
+        .userListsContainer {
+            display: flex;
+            justify-content: space-around;
+        }
+        .gameName {
+			margin-right: auto;
+		}
+		.divider {
+			width: 3px;
+			background-color: grey;
+			height: 100%;
+		}
+    </ui:style>
+    <g:HTMLPanel styleName="{style.wrapper}">
+        <div class="{style.details}">
+            <div class="{style.gameAndProperties}">Game:
+                <span ui:field="cardGame" class="{style.gameName}"/>
+                <!--all cards-->
+                 <div>Type:
+                     <div ui:field="cardOptionType"/>
+                 </div>
+                 <div class="{style.divider}"/>
+                 <!--Magic and Pokemon cards-->
+                 <div ui:field="optionArtist">Artist:
+                     <div ui:field="cardOptionArtist"/>
+                     <div class="{style.divider}"/>
+                 </div>
+                 <div ui:field="optionRarity">Rarity:
+                     <div ui:field="cardOptionRarity"/>
+                     <div class="{style.divider}"/>
+                 </div>
+                 <!--YuGiOh cards-->
+                 <div ui:field="optionRace">Race:
+                     <div ui:field="cardOptionRace"/>
+                     <div class="{style.divider}"/>
+                 </div>
+                 <div ui:field="optionOtherProperties" class="{style.optionOtherProperties}">Other properties:</div>
+            </div>
+            <g:Image ui:field="cardImage"/>
+            <h1 ui:field="cardName"/>
+            <div class="{style.cardInformation}">
+                <div ui:field="cardDescription"/>
+            </div>
+        </div>
+        <g:HTMLPanel styleName="{style.addCardToDeckContainer}" ui:field="addCardToDeckContainer"/>
+        <g:HTMLPanel styleName="{style.userListsContainer}" ui:field="userLists"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

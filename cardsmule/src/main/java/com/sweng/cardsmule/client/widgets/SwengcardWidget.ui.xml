@@ -67,8 +67,12 @@
             height: 24px;
             width: 50%;
         }
+        
+        .cardContainer {
+			width: fit-content;
+		}
     </ui:style>
-    <g:HTMLPanel>
+    <g:HTMLPanel styleName="{style.cardContainer}">
         <div class="{style.card}">
             <div class="{style.name}" ui:field="nameDiv"/>
             <div class="{style.firstRow}">

@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiTemplate;
 
 import com.google.gwt.uibinder.client.UiField;
+import com.sweng.cardsmule.client.handlers.HandleCard;
 import com.sweng.cardsmule.client.views.HomeViewImpl;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
@@ -22,7 +23,7 @@ import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
 public class SwengCardWidget extends Composite {
     private static final CardUIBinder uiBinder = GWT.create(CardUIBinder.class);
 
-	
+    @UiField
 	DivElement nameDiv;
     @UiField
     DivElement detailsDiv;
@@ -37,8 +38,9 @@ public class SwengCardWidget extends Composite {
 	interface CardUIBinder extends UiBinder<Widget, SwengCardWidget> {
 	}
     
-    public  SwengCardWidget(SwengCard card) {
+    public  SwengCardWidget(HandleCard parent, SwengCard card) {
         initWidget(uiBinder.createAndBindUi(this));
+        System.out.println(card.getName());
         nameDiv.setInnerHTML(card.getName());
         image.setPixelSize(90, 131);
 
@@ -71,7 +73,7 @@ public class SwengCardWidget extends Composite {
         image.setUrl(imageUrl);
         detailsDiv.setInnerHTML(details);
         propertiesDiv.setInnerHTML(String.valueOf(properties));
-        //detailsButton.addClickHandler(clickEvent -> parent.onOpenDetailsClick(game, card.getId()));
+        detailsButton.addClickHandler(clickEvent -> parent.onCardDetailsOpen(card.getId(), game));
         //image.addErrorHandler((errorEvent) -> image.setUrl(GWT.getHostPageBaseURL() + DefaultImagePathLookupTable.getPath(game)));
     }
 

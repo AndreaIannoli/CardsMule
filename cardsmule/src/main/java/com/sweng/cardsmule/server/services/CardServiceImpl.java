@@ -46,7 +46,7 @@ public class CardServiceImpl extends RemoteServiceServlet implements MapDBConst,
     public static String getCardMap(CardsmuleGame game) {
         return game == CardsmuleGame.MAGIC ? MAP_MAGIC :
                 game == CardsmuleGame.POKEMON ? MAP_POKEMON :
-                	MAP_POKEMON;
+                	MAP_YUGIOH;
     }
 
     public static String getNameCard(int idCard, Map<Integer, SwengCard> cardMap) {
@@ -73,6 +73,11 @@ public class CardServiceImpl extends RemoteServiceServlet implements MapDBConst,
         checkGameValidity(game);
         Map<Integer, SwengCard> map = db.getCachedMap(getServletContext(), getCardMap(game),
                 Serializer.INTEGER, serializer);
+        System.out.println("INIZIO CARTE DI " + game);
+        for(Integer i: map.keySet()) {
+        	System.out.println(map.get(i));
+        }
+        System.out.println("FINE CARTE DI " + game);
         return new ArrayList<>(map.values());
     }
 

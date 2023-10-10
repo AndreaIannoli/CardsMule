@@ -6,11 +6,13 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.sweng.cardsmule.client.ClientSession;
+import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.LoginPlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.place.RegistrationPlace;
 import com.sweng.cardsmule.client.views.LoginView;
+import com.sweng.cardsmule.client.activities.GameCardDetailsActivity;
 import com.sweng.cardsmule.client.activities.HomeActivity;
 import com.sweng.cardsmule.client.activities.LoginActivity;
 import com.sweng.cardsmule.client.activities.PreAuthenticationActivity;
@@ -36,6 +38,8 @@ public class AppActivityMapper implements ActivityMapper {
         	return new RegistrationActivity(clientSession.getRegistrationView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(AuthenticationService.class));
         else if (place instanceof HomePlace)
         	return new HomeActivity(clientSession.getHomeView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(CardService.class));
+        else if (place instanceof GameCardDetailsPlace)
+        	return new GameCardDetailsActivity(clientSession.getCardDetailsView(), (GameCardDetailsPlace) place, GWT.create(CardService.class), clientSession.getUser(), clientSession.getPlaceController());
         return null;
     }
 }
