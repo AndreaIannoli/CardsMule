@@ -1,28 +1,23 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:gwt = 'urn:import:com.google.gwt.user.client.ui'
+	xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		#navbar{
+		.navBar{
 		  list-style-type: none;
 		  margin: 0;
 		  padding: 0;
 		  overflow: hidden;
 		  background-color: #303030;
 		}
-		
-		.btn{
-			background-color: transparent;
-		}
-		
-		.btn:hover{
-			opacity: 70%;
+		.list{
+			float: left;
+
 		}
 		
 		li {
 			float: left;
 		}
-		
 		li a {
 			display: block;
 			color: black;
@@ -31,26 +26,30 @@
 			text-decoration: none;
 			font-family: 'Poppins', sans-serif;
 		}
-		
-		li a:hover::after{
-		  background-color: black;
+		li a:hover::after {
+			background-color: black;
+		}
+		.button {
+			background-color: red;
 		}
 	</ui:style>
-	
+
 	<g:HTMLPanel>
-		<ul id="navbar">
-	    	<li  id="Home">
-	    		<gwt:Button ui:field = "btnHome" text="Home"/>
-	    	</li>
-	    	<li  id="Git">
-	    		<gwt:Button ui:field = "btnGit" text="GitHub"/>
-	    	</li>
-	    	<li  id="Login">
-	    		<gwt:Button ui:field = "btnLogin" text="Login"/>
-        	</li>
-        	<li  id="Register">
-	    		<gwt:Button ui:field = "btnRegister" text="Registrati"/>
-        	</li>
-	    </ul>
+		<div>
+			<ul class="{style.navBar}" id="navbar">
+				<li class="{style.list}" id="Home">
+					<g:Button styleName="{style.button}" ui:field="btnHome" text="Home"/>
+				</li>
+				<li class="{style.list}" id="Deck">
+					<g:Button styleName="{style.button}" ui:field="btnDeck" text="Deck"/>
+				</li>
+				<li class="{style.list}" id="Login">
+					<g:Button styleName="{style.button}" ui:field="btnLogin" text="Login"/>
+				</li>
+				<li class="{style.list}" id="Register">
+					<g:Button styleName="{style.button}" ui:field="btnRegister" text="Registrati"/>
+				</li>
+			</ul>
+		</div>
 	</g:HTMLPanel>
-</ui:UiBinder> 
+</ui:UiBinder>

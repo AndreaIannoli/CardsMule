@@ -48,7 +48,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 	@Override
 	public void signIn(String username, String password) {
 		if(username.isEmpty() || password.length() < 8) {
-			view.displayAlert("Invalid credentials");
+			view.displayAlert("Invalid++ credentials");
 		} else {
 			AsyncCallback<CredentialsPayload> asyncCallback = new AsyncCallback<CredentialsPayload>() {
                 @Override

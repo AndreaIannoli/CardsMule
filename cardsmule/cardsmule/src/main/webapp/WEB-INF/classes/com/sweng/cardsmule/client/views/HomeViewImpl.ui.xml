@@ -7,22 +7,84 @@
 			
 	}
 	.searchContainer{
-		width: 50%;
+		
+		margin: 10px;
+		text-align: center;
 
 	}
 	.filtersContainer{
-		width: 50%;
-
+		
+		margin: 10px;
+		text-align: center;
 	}
 	.filterBar{
 	
 	}
-	
+	.topContainer{
+		background-color:black;
+		display:flex;
+		justify-content: center;
+		
+		
+	}
+	.container{
+		display: flex;
+		flex-direction: column;
+		width: 100vw;
+		flex-grow: 1;
+
+	}
+	.scrollPaneContainer{
+		flex-grow: 1;
+		background-color: grey; 
+
+	}
+	.Panel{
+		flex-grow: 1;
+		flex-direction:column;
+		display:flex;
+	}
+	.attributes{
+		display:flex;
+		flex-direction:row;
+	}
+	.filterButtons{
+		display: flex;
+        gap: 1rem;
+        justify-content:center
+
+	}
+	.display{
+		display:flex;
+		flex-direction: column;
+		margin:5px;
+	}
+	.cards{
+	}
 	
 	</ui:style>
-	<g:HTMLPanel>
-		<div>
+	<g:HTMLPanel styleName="{style.Panel}">
+		<div class="{style.container}">
+		<div class ="{style.topContainer}">
+			<div class="{style.attributes}">
+	            <div>
+	                <span ui:field="attributeSpan">Special Attribute</span>
+	                <g:ListBox ui:field="specialAttributeOptions">
+	                    <g:item>/</g:item>
+	                </g:ListBox>
+	            </div>
+	            <div>
+	                Type
+	                <g:ListBox ui:field="typeOptions">
+	                    <g:item>/</g:item>
+	                </g:ListBox>
+	            </div>
+        </div>
+        <div class="{style.display}">
 			<div class="{style.searchContainer}">
+				<g:ListBox ui:field="artistOrName">
+	                <g:item>/</g:item>
+	            </g:ListBox>
 				<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
 					
 				</g:TextBox>
@@ -38,6 +100,17 @@
 					YuGiOh
 				</g:RadioButton>
 			</div>
+			<div class="{style.filterButtons}">
+                <g:Button ui:field="cleanFiltersButton">Clean</g:Button>
+                <g:Button ui:field="applyFiltersButton">Apply</g:Button>
+            </div>
+            </div>
+			<g:HTMLPanel ui:field="checkboxesPanel"/>
 		</div>
+		<div class="{style.scrollPaneContainer}">
+		</div>
+		</div>
+		        <g:HTMLPanel styleName="{style.cards}" ui:field='cardsPanel'/>
+		
 	</g:HTMLPanel>
 </ui:UiBinder> 

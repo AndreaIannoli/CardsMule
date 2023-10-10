@@ -44,10 +44,10 @@ public abstract class SwengCard implements Serializable {
         return type;
     }
 
-    public Set<String> getVariants() {
+    public Set<String> getState() {
         return state;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

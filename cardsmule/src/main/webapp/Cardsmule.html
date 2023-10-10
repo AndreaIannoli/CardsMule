@@ -35,6 +35,21 @@
   			justify-elements: center;
   			background-color: black;
   		}
+  		#container{
+  			display:flex;
+			height: 100vh;
+			flex-direction:column;
+  		}
+  		.main{
+  			flex-grow:1;
+  			flex-direction:column;
+			display:flex;
+  		}
+  		#main{
+			flex-grow:1;
+			flex-direction:column;
+			display:flex;
+		}
   	</style>
   </head>
 
@@ -52,10 +67,12 @@
         in order for this application to display correctly.
       </div>
     </noscript>
+    <div id="container">
     <div id="nav">
 		<img src="cardsmule.svg" style="width:150px; height:100px;">
 		
 	</div>
 	<div id="main"></div>
+	</div>
   </body>
 </html>

@@ -2,7 +2,7 @@ package com.sweng.cardsmule.client;
 
 import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
 import com.sweng.cardsmule.shared.FieldVerifier;
-import com.sweng.cardsmule.client.Home;
+//import com.sweng.cardsmule.client.Home;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.google.gwt.activity.shared.ActivityManager;
@@ -31,6 +31,7 @@ import com.sweng.cardsmule.shared.AuthenticationService;
 import com.sweng.cardsmule.client.router.AppActivityMapper;
 import com.sweng.cardsmule.client.router.AppPlaceHistoryMapper;
 
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
@@ -39,6 +40,7 @@ public class Cardsmule implements EntryPoint {
     private AuthenticationServiceAsync authenticationService;
     private User user;
     private PlaceController placeController;
+    
 	/**
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
@@ -73,8 +75,9 @@ public class Cardsmule implements EntryPoint {
         historyHandler.register(placeController, eventBus, new PreAuthenticationPlace());
 
         RootPanel root = RootPanel.get("main");
-        appWidget.setStyleName("main");
         
+        appWidget.setStyleName("main");
+
         root.add(appWidget);
 
         // Goes to place represented on URL or default place

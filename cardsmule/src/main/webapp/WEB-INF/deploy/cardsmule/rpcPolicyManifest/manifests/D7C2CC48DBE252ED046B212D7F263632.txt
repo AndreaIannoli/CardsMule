@@ -1,0 +1,2 @@
+serviceClass: com.sweng.cardsmule.shared.AuthenticationService
+path: F11B845521FF1E74071AD2035B5674E9.gwt.rpc
