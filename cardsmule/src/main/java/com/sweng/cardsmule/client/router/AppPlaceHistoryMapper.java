@@ -1,7 +1,5 @@
 package com.sweng.cardsmule.client.router;
 
-import com.aadm.cardexchange.client.places.CardPlace;
-import com.aadm.cardexchange.shared.models.Game;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.sweng.cardsmule.client.authentication.User;
