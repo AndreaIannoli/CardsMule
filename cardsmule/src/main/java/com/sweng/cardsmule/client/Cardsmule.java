@@ -4,6 +4,7 @@ import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
 import com.sweng.cardsmule.shared.FieldVerifier;
 //import com.sweng.cardsmule.client.Home;
 import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -35,11 +36,12 @@ import com.sweng.cardsmule.client.router.AppPlaceHistoryMapper;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Cardsmule implements EntryPoint {
+public class Cardsmule implements EntryPoint, HandleNavBar {
     private final SimplePanel appWidget = new SimplePanel();
     private AuthenticationServiceAsync authenticationService;
     private User user;
     private PlaceController placeController;
+    
     
 	/**
 	 * The message displayed to the user when the server cannot be reached or
@@ -97,4 +99,11 @@ public class Cardsmule implements EntryPoint {
             }
         });
     }
+
+	@Override
+	public void onClickLogout() {
+		authenticationService.logout(this.user.getToken(), new SuccessAsyncCallBack<>());
+		this.user.setCredentials(null, null);
+		placeController.goTo(new PreAuthenticationPlace());
+	}
 }

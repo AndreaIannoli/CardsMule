@@ -109,6 +109,7 @@
 					<div class="{style.filterButtons}">
 						<g:Button ui:field="cleanFiltersButton">Clean</g:Button>
 						<g:Button ui:field="applyFiltersButton">Apply</g:Button>
+						
 					</div>
 				</div>
 				<g:HTMLPanel ui:field="checkboxesPanel"/>

@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import com.sweng.cardsmule.client.CardsImages;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
 import com.sweng.cardsmule.shared.models.SwengCardMagic;
@@ -87,7 +88,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
             otherProperties.append("<div>").append(variant).append("</div>");
         }
 
-        //cardImage.addErrorHandler((error) -> cardImage.setUrl(GWT.getHostPageBaseURL() + DefaultImagePathLookupTable.getPath(game)));
+        cardImage.addErrorHandler((errorEvent) -> cardImage.setUrl(GWT.getHostPageBaseURL() + CardsImages.getPath(game)));
         cardGame.setInnerHTML(game != null ? game.name() : "");
         cardName.setInnerHTML(data.getName());
         cardImage.setUrl(imageUrl);

@@ -25,17 +25,17 @@ public class NavWidget extends Composite {
 	Button btnDeck;
 
 	@UiField
-	Button btnLogin;
+	Button btnScambi;
 
 	@UiField
-	Button btnRegister;
-	Button button;
+	Button btnLogout;
+	//Button button;
 
 	@UiTemplate("Nav.ui.xml")
 	interface NavUiBinder extends UiBinder<Widget, NavWidget> {
 	}
 	@UiConstructor
-	public NavWidget() {
+	public NavWidget(HandleNavBar parent) {
 		initWidget(uiBinder.createAndBindUi(this));
 		//button = new Button("Logout", (ClickHandler) event -> parent.onClickLogout());
 
@@ -45,7 +45,12 @@ public class NavWidget extends Composite {
 		btnLogin.getElement().getStyle().setWidth(70.0, Unit.PX);
 		btnRegister.getElement().getStyle().setHeight(50.0, Unit.PX);
 		btnRegister.getElement().getStyle().setWidth(70.0, Unit.PX);*/
+		
+		btnLogout.addClickHandler((ClickHandler) event -> parent.onClickLogout());
 	}
+	
+	
+	
 	
 
 	/*@UiHandler("btnHome")

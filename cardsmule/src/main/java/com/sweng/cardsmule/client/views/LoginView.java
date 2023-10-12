@@ -13,6 +13,7 @@ public interface LoginView extends IsWidget {
     void resetFields();
 
     interface Presenter {
+
     	void signIn(String username, String password);
     	
         void goTo(Place place);

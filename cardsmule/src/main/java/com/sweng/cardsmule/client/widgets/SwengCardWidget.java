@@ -1,6 +1,8 @@
 package com.sweng.cardsmule.client.widgets;
 
 import com.google.gwt.user.client.ui.Composite;
+
+import com.sweng.cardsmule.client.CardsImages;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -70,11 +72,11 @@ public class SwengCardWidget extends Composite {
             properties.append("<div>").append(variant).append("</div>");
         }
 
-        image.setUrl(imageUrl);
+        image.setUrl(imageUrl);	
         detailsDiv.setInnerHTML(details);
         propertiesDiv.setInnerHTML(String.valueOf(properties));
         detailsButton.addClickHandler(clickEvent -> parent.onCardDetailsOpen(card.getId(), game));
-        //image.addErrorHandler((errorEvent) -> image.setUrl(GWT.getHostPageBaseURL() + DefaultImagePathLookupTable.getPath(game)));
+        image.addErrorHandler((errorEvent) -> image.setUrl(GWT.getHostPageBaseURL() + CardsImages.getPath(game)));
     }
 
     private String createDetailHTML(String detail, String text) {

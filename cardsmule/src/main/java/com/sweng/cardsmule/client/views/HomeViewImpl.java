@@ -2,6 +2,8 @@ package com.sweng.cardsmule.client.views;
 
 import java.util.Map;
 
+
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;
 import com.sweng.cardsmule.client.widgets.NavWidget;
@@ -19,15 +21,22 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.sweng.cardsmule.client.SuccessAsyncCallBack;
+import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.handlers.HandleCard;
+import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.widgets.NavWidget;
+import com.sweng.cardsmule.shared.AuthenticationService;
+import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
+import com.sweng.cardsmule.shared.CredentialsPayload;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
 import com.sweng.cardsmule.shared.models.SwengCardMagic;
 import com.sweng.cardsmule.shared.models.SwengPokemonCard;
 import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
+import com.sweng.cardsmule.shared.throwables.AuthenticationException;
 import com.sweng.cardsmule.client.widgets.SwengCardWidget;
 
 import java.util.List;
@@ -41,8 +50,9 @@ import java.util.ArrayList;
 
 import com.sweng.cardsmule.client.views.HomeView;
 
-public class HomeViewImpl extends Composite implements HomeView, HandleCard{
+public class HomeViewImpl extends Composite implements HomeView, HandleCard, HandleNavBar{
     private static final HomeViewImplUIBinder uiBinder = GWT.create(HomeViewImplUIBinder.class);
+
     Presenter presenter;
     @UiField
     TextBox SearchBar;
@@ -70,7 +80,10 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard{
     Button applyFiltersButton;
     @UiField
     Button cleanFiltersButton;
-    private final NavWidget navbarWidget = new NavWidget();
+    
+
+    
+    private final NavWidget navbarWidget = new NavWidget(this);
     Map<CardsmuleGame,List<String>> attributeList;
     Map<CardsmuleGame, List<String>> gameCharacters;
     private boolean isGameChanged;
@@ -80,7 +93,8 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard{
 	}
 	
     public HomeViewImpl() {
-    	initWidget(uiBinder.createAndBindUi(this));
+    	
+		initWidget(uiBinder.createAndBindUi(this));
     	magicRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.MAGIC));
     	pokemonRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.POKEMON));
     	YuGiOhRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.YUGIOH));
@@ -217,4 +231,17 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard{
 	public void onCardDetailsOpen(int idCard, CardsmuleGame game) {
 		presenter.goTo(new GameCardDetailsPlace(idCard, game));
 	}
+	
+	
+	
+	@Override
+	public void onClickLogout() {
+		
+		
+		presenter.goTo(new PreAuthenticationPlace());	
+	}
+
+
+
+	
 }
