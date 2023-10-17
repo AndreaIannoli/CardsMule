@@ -20,6 +20,7 @@ import com.sweng.cardsmule.client.activities.RegistrationActivity;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.shared.AuthenticationService;
 import com.sweng.cardsmule.shared.CardService;
+import com.sweng.cardsmule.shared.CollectionService;
 
 public class AppActivityMapper implements ActivityMapper {
     private final ClientSession clientSession;
@@ -39,7 +40,7 @@ public class AppActivityMapper implements ActivityMapper {
         else if (place instanceof HomePlace)
         	return new HomeActivity(clientSession.getHomeView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(CardService.class));
         else if (place instanceof GameCardDetailsPlace)
-        	return new GameCardDetailsActivity(clientSession.getCardDetailsView(), (GameCardDetailsPlace) place, GWT.create(CardService.class), clientSession.getUser(), clientSession.getPlaceController());
+        	return new GameCardDetailsActivity(clientSession.getCardDetailsView(), (GameCardDetailsPlace) place, GWT.create(CardService.class), GWT.create(CollectionService.class), GWT.create(AuthenticationService.class), clientSession.getUser(), clientSession.getPlaceController());
         return null;
     }
 }
