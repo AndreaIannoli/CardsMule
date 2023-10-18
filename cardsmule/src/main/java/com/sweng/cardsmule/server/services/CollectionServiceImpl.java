@@ -62,6 +62,14 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         }
         userCollections.put(collectionName, new Collection(collectionName, isDeck));
         collectionMap.put(email, userCollections);
+        
+        for(String collectionEmail: collectionMap.keySet()) {
+        	System.out.println("deck id " + collectionEmail);
+        	for(String collectionN : collectionMap.get(collectionEmail).keySet()) {
+        		System.out.println(collectionN);
+        		System.out.println(collectionMap.get(collectionEmail).get(collectionN));
+        	}
+        }
         return true;
     }
 
@@ -80,6 +88,10 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
             return true;
         });
 	}
+	
+	public static boolean createDefaultCollection(String email, Map<String, Map<String, Collection>> CollectionMap) {
+        return addCollection(email, COLLECTION_OWNED, false, CollectionMap) && addCollection(email, COLLECTION_WISHED, false, CollectionMap);
+    }
 	
     private void checkCollectionName(String collectionName) throws InputException {
         if (collectionName == null || collectionName.isEmpty())
@@ -113,14 +125,18 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         }
         return db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type), (Map<String, Map<String, Collection>> collectionMap) -> {
             Map<String, Collection> decks = collectionMap.get(userEmail);
+            System.out.println(userEmail + "email user");
             if (decks == null) {
+            	System.out.println("errori");
                 return false;
             }
             Collection foundCollection = decks.get(collectionName);
             if (foundCollection == null) {
+            	System.out.println("errore 2");
                 return false;
             }
             if (!foundCollection.addOwnedCard(new OwnedCard(cardId, grade, game, userEmail, description))) {
+            	System.out.println("errore 3");
                 return false;
             }
             collectionMap.put(userEmail, decks);
@@ -254,13 +270,16 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	@Override
 	public List<WishedCard> getWishedCardsByCardId(int cardId) throws InputException {
         Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type));
+        System.out.println(type + "questo è il type");
         Set<String> userEmails = collectionMap.keySet();
         List<WishedCard> wishedCards = new ArrayList<>();
         for (String userEmail : userEmails) {
-            Set<OwnedCard> ownedUserCards = collectionMap.get(userEmail).get(COLLECTION_OWNED).getOwnedCards();
+            Set<OwnedCard> ownedUserCards = collectionMap.get(userEmail).get(COLLECTION_WISHED).getOwnedCards();
             for (OwnedCard ownedUserCard : ownedUserCards) {
                 if (ownedUserCard.getReferenceCardId() == cardId) {
+                	System.out.println("L'errore è in questo pezzo di codice ? " + ownedUserCard.getReferenceCardId() + " " + ownedUserCard.getGrade() + " " + ownedUserCard.getCardGame()  + " " + ownedUserCard.getUserEmail() );
                 	wishedCards.add(new WishedCard(ownedUserCard.getReferenceCardId(), ownedUserCard.getGrade(), ownedUserCard.getCardGame(), ownedUserCard.getUserEmail()));
+                	System.out.println("questo punto lo supera " );
                 }
             }
         }

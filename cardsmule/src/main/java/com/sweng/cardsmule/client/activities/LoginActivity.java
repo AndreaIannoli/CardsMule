@@ -63,7 +63,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
                 @Override
                 public void onSuccess(CredentialsPayload result) {
                     view.setAuthToken(result.getToken());
-                    user.setCredentials(result.getToken(), result.getUsername());
+                    user.setCredentials(result.getToken(), result.getUsername(), result.getEmail());
                     goTo(new HomePlace());
                 }
             };

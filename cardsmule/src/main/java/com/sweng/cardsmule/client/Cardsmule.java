@@ -95,7 +95,7 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 
             @Override
             public void onSuccess(String result) {
-                user.setCredentials(Cookies.getCookie("token"), result);
+                //user.setCredentials(Cookies.getCookie("token"), result);
             }
         });
     }
@@ -103,7 +103,7 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 	@Override
 	public void onClickLogout() {
 		authenticationService.logout(this.user.getToken(), new SuccessAsyncCallBack<>());
-		this.user.setCredentials(null, null);
+		this.user.setCredentials(null, null, null);
 		placeController.goTo(new PreAuthenticationPlace());
 	}
 }

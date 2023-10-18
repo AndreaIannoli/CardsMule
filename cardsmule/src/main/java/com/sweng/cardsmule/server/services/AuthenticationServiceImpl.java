@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import org.mapdb.Serializer;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.sweng.cardsmule.server.gsonserializer.GsonSerializer;
@@ -22,6 +23,8 @@ import com.sweng.cardsmule.shared.CredentialsPayload;
 import com.sweng.cardsmule.shared.LoginSession;
 import com.sweng.cardsmule.shared.models.Account;
 import com.sweng.cardsmule.shared.throwables.AuthenticationException;
+import com.sweng.cardsmule.shared.models.Collection;
+import java.lang.reflect.Type;
 
 
 public class AuthenticationServiceImpl extends RemoteServiceServlet implements AuthenticationService, MapDBConst {
@@ -31,6 +34,8 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
             "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     private final MapDB db;
     private final Gson gson = new Gson();
+    private final Type type = new TypeToken<Map<String, Collection>>() {
+    }.getType();
 
     public AuthenticationServiceImpl() {
         db = new DBImplements();
@@ -78,10 +83,11 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
     }
 
     private String generateAndStoreLoginToken(Account account) {
-        String token = generateHash(account.getUsername());
+        String token = generateHash(account.getEmail());
+        
         db.writeOperation(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson),
                 (Map<String, LoginSession> loginMap) -> {
-                    loginMap.put(token, new LoginSession(account.getUsername(), System.currentTimeMillis()));
+                    loginMap.put(token, new LoginSession(account.getUsername(), account.getEmail(), System.currentTimeMillis()));
                     return null;
                 });
         return token;
@@ -102,7 +108,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         } else if (!checkTokenExpiration(session.getLoginTime())) {
             throw new AuthenticationException("Expired token");
         }
-        return session.getUsername();
+        return session.getEmail();
     }
 
     @Override
@@ -117,23 +123,25 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
+        //TO-Do problema del fatto che puoi registrarti con la stessa mail
         if (accountMap.get(email) != null)
             throw new AuthenticationException("Email already exists");
         if (accountMap.get(username) != null)
             throw new AuthenticationException("Username already exists");
         
-        db.writeOperation(getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson),
-                (Map<String, Account> userMap) -> {
-                	userMap.put(username, account);
+        db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
+                (Map<String, Map<String, Collection>> deckMap) -> {
+                	accountMap.put(username, account);
+                	CollectionServiceImpl.createDefaultCollection(email, deckMap);
                     return null;
                 });
-        System.out.println("MAP START");
+        /*System.out.println("MAP START");
         for(Entry entry : accountMap.entrySet()) {
         	System.out.println(entry.getValue());
         	System.out.println(entry.getKey());
         }
-        System.out.println("MAP END");
-        return new CredentialsPayload(generateAndStoreLoginToken(account), username);
+        System.out.println("MAP END");*/
+        return new CredentialsPayload(generateAndStoreLoginToken(account), username, email);
     }
 
     @Override
@@ -147,6 +155,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = accountMap.get(username);
+        String email=account.getEmail();
         System.out.println("MAP START");
         for(Entry entry : accountMap.entrySet()) {
         	System.out.println(entry.getValue());
@@ -161,7 +170,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
             throw new AuthenticationException("Password don't match");
         }
         
-        return new CredentialsPayload(generateAndStoreLoginToken(account), username);
+        return new CredentialsPayload(generateAndStoreLoginToken(account),username, email);
     }
 
     @Override

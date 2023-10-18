@@ -13,11 +13,16 @@ public interface GameCardDetailsView extends IsWidget {
     
     void displayAlert(String message);
     
+    void hideModal();
+    
+    String getDeckSelected();
+    
     void setPresenter(Presenter presenter);
 	
     interface Presenter {
         void goTo(Place place);
-
+        void addCardToDeck(String deckName, String grade, String description);
+        void update();
         void fetchCard();
     }
     

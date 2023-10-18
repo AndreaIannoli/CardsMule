@@ -15,11 +15,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
-<<<<<<< Updated upstream
 import com.sweng.cardsmule.client.CardsImages;
-=======
+import com.sweng.cardsmule.client.handlers.HandleAddCardToCollection;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
->>>>>>> Stashed changes
+
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.OwnedCard;
 import com.sweng.cardsmule.shared.models.SwengCard;
@@ -27,8 +26,14 @@ import com.sweng.cardsmule.shared.models.SwengCardMagic;
 import com.sweng.cardsmule.shared.models.SwengPokemonCard;
 import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
 import com.sweng.cardsmule.shared.models.WishedCard;
+import com.sweng.cardsmule.client.widgets.AddCardToCollectionWidget;
+import com.sweng.cardsmule.client.widgets.AddCardToDeckWidget;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.sweng.cardsmule.client.handlers.HandleAddCardToDeck;
 
-public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView{
+
+
+public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck{
     private static final GameCardDetailsImplUIBinder uiBinder = GWT.create(GameCardDetailsImplUIBinder.class);
     @UiField
     SpanElement cardGame;
@@ -58,16 +63,22 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
     HTMLPanel addCardToDeckContainer;
     @UiField
     HTMLPanel userLists;
+    @UiField
+    Button updateBtn;
     Presenter presenter;
     
     UsersListWidget ownedList;
     UsersListWidget wishedList;
+    AddCardToCollectionWidget addCardToCollectionWidget= new AddCardToCollectionWidget(this);
+    DialogBox dialog = new AddCardToDeckWidget(this);
+    
     
     interface GameCardDetailsImplUIBinder extends UiBinder<Widget, GameCardDetailsViewImpl> {
     }
     
     public GameCardDetailsViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
+        updateBtn.addClickHandler(clickEvent -> presenter.update() );
     }
     
     public void setData(SwengCard data) {
@@ -113,6 +124,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
         if (!rarity.isEmpty()) optionRarity.getStyle().clearDisplay();
         if (!race.isEmpty()) optionRace.getStyle().clearDisplay();
         optionOtherProperties.setInnerHTML(String.valueOf(otherProperties));
+        
     }
     
     private void removeUnusedProp() {
@@ -142,14 +154,27 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
         ownedList.setTable(ownerList, own -> new Button("Exchange", (ClickHandler) e ->
         displayAlert("GoToExchange")));
 	}
+	@Override
+    public void onClickAddToDeck() {
+        dialog.center();
+        dialog.setModal(true);
+        if (addCardToCollectionWidget.getDeckName().equals("Owned")) {
+            dialog.setText("Do you own this card?");
+        } else if (addCardToCollectionWidget.getDeckName().equals("Wished")) {
+            dialog.setText("Do you wish this card?");
+        } else {
+            dialog.setText("YOU MUST SELECT A DECK!");
+        }
+        dialog.show();
+    }
 	
     @Override
     public void createUserWidgets(boolean isLoggedIn) {
-        addCardToDeckContainer.clear();
+    	addCardToDeckContainer.clear();
         userLists.clear();
         // create AddCartToDeckWidget
         if (isLoggedIn) {
-            //addCardToDeckContainer.add(addCardToDeckWidget);
+        	addCardToDeckContainer.add(addCardToCollectionWidget);
         }
         // create UserListWidget 'Exchange' buttons
         ownedList = new UsersListWidget("Owned by", isLoggedIn);
@@ -157,4 +182,20 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
         userLists.add(ownedList);
         userLists.add(wishedList);
     }
+
+	@Override
+	public void onClickModalYes(String grade, String description) {
+		presenter.addCardToDeck(addCardToCollectionWidget.getDeckName(), grade, description);
+		
+	}
+	@Override
+    public void hideModal() {
+        dialog.hide();
+    }
+
+	@Override
+	public String getDeckSelected() {
+		// TODO Auto-generated method stub
+		return addCardToCollectionWidget.getDeckName();
+	}
 }

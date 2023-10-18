@@ -16,7 +16,7 @@ public enum Grade {
         this.value = value;
     }
 
-    public static Grade getStatus(int value) {
+    public static Grade getGrade(int value) {
     	switch (value) {
         case 1:
             return Poor;

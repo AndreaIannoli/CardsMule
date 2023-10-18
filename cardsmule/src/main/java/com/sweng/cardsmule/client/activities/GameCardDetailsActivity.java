@@ -10,6 +10,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
@@ -20,9 +21,12 @@ import com.sweng.cardsmule.shared.CardServiceAsync;
 import com.sweng.cardsmule.shared.CollectionService;
 import com.sweng.cardsmule.shared.CollectionServiceAsync;
 import com.sweng.cardsmule.shared.models.Account;
+import com.sweng.cardsmule.shared.models.Collection;
+import com.sweng.cardsmule.shared.models.Grade;
 import com.sweng.cardsmule.shared.models.OwnedCard;
 import com.sweng.cardsmule.shared.models.SwengCard;
 import com.sweng.cardsmule.shared.models.WishedCard;
+import com.sweng.cardsmule.shared.throwables.AuthenticationException;
 import com.sweng.cardsmule.shared.throwables.InputException;
 import com.sweng.cardsmule.client.BaseAsyncCallback;
 
@@ -76,52 +80,68 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
         placeController.goTo(place);
     }
     
-    /*
     @Override
     public void update() {
         view.createUserWidgets(user.isLoggedIn());
         fetchOwnedPhysicalCards();
         fetchWishedPhysicalCards();
     }
-    */
+    
+    private List<OwnedCard> filterYourOwnedPhysicalCards(List<? extends OwnedCard> ownedCards) {
+        return ownedCards.stream().filter(ownedCard -> !ownedCard.getUserEmail().equals(user.getEmail())).collect(Collectors.toList());
+    }
+    
     
     private void fetchOwnedPhysicalCards() {
         collectionService.getOwnedCardsByCardId(place.getIdCard(), new BaseAsyncCallback<List<OwnedCard>>() {
             @Override
             public void onSuccess(List<OwnedCard> result) {
-                view.setOwnList(result);
+                view.setOwnList(filterYourOwnedPhysicalCards(result));
             }
         });
     }
-    
-    /*
-    private List<OwnedCard> filterOwnPhysicalCards(List<? extends OwnedCard> ownedCards) {
-    	authenticationService.me(user.getToken(), new BaseAsyncCallback<String>() {
-			@Override
-			public void onSuccess(String result) {
-				return ownedCards.stream().filter(ownedCard -> !ownedCard.getUserEmail().equals(result)).collect(Collectors.toList());
-			}
-    	});
-    }
-    */
 
-    private void fetchWishedPhysicalCards() {
-    	/*
-        if (user.isLoggedIn()) {
-        	CollectionService.getListPhysicalCardWithEmailDealing(authSubject.getToken(), place.getGame(), place.getCardId(), new BaseAsyncCallback<List<PhysicalCardWithEmailDealing>>() {
-                @Override
-                public void onSuccess(List<PhysicalCardWithEmailDealing> result) {
-                    view.setWishedByUserList(filterOwnPhysicalCards(result));
-                }
-            });
-        } else {
-        */
+    private void fetchWishedPhysicalCards() {    	
         	collectionService.getWishedCardsByCardId(place.getIdCard(), new BaseAsyncCallback<List<WishedCard>>() {
                 @Override
-                public void onSuccess(List<WishedCard> result) {
-                    view.setWishList(result);
+                public void onSuccess(List<WishedCard> result) {                	
+                		view.setWishList(result);
                 }
             });
-        /*}*/
     }
+
+	@Override
+	public void addCardToDeck(String deckName, String grade, String description) {
+		// TODO Auto-generated method stub
+		collectionService.addOwnedCardToCollection(
+                user.getToken(),
+                place.getGame(),
+                deckName,
+                place.getIdCard(),
+                Grade.getGrade(Integer.parseInt(grade)),
+                description,
+                new AsyncCallback<Boolean>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        if (caught instanceof AuthenticationException) {
+                            view.displayAlert(((AuthenticationException) caught).getExceptionText());
+                        } else if (caught instanceof InputException) {
+                            view.displayAlert(((InputException) caught).getExceptionText());
+                        } else {
+                            view.displayAlert("Internal server error");
+                        }
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
+                        if (result) {
+                            view.displayAlert("Success! Card added to " + view.getDeckSelected() + " deck");
+                            view.hideModal();
+                        } else {
+                            view.displayAlert("Deck not found");
+                        }
+                    }
+                }
+        );
+	}
 }
