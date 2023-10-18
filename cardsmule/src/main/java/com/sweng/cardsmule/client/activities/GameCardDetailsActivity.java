@@ -56,8 +56,8 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
         containerWidget.setWidget(view.asWidget());
         fetchCard();
         view.createUserWidgets(user.isLoggedIn());
-        fetchOwnedPhysicalCards();
-        fetchWishedPhysicalCards();
+        fetchCollectionCards();
+        fetchWishedCollectionCards();
     }
     
     
@@ -83,25 +83,25 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
     @Override
     public void update() {
         view.createUserWidgets(user.isLoggedIn());
-        fetchOwnedPhysicalCards();
-        fetchWishedPhysicalCards();
+        fetchCollectionCards();
+        fetchWishedCollectionCards();
     }
     
-    private List<OwnedCard> filterYourOwnedPhysicalCards(List<? extends OwnedCard> ownedCards) {
+    private List<OwnedCard> filterYourOwnedCollectionCards(List<? extends OwnedCard> ownedCards) {
         return ownedCards.stream().filter(ownedCard -> !ownedCard.getUserEmail().equals(user.getEmail())).collect(Collectors.toList());
     }
     
     
-    private void fetchOwnedPhysicalCards() {
+    private void fetchCollectionCards() {
         collectionService.getOwnedCardsByCardId(place.getIdCard(), new BaseAsyncCallback<List<OwnedCard>>() {
             @Override
             public void onSuccess(List<OwnedCard> result) {
-                view.setOwnList(filterYourOwnedPhysicalCards(result));
+                view.setOwnList(filterYourOwnedCollectionCards(result));
             }
         });
     }
 
-    private void fetchWishedPhysicalCards() {    	
+    private void fetchWishedCollectionCards() {    	
         	collectionService.getWishedCardsByCardId(place.getIdCard(), new BaseAsyncCallback<List<WishedCard>>() {
                 @Override
                 public void onSuccess(List<WishedCard> result) {                	
