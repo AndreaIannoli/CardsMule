@@ -26,6 +26,7 @@ import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.handlers.HandleCard;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
+import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.widgets.NavWidget;
 import com.sweng.cardsmule.shared.AuthenticationService;
@@ -236,9 +237,12 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 	
 	@Override
 	public void onClickLogout() {
-		
-		
 		presenter.goTo(new PreAuthenticationPlace());	
+	}
+
+	@Override
+	public void onClickHome() {
+		presenter.goTo(new HomePlace());		
 	}
 
 

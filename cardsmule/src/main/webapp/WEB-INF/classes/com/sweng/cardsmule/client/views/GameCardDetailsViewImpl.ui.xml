@@ -78,6 +78,10 @@
 			background-color: grey;
 			height: 100%;
 		}
+		.collectionButton{
+		border-radius: 0.7rem;
+        padding: 0.2rem 0.5rem;
+	}
     </ui:style>
     <g:HTMLPanel styleName="{style.wrapper}">
         <div class="{style.details}">
@@ -111,6 +115,7 @@
             </div>
         </div>
         <g:HTMLPanel styleName="{style.addCardToDeckContainer}" ui:field="addCardToDeckContainer"/>
+         <g:Button addStyleNames="{style.collectionButton}" ui:field="updateBtn">Update</g:Button>
         <g:HTMLPanel styleName="{style.userListsContainer}" ui:field="userLists"/>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -2,6 +2,7 @@ package com.sweng.cardsmule.client.views;
 
 import java.util.List;
 
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.HeadingElement;
@@ -18,6 +19,10 @@ import com.google.gwt.user.client.ui.Widget;
 import com.sweng.cardsmule.client.CardsImages;
 import com.sweng.cardsmule.client.handlers.HandleAddCardToCollection;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
+import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.place.HomePlace;
+import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.widgets.UsersListWidget;
 
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.OwnedCard;
@@ -33,7 +38,7 @@ import com.sweng.cardsmule.client.handlers.HandleAddCardToDeck;
 
 
 
-public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck{
+public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck, HandleNavBar{
     private static final GameCardDetailsImplUIBinder uiBinder = GWT.create(GameCardDetailsImplUIBinder.class);
     @UiField
     SpanElement cardGame;
@@ -197,5 +202,16 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 	public String getDeckSelected() {
 		// TODO Auto-generated method stub
 		return addCardToCollectionWidget.getDeckName();
+	}
+    
+    
+	@Override
+	public void onClickHome() {
+		presenter.goTo(new HomePlace());	
+	}
+
+	@Override
+	public void onClickLogout() {
+		presenter.goTo(new PreAuthenticationPlace());	
 	}
 }

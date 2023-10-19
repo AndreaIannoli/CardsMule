@@ -47,6 +47,7 @@ public class NavWidget extends Composite {
 		btnRegister.getElement().getStyle().setWidth(70.0, Unit.PX);*/
 		
 		btnLogout.addClickHandler((ClickHandler) event -> parent.onClickLogout());
+		btnHome.addClickHandler((ClickHandler) event -> parent.onClickHome());
 	}
 	
 	

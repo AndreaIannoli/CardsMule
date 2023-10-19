@@ -1,0 +1,27 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .addCardToCollection {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .collectionButton {
+            border-radius: 0.7rem;
+            padding: 0.2rem 0.5rem;
+        }
+        
+    </ui:style>
+    <g:HTMLPanel styleName="{style.addCardToCollection}">
+        <g:ListBox ui:field="collectionListBox">
+            <g:item value="">-- select a Collection --</g:item>
+            <g:item value="Owned">Owned</g:item>
+            <g:item value="Wished">Wished</g:item>
+        </g:ListBox>
+        <g:Button addStyleNames="{style.collectionButton}" ui:field="addToCollectionButton">Add to Collection</g:Button>
+       
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

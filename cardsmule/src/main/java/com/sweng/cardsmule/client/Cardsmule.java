@@ -106,4 +106,10 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 		this.user.setCredentials(null, null, null);
 		placeController.goTo(new PreAuthenticationPlace());
 	}
+
+	@Override
+	public void onClickHome() {
+		placeController.goTo(new PreAuthenticationPlace());	
+		
+	}
 }
