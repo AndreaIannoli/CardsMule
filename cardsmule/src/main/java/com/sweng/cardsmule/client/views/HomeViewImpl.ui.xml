@@ -4,28 +4,28 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 	.searchBar{
-			
+
 	}
 	.searchContainer{
-		
+
 		margin: 10px;
 		text-align: center;
 
 	}
 	.filtersContainer{
-		
+
 		margin: 10px;
 		text-align: center;
 	}
 	.filterBar{
-	
+
 	}
 	.topContainer{
 		background-color:black;
 		display:flex;
 		justify-content: center;
-		
-		
+
+
 	}
 	.container{
 		display: flex;
@@ -36,7 +36,7 @@
 	}
 	.scrollPaneContainer{
 		flex-grow: 1;
-		background-color: grey; 
+		background-color: grey;
 
 	}
 	.Panel{
@@ -59,58 +59,65 @@
 		flex-direction: column;
 		margin:5px;
 	}
-	.cards{
+	.cardsPanel{
+		flex-grow: 1;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		justify-content: center;
+		padding-top: 30px;
 	}
-	
+
 	</ui:style>
 	<g:HTMLPanel styleName="{style.Panel}">
 		<div class="{style.container}">
-		<div class ="{style.topContainer}">
-			<div class="{style.attributes}">
-	            <div>
-	                <span ui:field="attributeSpan">Special Attribute</span>
-	                <g:ListBox ui:field="specialAttributeOptions">
-	                    <g:item>/</g:item>
-	                </g:ListBox>
-	            </div>
-	            <div>
-	                Type
-	                <g:ListBox ui:field="typeOptions">
-	                    <g:item>/</g:item>
-	                </g:ListBox>
-	            </div>
-        </div>
-        <div class="{style.display}">
-			<div class="{style.searchContainer}">
-				<g:ListBox ui:field="artistOrName">
-	                <g:item>/</g:item>
-	            </g:ListBox>
-				<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
-					
-				</g:TextBox>
+			<div class ="{style.topContainer}">
+				<div class="{style.attributes}">
+					<div>
+						<span ui:field="attributeSpan">Special Attribute</span>
+						<g:ListBox ui:field="specialAttributeOptions">
+							<g:item>/</g:item>
+						</g:ListBox>
+					</div>
+					<div>
+						Type
+						<g:ListBox ui:field="typeOptions">
+							<g:item>/</g:item>
+						</g:ListBox>
+					</div>
+				</div>
+				<div class="{style.display}">
+					<div class="{style.searchContainer}">
+						<g:ListBox ui:field="artistOrName">
+							<g:item>/</g:item>
+						</g:ListBox>
+						<g:TextBox styleName="{style.searchBar}" ui:field="SearchBar">
+
+						</g:TextBox>
+					</div>
+					<div class= "{style.filtersContainer}">
+						<g:RadioButton styleName="{style.filterBar}" ui:field="magicRadio" name="radio">
+							Magic
+						</g:RadioButton>
+						<g:RadioButton styleName="{style.filterBar}" ui:field="pokemonRadio" name="radio">
+							Pokemon
+						</g:RadioButton>
+						<g:RadioButton styleName="{style.filterBar}" ui:field="YuGiOhRadio" name="radio">
+							YuGiOh
+						</g:RadioButton>
+					</div>
+					<div class="{style.filterButtons}">
+						<g:Button ui:field="cleanFiltersButton">Clean</g:Button>
+						<g:Button ui:field="applyFiltersButton">Apply</g:Button>
+						
+					</div>
+				</div>
+				<g:HTMLPanel ui:field="checkboxesPanel"/>
 			</div>
-			<div class= "{style.filtersContainer}">
-				<g:RadioButton styleName="{style.filterBar}" ui:field="magicRadio" name="radio">
-					Magic
-				</g:RadioButton>
-				<g:RadioButton styleName="{style.filterBar}" ui:field="pokemonRadio" name="radio">
-					Pokemon
-				</g:RadioButton>
-				<g:RadioButton styleName="{style.filterBar}" ui:field="YuGiOhRadio" name="radio">
-					YuGiOh
-				</g:RadioButton>
+			<div class="{style.scrollPaneContainer}">
+			<g:HTMLPanel ui:field="cardsPanel" styleName="{style.cardsPanel}"/>
 			</div>
-			<div class="{style.filterButtons}">
-                <g:Button ui:field="cleanFiltersButton">Clean</g:Button>
-                <g:Button ui:field="applyFiltersButton">Apply</g:Button>
-            </div>
-            </div>
-			<g:HTMLPanel ui:field="checkboxesPanel"/>
 		</div>
-		<div class="{style.scrollPaneContainer}">
-		</div>
-		</div>
-		        <g:HTMLPanel styleName="{style.cards}" ui:field='cardsPanel'/>
 		
 	</g:HTMLPanel>
-</ui:UiBinder> 
+</ui:UiBinder>

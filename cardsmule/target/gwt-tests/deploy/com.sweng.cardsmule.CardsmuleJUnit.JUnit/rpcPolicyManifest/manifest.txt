@@ -1,5 +1,5 @@
 # Module com.sweng.cardsmule.CardsmuleJUnit.JUnit
 # RPC service class, partial path of RPC policy file
-com.google.gwt.logging.shared.RemoteLoggingService, F123110FA3CFA1FA6CC9C4DB902D68FA.gwt.rpc
+com.google.gwt.logging.shared.RemoteLoggingService, 5A88DBF2085D1A3BA514D5DA1D7AC729.gwt.rpc
 com.google.gwt.junit.client.impl.JUnitHost, 96393FD5B90EFD77EACE5B4F721C3D47.gwt.rpc
 com.sweng.cardsmule.client.GreetingService, 6C345B690B377931D36B6DE2103BB3DB.gwt.rpc

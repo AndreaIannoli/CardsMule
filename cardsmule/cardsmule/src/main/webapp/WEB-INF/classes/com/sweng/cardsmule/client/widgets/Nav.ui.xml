@@ -30,7 +30,6 @@
 			background-color: black;
 		}
 		.button {
-			background-color: red;
 		}
 	</ui:style>
 
@@ -44,10 +43,10 @@
 					<g:Button styleName="{style.button}" ui:field="btnDeck" text="Deck"/>
 				</li>
 				<li class="{style.list}" id="Login">
-					<g:Button styleName="{style.button}" ui:field="btnLogin" text="Login"/>
+					<g:Button styleName="{style.button}" ui:field="btnScambi" text="Scambi"/>
 				</li>
 				<li class="{style.list}" id="Register">
-					<g:Button styleName="{style.button}" ui:field="btnRegister" text="Registrati"/>
+					<g:Button styleName="{style.button}" ui:field="btnLogout" text="Logout"/>
 				</li>
 			</ul>
 		</div>

@@ -69,71 +69,51 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
-			
-			
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	/*public List<SwengCard> filteredCards(String selectedValue, String value, String textOptionsSelectedValue, String text, List<String> booleanInputNames, List<Boolean> booleanInputValues) {
-		return card.stream()
-		.filter(card -> {
-		if (!textInputValue.isEmpty()) {
-		  String cardText = "";
-		  switch (textInputName) {
-		      case "Name":
-		          cardText = card.getName();
-		          break;
-		      case "Description":
-		          cardText = card.getDescription();
-		          break;
-		      case "Artist":
-		          if (card instanceof MagicCard) {
-		              cardText = ((MagicCard) card).getArtist();
-		          } else if (card instanceof PokemonCard) {
-		              cardText = ((PokemonCard) card).getArtist();
-		          }
-		          break;
-		  }
-		  if (!cardText.toLowerCase().contains(textInputValue.toLowerCase())) {
-		      return false;
-		  }
-		}
-		if (!specialAttributeValue.equals("all")) {
-		  if ((card instanceof MagicCard && !specialAttributeValue.equals(((MagicCard) card).getRarity())) ||
-		          (card instanceof PokemonCard && !specialAttributeValue.equals(((PokemonCard) card).getRarity())) ||
-		          (card instanceof YuGiOhCard && !specialAttributeValue.equals(((YuGiOhCard) card).getRace()))) {
-		      return false;
-		  }
-		}
-		if (!typeValue.equals("all") && !typeValue.equals(card.getType())) {
-		  return false;
-		}
-		if (!(booleanInputNames.isEmpty() && booleanInputValues.isEmpty())) {
-		  for (int i = 0; i < booleanInputNames.size(); i++) {
-		      String name = booleanInputNames.get(i);
-		      Boolean value = booleanInputValues.get(i);
-		      if (value && !card.getVariants().contains(name)) {
-		          return false;
-		      }
-		  }
-		}
-		return true;
-		})
-		.collect(Collectors.toList());
-		}*/
-
+	public List<SwengCard> filteredCards (String specialAttributeValue, String typeValue, String textInputName, String textInputValue,
+        List<String> booleanInputNames, List<Boolean> booleanInputValues) {
+        return card.stream()
+        .filter(cards -> {
+            if (!textInputValue.isEmpty()) {
+                String cardText = "";
+                switch (textInputName) {
+                  case "Name":
+                      cardText = cards.getName();
+                      break;
+                  case "Artist":
+                      if (cards instanceof SwengCardMagic) {
+                          cardText = ((SwengCardMagic) cards).getArtist();
+                      } else if (cards instanceof SwengPokemonCard) {
+                          cardText = ((SwengPokemonCard) cards).getArtist();
+                      }
+                      break;
+                }
+            if (!cardText.toLowerCase().contains(textInputValue.toLowerCase())) {
+              return false;
+                }
+            }
+            if (!specialAttributeValue.equals("all")) {
+                if ((cards instanceof SwengCardMagic && !specialAttributeValue.equals(((SwengCardMagic) cards).getRarity())) ||
+                      (cards instanceof SwengPokemonCard && !specialAttributeValue.equals(((SwengPokemonCard) cards).getRarity())) ||
+                      (cards instanceof SwengYuGiOhCard && !specialAttributeValue.equals(((SwengYuGiOhCard) cards).getRace()))) {
+                  return false;
+                }
+            }
+            if (!typeValue.equals("all") && !typeValue.equals(cards.getType())) {
+                return false;
+            }
+            if (!(booleanInputNames.isEmpty() && booleanInputValues.isEmpty())) {
+                for (int i = 0; i < booleanInputNames.size(); i++) {
+                  String name = booleanInputNames.get(i);
+                  Boolean value = booleanInputValues.get(i);
+                  if (value && !cards.getState().contains(name)) {
+                      return false;
+                  }
+                }
+            }
+            return true;
+            })
+            .collect(Collectors.toList());
+    }
 }

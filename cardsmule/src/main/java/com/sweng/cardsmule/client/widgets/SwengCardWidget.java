@@ -1,6 +1,8 @@
 package com.sweng.cardsmule.client.widgets;
 
 import com.google.gwt.user.client.ui.Composite;
+
+import com.sweng.cardsmule.client.CardsImages;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -10,6 +12,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiTemplate;
 
 import com.google.gwt.uibinder.client.UiField;
+import com.sweng.cardsmule.client.handlers.HandleCard;
 import com.sweng.cardsmule.client.views.HomeViewImpl;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
@@ -22,7 +25,7 @@ import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
 public class SwengCardWidget extends Composite {
     private static final CardUIBinder uiBinder = GWT.create(CardUIBinder.class);
 
-	
+    @UiField
 	DivElement nameDiv;
     @UiField
     DivElement detailsDiv;
@@ -37,8 +40,9 @@ public class SwengCardWidget extends Composite {
 	interface CardUIBinder extends UiBinder<Widget, SwengCardWidget> {
 	}
     
-    public  SwengCardWidget(SwengCard card) {
+    public  SwengCardWidget(HandleCard parent, SwengCard card) {
         initWidget(uiBinder.createAndBindUi(this));
+        System.out.println(card.getName());
         nameDiv.setInnerHTML(card.getName());
         image.setPixelSize(90, 131);
 
@@ -68,11 +72,11 @@ public class SwengCardWidget extends Composite {
             properties.append("<div>").append(variant).append("</div>");
         }
 
-        image.setUrl(imageUrl);
+        image.setUrl(imageUrl);	
         detailsDiv.setInnerHTML(details);
         propertiesDiv.setInnerHTML(String.valueOf(properties));
-        //detailsButton.addClickHandler(clickEvent -> parent.onOpenDetailsClick(game, card.getId()));
-        //image.addErrorHandler((errorEvent) -> image.setUrl(GWT.getHostPageBaseURL() + DefaultImagePathLookupTable.getPath(game)));
+        detailsButton.addClickHandler(clickEvent -> parent.onCardDetailsOpen(card.getId(), game));
+        image.addErrorHandler((errorEvent) -> image.setUrl(GWT.getHostPageBaseURL() + CardsImages.getPath(game)));
     }
 
     private String createDetailHTML(String detail, String text) {

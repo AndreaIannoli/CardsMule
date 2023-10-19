@@ -2,6 +2,8 @@ package com.sweng.cardsmule.client.views;
 
 import java.util.Map;
 
+
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;
 import com.sweng.cardsmule.client.widgets.NavWidget;
@@ -19,13 +21,23 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.sweng.cardsmule.client.SuccessAsyncCallBack;
+import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.client.handlers.HandleCard;
+import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
+import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.widgets.NavWidget;
+import com.sweng.cardsmule.shared.AuthenticationService;
+import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
+import com.sweng.cardsmule.shared.CredentialsPayload;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.SwengCard;
 import com.sweng.cardsmule.shared.models.SwengCardMagic;
 import com.sweng.cardsmule.shared.models.SwengPokemonCard;
 import com.sweng.cardsmule.shared.models.SwengYuGiOhCard;
+import com.sweng.cardsmule.shared.throwables.AuthenticationException;
 import com.sweng.cardsmule.client.widgets.SwengCardWidget;
 
 import java.util.List;
@@ -39,8 +51,9 @@ import java.util.ArrayList;
 
 import com.sweng.cardsmule.client.views.HomeView;
 
-public class HomeViewImpl extends Composite implements HomeView{
+public class HomeViewImpl extends Composite implements HomeView, HandleCard, HandleNavBar{
     private static final HomeViewImplUIBinder uiBinder = GWT.create(HomeViewImplUIBinder.class);
+
     Presenter presenter;
     @UiField
     TextBox SearchBar;
@@ -52,6 +65,8 @@ public class HomeViewImpl extends Composite implements HomeView{
     RadioButton YuGiOhRadio;
     @UiField
     HTMLPanel checkboxesPanel;
+    @UiField
+    HTMLPanel cardsPanel;
     @UiField
     public ListBox specialAttributeOptions;
     @UiField
@@ -66,9 +81,10 @@ public class HomeViewImpl extends Composite implements HomeView{
     Button applyFiltersButton;
     @UiField
     Button cleanFiltersButton;
-    @UiField
-    HTMLPanel cardsPanel;
-    private final NavWidget navbarWidget = new NavWidget();
+    
+
+    
+    private final NavWidget navbarWidget = new NavWidget(this);
     Map<CardsmuleGame,List<String>> attributeList;
     Map<CardsmuleGame, List<String>> gameCharacters;
     private boolean isGameChanged;
@@ -78,12 +94,13 @@ public class HomeViewImpl extends Composite implements HomeView{
 	}
 	
     public HomeViewImpl() {
-    	initWidget(uiBinder.createAndBindUi(this));
+    	
+		initWidget(uiBinder.createAndBindUi(this));
     	magicRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.MAGIC));
     	pokemonRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.POKEMON));
     	YuGiOhRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.YUGIOH));
-        //cleanFiltersButton.addClickHandler(e -> cleanFilters());
-        //applyFiltersButton.addClickHandler(e -> applyFilters());
+        cleanFiltersButton.addClickHandler(e -> cleanFilters());
+        applyFiltersButton.addClickHandler(e -> applyFilters());
 
 
     	attributeList = new HashMap<>();
@@ -99,6 +116,7 @@ public class HomeViewImpl extends Composite implements HomeView{
     
     public void changeGame(CardsmuleGame game) {
     	attributeSpan.setInnerHTML((game == CardsmuleGame.MAGIC || game == CardsmuleGame.POKEMON) ? "Rarity" : "Race");
+    	cardsPanel.clear();
     	artistOrName.clear();
     	checkboxesPanel.clear();
     	checkBoxes = new ArrayList<>();
@@ -107,7 +125,7 @@ public class HomeViewImpl extends Composite implements HomeView{
     	for (String booleanField : gameCharacters.get(game)) {
             CheckBox checkBox = new CheckBox(booleanField);
             checkboxesPanel.add(checkBox);
-            //checkBoxes.add(checkBox);
+            checkBoxes.add(checkBox);
         }
     }
 
@@ -135,6 +153,7 @@ public class HomeViewImpl extends Composite implements HomeView{
 
 	@Override
 	public void setAttributesAndtypes(List<SwengCard> cards) {
+		cardsPanel.clear();
 		Set<String> specialAttributes = new HashSet<>();
         Set<String> types = new HashSet<>();
         cards.forEach(card -> {
@@ -149,7 +168,7 @@ public class HomeViewImpl extends Composite implements HomeView{
         });
 
         cards.forEach(card -> {
-            cardsPanel.add(new SwengCardWidget(card));
+            cardsPanel.add(new SwengCardWidget(this, card));
         });
         if (!isGameChanged) {
             setFilters(specialAttributes, types);
@@ -165,33 +184,68 @@ public class HomeViewImpl extends Composite implements HomeView{
 		specialAttributes.forEach(specialAttribute -> specialAttributeOptions.addItem(specialAttribute));
 		types.forEach(type -> typeOptions.addItem(type));
 	}
-	 private void cleanFilters() {
-	        specialAttributeOptions.setItemSelected(0, true);
-	        typeOptions.setItemSelected(0, true);
-	        artistOrName.setItemSelected(0, true);
-	        SearchBar.setText("");
-	        checkBoxes.forEach(checkBox -> checkBox.setValue(false));
-	        /*setData(presenter.filterGameCards(
-	                filters.specialAttributeOptions.getSelectedValue(),
-	                filters.typeOptions.getSelectedValue(),
-	                filters.textOptions.getSelectedValue(),
-	                filters.textInput.getText(),
-	                Collections.emptyList(),
-	                Collections.emptyList()
-	        ));*/
-	    }
-	 private void applyFilters() {
-		 	List<String> booleanInputNames = new ArrayList<>();
-	        List<Boolean> booleanInputValues = new ArrayList<>();
-	        for (CheckBox checkBox : checkBoxes) {
-	            booleanInputNames.add(checkBox.getText());
-	            booleanInputValues.add(checkBox.getValue());
-	        }
-	 
-	 }
+	
+	private void cleanFilters() {
+		 specialAttributeOptions.setItemSelected(0, true);
+		 typeOptions.setItemSelected(0, true);
+		
+		 artistOrName.setItemSelected(0, true);
+		
+		 SearchBar.setText("");
+		
+		 checkBoxes.forEach(checkBox -> checkBox.setValue(false));
+		
+		 setAttributesAndtypes(presenter.filteredCards(
+			 specialAttributeOptions.getSelectedValue(),
+			 typeOptions.getSelectedValue(),
+			 artistOrName.getSelectedValue(),
+			 SearchBar.getText(),
+			 Collections.emptyList(),
+			 Collections.emptyList()
+		 ));
+	}
+	
+	private void applyFilters() {
+        List<String> booleanInputNames = new ArrayList<>();
+        List<Boolean> booleanInputValues = new ArrayList<>();
+        for (CheckBox checkBox : checkBoxes) {
+            booleanInputNames.add(checkBox.getText());
+            booleanInputValues.add(checkBox.getValue());
+        }
+        setAttributesAndtypes(presenter.filteredCards(
+                specialAttributeOptions.getSelectedValue(),
+                typeOptions.getSelectedValue(),
+                artistOrName.getSelectedValue(),
+                SearchBar.getText(),
+                booleanInputNames,
+                booleanInputValues
+        ));
+	}
+	
 	private void isGameChanged(CardsmuleGame game) {
 		changeGame(game);
         isGameChanged = false;
         presenter.fetchCardsValues(game);
 	}
+
+	@Override
+	public void onCardDetailsOpen(int idCard, CardsmuleGame game) {
+		presenter.goTo(new GameCardDetailsPlace(idCard, game));
+	}
+	
+	
+	
+	@Override
+	public void onClickLogout() {
+		presenter.goTo(new PreAuthenticationPlace());	
+	}
+
+	@Override
+	public void onClickHome() {
+		presenter.goTo(new HomePlace());		
+	}
+
+
+
+	
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:m='urn:import:com.sweng.cardsmule.client.widgets'>
+    <ui:style>
+        @external .my-Modal .Caption;
+        .my-Modal .Caption {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @external .my-Modal .dialogMiddleCenter;
+        .my-Modal .dialogMiddleCenter {
+            padding: 0;
+            border: 2px solid #444;
+            border-top: none;
+            background-color: #fff;
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        @external .my-Modal .dialogTopCenter;
+        .my-Modal .dialogTopCenter {
+            border: 2px solid #444;
+            font-weight: bold;
+            color: #444;
+            text-align: center;
+            background-color: #eee;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .field {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label {
+            color: #222;
+        }
+
+        .descriptionArea {
+            width: 10rem;
+            height: 5rem;
+            resize: none;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .button {
+            border-radius: 0;
+            border: 2px solid #444;
+            background-color: #eee;
+        }
+
+        .button:hover {
+            background-color: #CCCCCC;
+        }
+
+        .noButton {
+            border-right: none;
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .yesButton {
+            border-radius: 0 1rem 1rem 0;
+        }
+    </ui:style>
+    <g:HTMLPanel styleName="{style.content}">
+        <div class="{style.field}">
+            <div class="{style.label}">Grade</div>
+            <m:GradeWidget ui:field="grade"/>
+        </div>
+        <div class="{style.field}">
+            <div class="{style.label}">Description</div>
+            <g:TextArea styleName="{style.descriptionArea}" ui:field='description'/>
+        </div>
+        <div class="{style.actions}">
+            <g:Button styleName="{style.button} {style.noButton}" ui:field='noBtn'>No</g:Button>
+            <g:Button styleName="{style.button} {style.yesButton}" ui:field='yesBtn'>Yes</g:Button>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

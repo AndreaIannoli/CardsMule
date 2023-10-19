@@ -27,8 +27,9 @@
   <entry-point class='com.sweng.cardsmule.client.Cardsmule'/>
 
   <!-- Specify the paths for translatable code                    -->
-  <source path='client'/>
   <source path='shared'/>
+  <source path='client'/>
+  
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>

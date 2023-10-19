@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metrics version="1" >
- <module elapsed="7032" >
-  <sources count="3421">
+ <module elapsed="5617" >
+  <sources count="3431">
    <source name="com/google/gwt/activity/shared/AbstractActivity.java" />
    <source name="com/google/gwt/activity/shared/Activity.java" />
    <source name="com/google/gwt/activity/shared/ActivityManager.java" />
@@ -3041,22 +3041,27 @@
    <source name="com/google/web/bindery/event/shared/UmbrellaException.java" />
    <source name="com/google/web/bindery/event/shared/testing/CountingEventBus.java" />
    <source name="com/google/web/bindery/event/shared/testing/RecordingEventBus.java" />
+   <source name="com/sweng/cardsmule/client/BaseAsyncCallback.java" />
    <source name="com/sweng/cardsmule/client/Cardsmule.java" />
    <source name="com/sweng/cardsmule/client/ClientSession.java" />
    <source name="com/sweng/cardsmule/client/ClientSessionImpl.java" />
    <source name="com/sweng/cardsmule/client/GreetingService.java" />
    <source name="com/sweng/cardsmule/client/GreetingServiceAsync.java" />
-   <source name="com/sweng/cardsmule/client/Home.java" />
+   <source name="com/sweng/cardsmule/client/activities/HomeActivity.java" />
    <source name="com/sweng/cardsmule/client/activities/LoginActivity.java" />
    <source name="com/sweng/cardsmule/client/activities/PreAuthenticationActivity.java" />
    <source name="com/sweng/cardsmule/client/activities/RegistrationActivity.java" />
    <source name="com/sweng/cardsmule/client/authentication/User.java" />
+   <source name="com/sweng/cardsmule/client/handlers/HandleNavBar.java" />
+   <source name="com/sweng/cardsmule/client/place/HomePlace.java" />
    <source name="com/sweng/cardsmule/client/place/LoginPlace.java" />
    <source name="com/sweng/cardsmule/client/place/PreAuthenticationPlace.java" />
    <source name="com/sweng/cardsmule/client/place/RegistrationPlace.java" />
    <source name="com/sweng/cardsmule/client/router/AppActivityMapper.java" />
    <source name="com/sweng/cardsmule/client/router/AppPlaceHistoryMapper.java" />
    <source name="com/sweng/cardsmule/client/router/RouteConstants.java" />
+   <source name="com/sweng/cardsmule/client/views/HomeView.java" />
+   <source name="com/sweng/cardsmule/client/views/HomeViewImpl.java" />
    <source name="com/sweng/cardsmule/client/views/LoginView.java" />
    <source name="com/sweng/cardsmule/client/views/LoginViewImpl.java" />
    <source name="com/sweng/cardsmule/client/views/PreAuthenticationView.java" />
@@ -3064,18 +3069,23 @@
    <source name="com/sweng/cardsmule/client/views/RegistrationView.java" />
    <source name="com/sweng/cardsmule/client/views/RegistrationViewImpl.java" />
    <source name="com/sweng/cardsmule/client/widgets/NavWidget.java" />
+   <source name="com/sweng/cardsmule/client/widgets/SwengCardWidget.java" />
    <source name="com/sweng/cardsmule/shared/AuthenticationService.java" />
    <source name="com/sweng/cardsmule/shared/AuthenticationServiceAsync.java" />
+   <source name="com/sweng/cardsmule/shared/CardService.java" />
+   <source name="com/sweng/cardsmule/shared/CardServiceAsync.java" />
    <source name="com/sweng/cardsmule/shared/CredentialsPayload.java" />
    <source name="com/sweng/cardsmule/shared/FieldVerifier.java" />
    <source name="com/sweng/cardsmule/shared/LoginSession.java" />
    <source name="com/sweng/cardsmule/shared/models/Account.java" />
+   <source name="com/sweng/cardsmule/shared/models/CardsmuleGame.java" />
    <source name="com/sweng/cardsmule/shared/models/SwengCard.java" />
    <source name="com/sweng/cardsmule/shared/models/SwengCardMagic.java" />
    <source name="com/sweng/cardsmule/shared/models/SwengPokemonCard.java" />
    <source name="com/sweng/cardsmule/shared/models/SwengYuGiOhCard.java" />
    <source name="com/sweng/cardsmule/shared/throwables/AuthenticationException.java" />
    <source name="com/sweng/cardsmule/shared/throwables/GeneralException.java" />
+   <source name="com/sweng/cardsmule/shared/throwables/InputException.java" />
    <source name="java/beans/Beans.java" />
    <source name="java/io/BufferedWriter.java" />
    <source name="java/io/ByteArrayInputStream.java" />
@@ -3424,7 +3434,7 @@
    <source name="javax/validation/spi/ConfigurationState.java" />
    <source name="javax/validation/spi/ValidationProvider.java" />
   </sources>
-  <types kind="initial" count="4160">
+  <types kind="initial" count="4172">
    <type name="com.google.gwt.activity.shared.AbstractActivity" />
    <type name="com.google.gwt.activity.shared.Activity" />
    <type name="com.google.gwt.activity.shared.ActivityManager" />
@@ -6992,23 +7002,29 @@
    <type name="com.google.web.bindery.event.shared.testing.CountingEventBus.KeyedCounter" />
    <type name="com.google.web.bindery.event.shared.testing.CountingEventBus.TypeSourcePair" />
    <type name="com.google.web.bindery.event.shared.testing.RecordingEventBus" />
+   <type name="com.sweng.cardsmule.client.BaseAsyncCallback" />
    <type name="com.sweng.cardsmule.client.Cardsmule" />
    <type name="com.sweng.cardsmule.client.ClientSession" />
    <type name="com.sweng.cardsmule.client.ClientSessionImpl" />
    <type name="com.sweng.cardsmule.client.GreetingService" />
    <type name="com.sweng.cardsmule.client.GreetingServiceAsync" />
-   <type name="com.sweng.cardsmule.client.Home" />
-   <type name="com.sweng.cardsmule.client.Home.HomeUiBinder" />
+   <type name="com.sweng.cardsmule.client.activities.HomeActivity" />
    <type name="com.sweng.cardsmule.client.activities.LoginActivity" />
    <type name="com.sweng.cardsmule.client.activities.PreAuthenticationActivity" />
    <type name="com.sweng.cardsmule.client.activities.RegistrationActivity" />
    <type name="com.sweng.cardsmule.client.authentication.User" />
+   <type name="com.sweng.cardsmule.client.handlers.HandleNavBar" />
+   <type name="com.sweng.cardsmule.client.place.HomePlace" />
    <type name="com.sweng.cardsmule.client.place.LoginPlace" />
    <type name="com.sweng.cardsmule.client.place.PreAuthenticationPlace" />
    <type name="com.sweng.cardsmule.client.place.RegistrationPlace" />
    <type name="com.sweng.cardsmule.client.router.AppActivityMapper" />
    <type name="com.sweng.cardsmule.client.router.AppPlaceHistoryMapper" />
    <type name="com.sweng.cardsmule.client.router.RouteConstants" />
+   <type name="com.sweng.cardsmule.client.views.HomeView" />
+   <type name="com.sweng.cardsmule.client.views.HomeView.Presenter" />
+   <type name="com.sweng.cardsmule.client.views.HomeViewImpl" />
+   <type name="com.sweng.cardsmule.client.views.HomeViewImpl.HomeViewImplUIBinder" />
    <type name="com.sweng.cardsmule.client.views.LoginView" />
    <type name="com.sweng.cardsmule.client.views.LoginView.Presenter" />
    <type name="com.sweng.cardsmule.client.views.LoginViewImpl" />
@@ -7023,18 +7039,24 @@
    <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl.RegistrationViewImplUIBinder" />
    <type name="com.sweng.cardsmule.client.widgets.NavWidget" />
    <type name="com.sweng.cardsmule.client.widgets.NavWidget.NavUiBinder" />
+   <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget" />
+   <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget.CardUIBinder" />
    <type name="com.sweng.cardsmule.shared.AuthenticationService" />
    <type name="com.sweng.cardsmule.shared.AuthenticationServiceAsync" />
+   <type name="com.sweng.cardsmule.shared.CardService" />
+   <type name="com.sweng.cardsmule.shared.CardServiceAsync" />
    <type name="com.sweng.cardsmule.shared.CredentialsPayload" />
    <type name="com.sweng.cardsmule.shared.FieldVerifier" />
    <type name="com.sweng.cardsmule.shared.LoginSession" />
    <type name="com.sweng.cardsmule.shared.models.Account" />
+   <type name="com.sweng.cardsmule.shared.models.CardsmuleGame" />
    <type name="com.sweng.cardsmule.shared.models.SwengCard" />
    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic" />
    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard" />
    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard" />
    <type name="com.sweng.cardsmule.shared.throwables.AuthenticationException" />
    <type name="com.sweng.cardsmule.shared.throwables.GeneralException" />
+   <type name="com.sweng.cardsmule.shared.throwables.InputException" />
    <type name="java.beans.Beans" />
    <type name="java.io.BufferedWriter" />
    <type name="java.io.ByteArrayInputStream" />
@@ -7588,13 +7610,82 @@
   </types>
  </module>
  <precompilations>
-  <precompilation base="0" ids="0,1" elapsed="8222" >
-   <types kind="ast" count="787">
+  <precompilation base="0" ids="0,1" elapsed="6868" >
+   <types kind="ast" count="992">
     <type name="com.google.gwt.activity.shared.AbstractActivity" />
     <type name="com.google.gwt.activity.shared.ActivityManager" />
     <type name="com.google.gwt.activity.shared.ActivityManager$1" />
     <type name="com.google.gwt.activity.shared.ActivityManager$2" />
     <type name="com.google.gwt.activity.shared.ActivityManager$ProtectedDisplay" />
+    <type name="com.google.gwt.aria.client.AlertRoleImpl" />
+    <type name="com.google.gwt.aria.client.AlertdialogRoleImpl" />
+    <type name="com.google.gwt.aria.client.ApplicationRoleImpl" />
+    <type name="com.google.gwt.aria.client.AriaValueAttribute" />
+    <type name="com.google.gwt.aria.client.ArticleRoleImpl" />
+    <type name="com.google.gwt.aria.client.Attribute" />
+    <type name="com.google.gwt.aria.client.BannerRoleImpl" />
+    <type name="com.google.gwt.aria.client.ButtonRoleImpl" />
+    <type name="com.google.gwt.aria.client.CheckboxRoleImpl" />
+    <type name="com.google.gwt.aria.client.ColumnheaderRoleImpl" />
+    <type name="com.google.gwt.aria.client.ComboboxRoleImpl" />
+    <type name="com.google.gwt.aria.client.ComplementaryRoleImpl" />
+    <type name="com.google.gwt.aria.client.ContentinfoRoleImpl" />
+    <type name="com.google.gwt.aria.client.DefinitionRoleImpl" />
+    <type name="com.google.gwt.aria.client.DialogRoleImpl" />
+    <type name="com.google.gwt.aria.client.DirectoryRoleImpl" />
+    <type name="com.google.gwt.aria.client.DocumentRoleImpl" />
+    <type name="com.google.gwt.aria.client.FormRoleImpl" />
+    <type name="com.google.gwt.aria.client.GridRoleImpl" />
+    <type name="com.google.gwt.aria.client.GridcellRoleImpl" />
+    <type name="com.google.gwt.aria.client.GroupRoleImpl" />
+    <type name="com.google.gwt.aria.client.HeadingRoleImpl" />
+    <type name="com.google.gwt.aria.client.ImgRoleImpl" />
+    <type name="com.google.gwt.aria.client.LinkRoleImpl" />
+    <type name="com.google.gwt.aria.client.ListRoleImpl" />
+    <type name="com.google.gwt.aria.client.ListboxRoleImpl" />
+    <type name="com.google.gwt.aria.client.ListitemRoleImpl" />
+    <type name="com.google.gwt.aria.client.LogRoleImpl" />
+    <type name="com.google.gwt.aria.client.MainRoleImpl" />
+    <type name="com.google.gwt.aria.client.MarqueeRoleImpl" />
+    <type name="com.google.gwt.aria.client.MathRoleImpl" />
+    <type name="com.google.gwt.aria.client.MenuRoleImpl" />
+    <type name="com.google.gwt.aria.client.MenubarRoleImpl" />
+    <type name="com.google.gwt.aria.client.MenuitemRoleImpl" />
+    <type name="com.google.gwt.aria.client.MenuitemcheckboxRoleImpl" />
+    <type name="com.google.gwt.aria.client.MenuitemradioRoleImpl" />
+    <type name="com.google.gwt.aria.client.NavigationRoleImpl" />
+    <type name="com.google.gwt.aria.client.NoteRoleImpl" />
+    <type name="com.google.gwt.aria.client.OptionRoleImpl" />
+    <type name="com.google.gwt.aria.client.PresentationRoleImpl" />
+    <type name="com.google.gwt.aria.client.PressedValue" />
+    <type name="com.google.gwt.aria.client.PressedValue$Map" />
+    <type name="com.google.gwt.aria.client.PrimitiveValueAttribute" />
+    <type name="com.google.gwt.aria.client.ProgressbarRoleImpl" />
+    <type name="com.google.gwt.aria.client.RadioRoleImpl" />
+    <type name="com.google.gwt.aria.client.RadiogroupRoleImpl" />
+    <type name="com.google.gwt.aria.client.RegionRoleImpl" />
+    <type name="com.google.gwt.aria.client.RoleImpl" />
+    <type name="com.google.gwt.aria.client.Roles" />
+    <type name="com.google.gwt.aria.client.RowRoleImpl" />
+    <type name="com.google.gwt.aria.client.RowgroupRoleImpl" />
+    <type name="com.google.gwt.aria.client.RowheaderRoleImpl" />
+    <type name="com.google.gwt.aria.client.ScrollbarRoleImpl" />
+    <type name="com.google.gwt.aria.client.SearchRoleImpl" />
+    <type name="com.google.gwt.aria.client.SeparatorRoleImpl" />
+    <type name="com.google.gwt.aria.client.SliderRoleImpl" />
+    <type name="com.google.gwt.aria.client.SpinbuttonRoleImpl" />
+    <type name="com.google.gwt.aria.client.State" />
+    <type name="com.google.gwt.aria.client.StatusRoleImpl" />
+    <type name="com.google.gwt.aria.client.TabRoleImpl" />
+    <type name="com.google.gwt.aria.client.TablistRoleImpl" />
+    <type name="com.google.gwt.aria.client.TabpanelRoleImpl" />
+    <type name="com.google.gwt.aria.client.TextboxRoleImpl" />
+    <type name="com.google.gwt.aria.client.TimerRoleImpl" />
+    <type name="com.google.gwt.aria.client.ToolbarRoleImpl" />
+    <type name="com.google.gwt.aria.client.TooltipRoleImpl" />
+    <type name="com.google.gwt.aria.client.TreeRoleImpl" />
+    <type name="com.google.gwt.aria.client.TreegridRoleImpl" />
+    <type name="com.google.gwt.aria.client.TreeitemRoleImpl" />
     <type name="com.google.gwt.core.client.CodeDownloadException" />
     <type name="com.google.gwt.core.client.CodeDownloadException$Reason" />
     <type name="com.google.gwt.core.client.CodeDownloadException$Reason$Map" />
@@ -7658,10 +7749,15 @@
     <type name="com.google.gwt.dom.client.Element" />
     <type name="com.google.gwt.dom.client.EventTarget" />
     <type name="com.google.gwt.dom.client.HeadElement" />
+    <type name="com.google.gwt.dom.client.ImageElement" />
     <type name="com.google.gwt.dom.client.InputElement" />
+    <type name="com.google.gwt.dom.client.LabelElement" />
     <type name="com.google.gwt.dom.client.NativeEvent" />
     <type name="com.google.gwt.dom.client.Node" />
     <type name="com.google.gwt.dom.client.NodeList" />
+    <type name="com.google.gwt.dom.client.OptionElement" />
+    <type name="com.google.gwt.dom.client.SelectElement" />
+    <type name="com.google.gwt.dom.client.SpanElement" />
     <type name="com.google.gwt.dom.client.Style" />
     <type name="com.google.gwt.dom.client.Style$BorderStyle" />
     <type name="com.google.gwt.dom.client.Style$BorderStyle$1" />
@@ -7894,6 +7990,11 @@
     <type name="com.google.gwt.i18n.client.impl.LocaleInfoImpl" />
     <type name="com.google.gwt.i18n.client.impl.LocaleInfoImpl_" />
     <type name="com.google.gwt.i18n.client.impl.LocaleInfoImpl_shared" />
+    <type name="com.google.gwt.i18n.shared.BidiFormatter" />
+    <type name="com.google.gwt.i18n.shared.BidiFormatter$Factory" />
+    <type name="com.google.gwt.i18n.shared.BidiFormatterBase" />
+    <type name="com.google.gwt.i18n.shared.BidiFormatterBase$Factory" />
+    <type name="com.google.gwt.i18n.shared.BidiFormatterBase$Format" />
     <type name="com.google.gwt.i18n.shared.BidiUtils" />
     <type name="com.google.gwt.i18n.shared.DirectionEstimator" />
     <type name="com.google.gwt.i18n.shared.WordCountDirectionEstimator" />
@@ -7952,6 +8053,8 @@
     <type name="com.google.gwt.safehtml.shared.OnlyToBeUsedInGeneratedCodeStringBlessedAsSafeHtml" />
     <type name="com.google.gwt.safehtml.shared.SafeHtmlString" />
     <type name="com.google.gwt.safehtml.shared.SafeHtmlUtils" />
+    <type name="com.google.gwt.safehtml.shared.SafeUriString" />
+    <type name="com.google.gwt.safehtml.shared.UriUtils" />
     <type name="com.google.gwt.text.shared.AbstractRenderer" />
     <type name="com.google.gwt.text.shared.testing.PassthroughParser" />
     <type name="com.google.gwt.text.shared.testing.PassthroughRenderer" />
@@ -8020,9 +8123,32 @@
     <type name="com.google.gwt.user.client.rpc.core.java.lang.Exception_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.IllegalArgumentException_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.NumberFormatException_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.lang.Object_Array_CustomFieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.RuntimeException_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.Throwable_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.ArrayList_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.ArrayList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Arrays" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Arrays$ArrayList_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collection_CustomFieldSerializerBase" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyList_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyMap_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections$EmptySet_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections$SingletonList_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.HashSet_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.HashSet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedHashSet_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedHashSet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedList_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Map_CustomFieldSerializerBase" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.TreeMap_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.TreeSet_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Vector_CustomFieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Vector_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.impl.AbstractSerializationStream" />
     <type name="com.google.gwt.user.client.rpc.impl.AbstractSerializationStreamReader" />
     <type name="com.google.gwt.user.client.rpc.impl.AbstractSerializationStreamWriter" />
@@ -8054,14 +8180,30 @@
     <type name="com.google.gwt.user.client.ui.AttachDetachException$2" />
     <type name="com.google.gwt.user.client.ui.Button" />
     <type name="com.google.gwt.user.client.ui.ButtonBase" />
+    <type name="com.google.gwt.user.client.ui.CheckBox" />
+    <type name="com.google.gwt.user.client.ui.CheckBox$1" />
     <type name="com.google.gwt.user.client.ui.ComplexPanel" />
     <type name="com.google.gwt.user.client.ui.ComplexPanel$1" />
     <type name="com.google.gwt.user.client.ui.Composite" />
+    <type name="com.google.gwt.user.client.ui.CustomButton" />
+    <type name="com.google.gwt.user.client.ui.CustomButton$1" />
+    <type name="com.google.gwt.user.client.ui.CustomButton$2" />
+    <type name="com.google.gwt.user.client.ui.CustomButton$Face" />
+    <type name="com.google.gwt.user.client.ui.DirectionalTextHelper" />
+    <type name="com.google.gwt.user.client.ui.FocusPanel" />
     <type name="com.google.gwt.user.client.ui.FocusWidget" />
     <type name="com.google.gwt.user.client.ui.HTMLPanel" />
+    <type name="com.google.gwt.user.client.ui.Image" />
+    <type name="com.google.gwt.user.client.ui.Image$ClippedState" />
+    <type name="com.google.gwt.user.client.ui.Image$State" />
+    <type name="com.google.gwt.user.client.ui.Image$State$1" />
+    <type name="com.google.gwt.user.client.ui.Image$UnclippedState" />
+    <type name="com.google.gwt.user.client.ui.ListBox" />
     <type name="com.google.gwt.user.client.ui.Panel" />
     <type name="com.google.gwt.user.client.ui.PasswordTextBox" />
     <type name="com.google.gwt.user.client.ui.PotentialElement" />
+    <type name="com.google.gwt.user.client.ui.PushButton" />
+    <type name="com.google.gwt.user.client.ui.RadioButton" />
     <type name="com.google.gwt.user.client.ui.RootPanel" />
     <type name="com.google.gwt.user.client.ui.RootPanel$1" />
     <type name="com.google.gwt.user.client.ui.RootPanel$2" />
@@ -8107,22 +8249,42 @@
     <type name="com.google.web.bindery.event.shared.SimpleEventBus$2" />
     <type name="com.google.web.bindery.event.shared.SimpleEventBus$3" />
     <type name="com.google.web.bindery.event.shared.UmbrellaException" />
+    <type name="com.sweng.cardsmule.client.BaseAsyncCallback" />
     <type name="com.sweng.cardsmule.client.Cardsmule" />
     <type name="com.sweng.cardsmule.client.Cardsmule$1" />
     <type name="com.sweng.cardsmule.client.ClientSessionImpl" />
     <type name="com.sweng.cardsmule.client.GreetingService_Proxy" />
     <type name="com.sweng.cardsmule.client.GreetingService_TypeSerializer" />
+    <type name="com.sweng.cardsmule.client.activities.HomeActivity" />
+    <type name="com.sweng.cardsmule.client.activities.HomeActivity$1" />
     <type name="com.sweng.cardsmule.client.activities.LoginActivity" />
     <type name="com.sweng.cardsmule.client.activities.LoginActivity$1" />
     <type name="com.sweng.cardsmule.client.activities.PreAuthenticationActivity" />
     <type name="com.sweng.cardsmule.client.activities.RegistrationActivity" />
     <type name="com.sweng.cardsmule.client.activities.RegistrationActivity$1" />
     <type name="com.sweng.cardsmule.client.authentication.User" />
+    <type name="com.sweng.cardsmule.client.place.HomePlace" />
     <type name="com.sweng.cardsmule.client.place.LoginPlace" />
     <type name="com.sweng.cardsmule.client.place.PreAuthenticationPlace" />
     <type name="com.sweng.cardsmule.client.place.RegistrationPlace" />
     <type name="com.sweng.cardsmule.client.router.AppActivityMapper" />
     <type name="com.sweng.cardsmule.client.router.AppPlaceHistoryMapper" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$0$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$1$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$2$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$3$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$4$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$5$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$6$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$7$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl$lambda$8$Type" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl$Widgets" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$1" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$styleInitializer" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_TemplateImpl" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl$lambda$0$Type" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl$lambda$1$Type" />
@@ -8150,14 +8312,47 @@
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$1" />
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$styleInitializer" />
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_TemplateImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl$Widgets" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle_default_InlineClientBundleGenerator$1" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle_default_InlineClientBundleGenerator$styleInitializer" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_TemplateImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl$Widgets" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$1" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle_default_InlineClientBundleGenerator$styleInitializer" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_TemplateImpl" />
     <type name="com.sweng.cardsmule.shared.AuthenticationService_Proxy" />
     <type name="com.sweng.cardsmule.shared.AuthenticationService_TypeSerializer" />
+    <type name="com.sweng.cardsmule.shared.CardService_Proxy" />
+    <type name="com.sweng.cardsmule.shared.CardService_TypeSerializer" />
     <type name="com.sweng.cardsmule.shared.CredentialsPayload" />
     <type name="com.sweng.cardsmule.shared.CredentialsPayload_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.CardsmuleGame" />
+    <type name="com.sweng.cardsmule.shared.models.CardsmuleGame$Map" />
+    <type name="com.sweng.cardsmule.shared.models.CardsmuleGame_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCard" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCard_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard" />
+    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard" />
+    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard_FieldSerializer" />
     <type name="com.sweng.cardsmule.shared.throwables.AuthenticationException" />
     <type name="com.sweng.cardsmule.shared.throwables.AuthenticationException_FieldSerializer" />
     <type name="com.sweng.cardsmule.shared.throwables.GeneralException" />
     <type name="com.sweng.cardsmule.shared.throwables.GeneralException_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.throwables.InputException" />
+    <type name="com.sweng.cardsmule.shared.throwables.InputException_FieldSerializer" />
     <type name="java.io.FilterOutputStream" />
     <type name="java.io.IOException" />
     <type name="java.io.IOUtils" />
@@ -8166,6 +8361,7 @@
     <type name="java.io.UnsupportedEncodingException" />
     <type name="java.lang.AbstractStringBuilder" />
     <type name="java.lang.ArithmeticException" />
+    <type name="java.lang.ArrayIndexOutOfBoundsException" />
     <type name="java.lang.ArrayStoreException" />
     <type name="java.lang.AssertionError" />
     <type name="java.lang.Boolean" />
@@ -8240,7 +8436,13 @@
     <type name="java.util.AbstractMap$SimpleEntry" />
     <type name="java.util.AbstractMap$SimpleImmutableEntry" />
     <type name="java.util.AbstractMapEntry" />
+    <type name="java.util.AbstractNavigableMap" />
+    <type name="java.util.AbstractNavigableMap$DescendingMap" />
+    <type name="java.util.AbstractNavigableMap$EntrySet" />
+    <type name="java.util.AbstractNavigableMap$NavigableKeySet" />
+    <type name="java.util.AbstractNavigableMap$NavigableKeySet$1" />
     <type name="java.util.AbstractQueue" />
+    <type name="java.util.AbstractSequentialList" />
     <type name="java.util.AbstractSet" />
     <type name="java.util.ArrayList" />
     <type name="java.util.ArrayList$1" />
@@ -8276,6 +8478,11 @@
     <type name="java.util.Comparator$lambda$2$Type" />
     <type name="java.util.Comparator$lambda$3$Type" />
     <type name="java.util.Comparator$lambda$4$Type" />
+    <type name="java.util.Comparators" />
+    <type name="java.util.Comparators$NaturalOrderComparator" />
+    <type name="java.util.Comparators$NullComparator" />
+    <type name="java.util.Comparators$ReverseNaturalOrderComparator" />
+    <type name="java.util.Comparators$ReversedComparator" />
     <type name="java.util.ConcurrentModificationException" />
     <type name="java.util.Date" />
     <type name="java.util.Date$NativeDate" />
@@ -8294,6 +8501,10 @@
     <type name="java.util.LinkedHashMap$EntrySet" />
     <type name="java.util.LinkedHashMap$EntrySet$EntryIterator" />
     <type name="java.util.LinkedHashSet" />
+    <type name="java.util.LinkedList" />
+    <type name="java.util.LinkedList$DescendingIteratorImpl" />
+    <type name="java.util.LinkedList$ListIteratorImpl" />
+    <type name="java.util.LinkedList$Node" />
     <type name="java.util.Locale" />
     <type name="java.util.Locale$1" />
     <type name="java.util.Locale$2" />
@@ -8337,7 +8548,23 @@
     <type name="java.util.Spliterators$LongArraySpliterator" />
     <type name="java.util.Spliterators$LongConsumerIterator" />
     <type name="java.util.Spliterators$LongIteratorSpliterator" />
+    <type name="java.util.Stack" />
     <type name="java.util.StringJoiner" />
+    <type name="java.util.TreeMap" />
+    <type name="java.util.TreeMap$DescendingEntryIterator" />
+    <type name="java.util.TreeMap$EntryIterator" />
+    <type name="java.util.TreeMap$EntrySet" />
+    <type name="java.util.TreeMap$Node" />
+    <type name="java.util.TreeMap$State" />
+    <type name="java.util.TreeMap$SubMap" />
+    <type name="java.util.TreeMap$SubMapType" />
+    <type name="java.util.TreeMap$SubMapType$1" />
+    <type name="java.util.TreeMap$SubMapType$2" />
+    <type name="java.util.TreeMap$SubMapType$3" />
+    <type name="java.util.TreeMap$SubMapType$Map" />
+    <type name="java.util.TreeSet" />
+    <type name="java.util.Vector" />
+    <type name="java.util.concurrent.atomic.AtomicInteger" />
     <type name="java.util.function.Consumer$lambda$0$Type" />
     <type name="java.util.function.DoubleConsumer$lambda$0$Type" />
     <type name="java.util.function.IntConsumer$lambda$0$Type" />
@@ -8378,7 +8605,7 @@
     <type name="javaemul.internal.LongUtils" />
     <type name="javaemul.internal.NativeRegExp" />
    </types>
-   <types kind="generated" count="48">
+   <types kind="generated" count="96">
     <type name="com.google.gwt.i18n.client.constants.NumberConstantsImpl_" />
     <type name="com.google.gwt.i18n.client.impl.LocaleInfoImpl_" />
     <type name="com.google.gwt.i18n.client.impl.LocaleInfoImpl_shared" />
@@ -8394,10 +8621,30 @@
     <type name="com.google.gwt.user.client.rpc.core.java.lang.RuntimeException_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.String_FieldSerializer" />
     <type name="com.google.gwt.user.client.rpc.core.java.lang.Throwable_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.ArrayList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Arrays_ArrayList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections_EmptyList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections_EmptySet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Collections_SingletonList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.HashSet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedHashSet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.LinkedList_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.TreeMap_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.TreeSet_FieldSerializer" />
+    <type name="com.google.gwt.user.client.rpc.core.java.util.Vector_FieldSerializer" />
     <type name="com.google.gwt.useragent.client.UserAgentImplGecko1_8" />
     <type name="com.google.gwt.useragent.client.UserAgentImplSafari" />
     <type name="com.sweng.cardsmule.client.GreetingService_Proxy" />
     <type name="com.sweng.cardsmule.client.GreetingService_TypeSerializer" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl.Template" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl.Widgets" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator.styleInitializer" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_GenCss_style" />
+    <type name="com.sweng.cardsmule.client.views.HomeViewImpl_HomeViewImplUIBinderImpl_TemplateImpl" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl_LoginViewImplUIBinderImpl" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl_LoginViewImplUIBinderImpl.Template" />
     <type name="com.sweng.cardsmule.client.views.LoginViewImpl_LoginViewImplUIBinderImpl.Widgets" />
@@ -8422,23 +8669,51 @@
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_GenBundle_default_InlineClientBundleGenerator.styleInitializer" />
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_GenCss_style" />
     <type name="com.sweng.cardsmule.client.views.RegistrationViewImpl_RegistrationViewImplUIBinderImpl_TemplateImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl.Template" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl.Widgets" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenBundle_default_InlineClientBundleGenerator.styleInitializer" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_GenCss_style" />
+    <type name="com.sweng.cardsmule.client.widgets.NavWidget_NavUiBinderImpl_TemplateImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl.Template" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl.Widgets" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle_default_InlineClientBundleGenerator" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenBundle_default_InlineClientBundleGenerator.styleInitializer" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_GenCss_style" />
+    <type name="com.sweng.cardsmule.client.widgets.SwengCardWidget_CardUIBinderImpl_TemplateImpl" />
     <type name="com.sweng.cardsmule.shared.AuthenticationService_Proxy" />
     <type name="com.sweng.cardsmule.shared.AuthenticationService_TypeSerializer" />
+    <type name="com.sweng.cardsmule.shared.CardService_Proxy" />
+    <type name="com.sweng.cardsmule.shared.CardService_TypeSerializer" />
     <type name="com.sweng.cardsmule.shared.CredentialsPayload_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.CardsmuleGame_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCardMagic_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengCard_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengPokemonCard_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard_Array_Rank_1_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.models.SwengYuGiOhCard_FieldSerializer" />
     <type name="com.sweng.cardsmule.shared.throwables.AuthenticationException_FieldSerializer" />
     <type name="com.sweng.cardsmule.shared.throwables.GeneralException_FieldSerializer" />
+    <type name="com.sweng.cardsmule.shared.throwables.InputException_FieldSerializer" />
    </types>
  </precompilation>
  </precompilations>
  <compilations>
-  <compilation  id="0" elapsed="1501" totalElapsed="9727"  description="ClientBundle.enableInlining=true,audioElementSupport=maybe,canvasElementSupport=maybe,compiler.emulatedStack=false,compiler.predeclare.cross.fragment.references=false,compiler.stackMode=native,compiler.useSymbolMaps=false,dragEventSupport=maybe,gwt.cspCompatModeEnabled=false,gwt.enableDebugId=false,gwt.forceBidi=false,gwt.logging.consoleHandler=ENABLED,gwt.logging.developmentModeHandler=ENABLED,gwt.logging.hasWidgetsHandler=DISABLED,gwt.logging.logLevel=INFO,gwt.logging.simpleConsoleHandler=DISABLED,gwt.logging.simpleRemoteHandler=DISABLED,gwt.logging.systemHandler=DISABLED,gwt.suppressNonStaticFinalFieldWarnings=false,gwt.uncaughtexceptionhandler.windowonerror=REPORT_IF_NO_HANDLER,history.noDoubleEncoding=false,jre.checks.api=AUTO,jre.checks.bounds=AUTO,jre.checks.checkLevel=NORMAL,jre.checks.numeric=AUTO,jre.checks.type=AUTO,jre.logging.simpleConsoleHandler=DISABLED,locale=default,rpc.XserializeFinalFields=false,superdevmode=off,touchEventSupport=maybe,user.agent=gecko1_8,videoElementSupport=maybe,webApiUsage=modern,compiler.useSourceMaps=false,jre.debugMode=DISABLED,gwt.logging.enabled=SEVERE,jre.checkedMode=DISABLED,jre.logging.logLevel=SEVERE">
-   <javascript size="112501" fragments="1">
-    <fragment initial="true" size="112501" />
+  <compilation  id="0" elapsed="1529" totalElapsed="8402"  description="ClientBundle.enableInlining=true,audioElementSupport=maybe,canvasElementSupport=maybe,compiler.emulatedStack=false,compiler.predeclare.cross.fragment.references=false,compiler.stackMode=native,compiler.useSymbolMaps=false,dragEventSupport=maybe,gwt.cspCompatModeEnabled=false,gwt.enableDebugId=false,gwt.forceBidi=false,gwt.logging.consoleHandler=ENABLED,gwt.logging.developmentModeHandler=ENABLED,gwt.logging.hasWidgetsHandler=DISABLED,gwt.logging.logLevel=INFO,gwt.logging.simpleConsoleHandler=DISABLED,gwt.logging.simpleRemoteHandler=DISABLED,gwt.logging.systemHandler=DISABLED,gwt.suppressNonStaticFinalFieldWarnings=false,gwt.uncaughtexceptionhandler.windowonerror=REPORT_IF_NO_HANDLER,history.noDoubleEncoding=false,jre.checks.api=AUTO,jre.checks.bounds=AUTO,jre.checks.checkLevel=NORMAL,jre.checks.numeric=AUTO,jre.checks.type=AUTO,jre.logging.simpleConsoleHandler=DISABLED,locale=default,rpc.XserializeFinalFields=false,superdevmode=off,touchEventSupport=maybe,user.agent=gecko1_8,videoElementSupport=maybe,webApiUsage=modern,compiler.useSourceMaps=false,jre.debugMode=DISABLED,gwt.logging.enabled=SEVERE,jre.checkedMode=DISABLED,jre.logging.logLevel=SEVERE">
+   <javascript size="164123" fragments="1">
+    <fragment initial="true" size="164123" />
    </javascript>
   </compilation>
-  <compilation  id="1" elapsed="1241" totalElapsed="11153"  description="ClientBundle.enableInlining=true,audioElementSupport=maybe,canvasElementSupport=maybe,compiler.emulatedStack=false,compiler.predeclare.cross.fragment.references=false,compiler.stackMode=native,compiler.useSymbolMaps=false,dragEventSupport=maybe,gwt.cspCompatModeEnabled=false,gwt.enableDebugId=false,gwt.forceBidi=false,gwt.logging.consoleHandler=ENABLED,gwt.logging.developmentModeHandler=ENABLED,gwt.logging.hasWidgetsHandler=DISABLED,gwt.logging.logLevel=INFO,gwt.logging.simpleConsoleHandler=DISABLED,gwt.logging.simpleRemoteHandler=DISABLED,gwt.logging.systemHandler=DISABLED,gwt.suppressNonStaticFinalFieldWarnings=false,gwt.uncaughtexceptionhandler.windowonerror=REPORT_IF_NO_HANDLER,history.noDoubleEncoding=false,jre.checks.api=AUTO,jre.checks.bounds=AUTO,jre.checks.checkLevel=NORMAL,jre.checks.numeric=AUTO,jre.checks.type=AUTO,jre.logging.simpleConsoleHandler=DISABLED,locale=default,rpc.XserializeFinalFields=false,superdevmode=off,touchEventSupport=maybe,user.agent=safari,videoElementSupport=maybe,webApiUsage=modern,compiler.useSourceMaps=false,jre.debugMode=DISABLED,gwt.logging.enabled=SEVERE,jre.checkedMode=DISABLED,jre.logging.logLevel=SEVERE">
-   <javascript size="111873" fragments="1">
-    <fragment initial="true" size="111873" />
+  <compilation  id="1" elapsed="1178" totalElapsed="9743"  description="ClientBundle.enableInlining=true,audioElementSupport=maybe,canvasElementSupport=maybe,compiler.emulatedStack=false,compiler.predeclare.cross.fragment.references=false,compiler.stackMode=native,compiler.useSymbolMaps=false,dragEventSupport=maybe,gwt.cspCompatModeEnabled=false,gwt.enableDebugId=false,gwt.forceBidi=false,gwt.logging.consoleHandler=ENABLED,gwt.logging.developmentModeHandler=ENABLED,gwt.logging.hasWidgetsHandler=DISABLED,gwt.logging.logLevel=INFO,gwt.logging.simpleConsoleHandler=DISABLED,gwt.logging.simpleRemoteHandler=DISABLED,gwt.logging.systemHandler=DISABLED,gwt.suppressNonStaticFinalFieldWarnings=false,gwt.uncaughtexceptionhandler.windowonerror=REPORT_IF_NO_HANDLER,history.noDoubleEncoding=false,jre.checks.api=AUTO,jre.checks.bounds=AUTO,jre.checks.checkLevel=NORMAL,jre.checks.numeric=AUTO,jre.checks.type=AUTO,jre.logging.simpleConsoleHandler=DISABLED,locale=default,rpc.XserializeFinalFields=false,superdevmode=off,touchEventSupport=maybe,user.agent=safari,videoElementSupport=maybe,webApiUsage=modern,compiler.useSourceMaps=false,jre.debugMode=DISABLED,gwt.logging.enabled=SEVERE,jre.checkedMode=DISABLED,jre.logging.logLevel=SEVERE">
+   <javascript size="163634" fragments="1">
+    <fragment initial="true" size="163634" />
    </javascript>
   </compilation>
  </compilations>
