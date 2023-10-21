@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.mapdb.Serializer;
 
@@ -306,4 +307,40 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
         return fetchOwnedCardNames(userDeck.getOwnedCards());
 	}
+	
+	public static Map<String, Collection> updateUserCollection(Map<String, Collection> userCollection, List<OwnedCard> received_trades_cards, List<OwnedCard> trades_away_cards) {
+	    for (Collection collection : userCollection.values()) {
+	        String collectionName = collection.getName();
+	        for (OwnedCard oCard : received_trades_cards) {
+	            if (collectionName.equals(COLLECTION_OWNED)) {
+	                updateOwnedCollection(collection, oCard);
+	            } else if (collectionName.equals(COLLECTION_WISHED)) {
+	                updateWishedCOllection(collection, oCard);
+	            } else {
+	            	collection.removeOwnedCard(oCard);
+	            }
+	        }
+	        for (OwnedCard oCard : trades_away_cards) {
+	        	collection.removeOwnedCard(oCard);
+	        }
+	    }
+	    return userCollection;
+	}
+
+	private static void updateOwnedCollection(Collection collection, OwnedCard oCard) {
+	    if (!collection.addOwnedCard(oCard)) {
+	        throw new RuntimeException("DB ROLLBACK!");
+	    }
+	}
+	//il metodo updateWishedCollection  Scansiona il mazzo alla ricerca di carte fisiche con lo stesso ID della carta ricevuta e con uno status inferiore o uguale. Se trova tali carte, le rimuove dal mazzo.
+	private static void updateWishedCOllection(Collection collection, OwnedCard oCard) {
+	    int cardId = oCard.getCardId();
+	    List<OwnedCard> cardsToRemove = collection.getOwnedCards().stream()
+	        .filter(wishedCard -> wishedCard.getCardId() == cardId && wishedCard.getGrade().getValue() <= oCard.getGrade().getValue())
+	        .collect(Collectors.toList());
+	    for (OwnedCard cardToRemove : cardsToRemove) {
+	        collection.removeOwnedCard(cardToRemove); // Rimuovi ciascuna carta fisica dalla lista
+	    }
+	}
+
 }

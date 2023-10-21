@@ -36,4 +36,5 @@ public interface CollectionService extends RemoteService {
     List<WishedCard> getWishedCardsByCardId(int cardId) throws InputException;
 
     List<OwnedCardFetched> addOwnedCardsToDeck(String token, String deckName, List<OwnedCard> ownedCards) throws GeneralException;
+    
 }
