@@ -265,7 +265,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
             }
         }
         return ownedCards;
-	}
+	}	
 
 	@Override
 	public List<WishedCard> getWishedCardsByCardId(int cardId) throws InputException {
