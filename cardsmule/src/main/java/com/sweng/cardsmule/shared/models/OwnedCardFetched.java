@@ -14,4 +14,6 @@ public class OwnedCardFetched extends OwnedCard{
     public String getName() {
         return name;
     }
+    
+
 }
