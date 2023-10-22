@@ -8,6 +8,7 @@ import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.LoginPlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.place.RegistrationPlace;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 
 public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants {
@@ -29,6 +30,8 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
         	return new RegistrationPlace();
         } else if (token.equals(homeLink) && user.isLoggedIn() ) {
         	return new HomePlace();
+        } else if(token.equals(decksManagerLink) && user.isLoggedIn()) {
+        	return new DecksManagerPlace();
         } else {
         	try {
         		String[] parts = token.split(DELIMITER);
@@ -53,6 +56,8 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
             return loginLink;
         } else if (place instanceof RegistrationPlace) {
         	return registrationLink;
+        } else if(place instanceof DecksManagerPlace) {
+        	return decksManagerLink;
         } else if (place instanceof HomePlace) {
         	return homeLink;
         } else if (place instanceof GameCardDetailsPlace) {

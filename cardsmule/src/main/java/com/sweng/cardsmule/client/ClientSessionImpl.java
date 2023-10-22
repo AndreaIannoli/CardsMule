@@ -7,6 +7,8 @@ import com.sweng.cardsmule.client.views.PreAuthenticationViewImpl;
 import com.sweng.cardsmule.client.views.RegistrationView;
 import com.sweng.cardsmule.client.views.RegistrationViewImpl;
 import com.sweng.cardsmule.client.views.GameCardDetailsView;
+import com.sweng.cardsmule.client.views.DecksManagerView;
+import com.sweng.cardsmule.client.views.DecksManagerViewImpl;
 import com.sweng.cardsmule.client.views.GameCardDetailsViewImpl;
 import com.sweng.cardsmule.client.views.HomeView;
 import com.sweng.cardsmule.client.views.HomeViewImpl;
@@ -25,6 +27,7 @@ public class ClientSessionImpl implements ClientSession{
     private static final RegistrationView registrationView = new RegistrationViewImpl();
     private static final HomeView homeView = new HomeViewImpl();
     private static final GameCardDetailsView gameCardDetailsView = new GameCardDetailsViewImpl();
+    private static final DecksManagerView decksManagerView = new DecksManagerViewImpl();
     
     @Override
     public EventBus getEventBus() {
@@ -63,5 +66,10 @@ public class ClientSessionImpl implements ClientSession{
 	@Override
 	public GameCardDetailsView getCardDetailsView() {
 		return gameCardDetailsView;
+	}
+	
+	@Override
+	public DecksManagerView getDecksManagerView() {
+		return decksManagerView;
 	}
 }

@@ -6,6 +6,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.sweng.cardsmule.client.ClientSession;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.LoginPlace;
@@ -21,6 +22,7 @@ import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.shared.AuthenticationService;
 import com.sweng.cardsmule.shared.CardService;
 import com.sweng.cardsmule.shared.CollectionService;
+import com.sweng.cardsmule.client.activities.DecksManagerActivity;
 
 public class AppActivityMapper implements ActivityMapper {
     private final ClientSession clientSession;
@@ -41,6 +43,8 @@ public class AppActivityMapper implements ActivityMapper {
         	return new HomeActivity(clientSession.getHomeView(), clientSession.getUser(), clientSession.getPlaceController(), GWT.create(CardService.class));
         else if (place instanceof GameCardDetailsPlace)
         	return new GameCardDetailsActivity(clientSession.getCardDetailsView(), (GameCardDetailsPlace) place, GWT.create(CardService.class), GWT.create(CollectionService.class), GWT.create(AuthenticationService.class), clientSession.getUser(), clientSession.getPlaceController());
+        else if (place instanceof DecksManagerPlace)
+        	return new DecksManagerActivity(GWT.create(CollectionService.class), clientSession.getDecksManagerView(), clientSession.getUser(), clientSession.getPlaceController());
         return null;
     }
 }

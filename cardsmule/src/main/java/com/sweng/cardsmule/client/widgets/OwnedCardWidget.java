@@ -2,6 +2,7 @@ package com.sweng.cardsmule.client.widgets;
 
 
 import com.google.gwt.core.client.GWT;
+
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -12,6 +13,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.sweng.cardsmule.client.handlers.HandleOwnedCardEdit;
+import com.sweng.cardsmule.client.handlers.HandleOwnedCardRemove;
 import com.sweng.cardsmule.client.handlers.HandleOwnedCardSelection;
 import com.sweng.cardsmule.shared.models.Grade;
 import com.sweng.cardsmule.shared.models.OwnedCardFetched;
@@ -37,11 +39,11 @@ public class OwnedCardWidget extends Composite {
     OwnedCardFetched pCard;
 
     public OwnedCardWidget(OwnedCardFetched pCard, HandleOwnedCardSelection selectionHandler,
-                              HandleOwnedCardRemove removeHandler, HandleOwnedCardEdit editHandler) {
+    		HandleOwnedCardRemove removeHandler, HandleOwnedCardEdit editHandler) {
         this.pCard = pCard;
         initWidget(uiBinder.createAndBindUi(this));
         cardContainer.add(new Hyperlink("Open Details",
-                "cards/" + pCard.getGameType() + "/" + pCard.getCardId()));
+                "cards/" + pCard.getGameType() + "/" + pCard.getReferenceCardId()));
 
         // selezione carta
         if (selectionHandler != null) {

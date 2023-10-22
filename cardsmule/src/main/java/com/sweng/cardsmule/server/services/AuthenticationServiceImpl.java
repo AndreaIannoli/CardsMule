@@ -123,24 +123,30 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
-        //TO-Do problema del fatto che puoi registrarti con la stessa mail
+        //TODO problema del fatto che puoi registrarti con la stessa mail
         if (accountMap.get(email) != null)
             throw new AuthenticationException("Email already exists");
         if (accountMap.get(username) != null)
             throw new AuthenticationException("Username already exists");
         
-        db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
-                (Map<String, Map<String, Collection>> deckMap) -> {
-                	accountMap.put(username, account);
-                	CollectionServiceImpl.createDefaultCollection(email, deckMap);
-                    return null;
-                });
-        /*System.out.println("MAP START");
+        db.writeOperation(getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson),
+                  (Map<String, Account> userMap) -> {
+                      accountMap.put(username, account);
+                      return null;
+                  });
+          db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
+                  (Map<String, Map<String, Collection>> collectionMap) -> {
+               
+                      System.out.println(collectionMap + "che palle" + "  email: " + email);
+                      CollectionServiceImpl.createDefaultCollection(email, collectionMap);
+                      return null;
+                  });
+        System.out.println("MAP START");
         for(Entry entry : accountMap.entrySet()) {
         	System.out.println(entry.getValue());
         	System.out.println(entry.getKey());
         }
-        System.out.println("MAP END");*/
+        System.out.println("MAP END");
         return new CredentialsPayload(generateAndStoreLoginToken(account), username, email);
     }
 
@@ -155,7 +161,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = accountMap.get(username);
-        String email=account.getEmail();
+        String email = account.getEmail();
         System.out.println("MAP START");
         for(Entry entry : accountMap.entrySet()) {
         	System.out.println(entry.getValue());
