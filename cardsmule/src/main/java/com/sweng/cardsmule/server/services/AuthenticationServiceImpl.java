@@ -123,7 +123,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
-        //TO-Do problema del fatto che puoi registrarti con la stessa mail
+        //TODO problema del fatto che puoi registrarti con la stessa mail
         if (accountMap.get(email) != null)
             throw new AuthenticationException("Email already exists");
         if (accountMap.get(username) != null)

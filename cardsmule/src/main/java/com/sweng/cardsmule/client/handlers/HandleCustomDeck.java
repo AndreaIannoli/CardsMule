@@ -8,5 +8,5 @@ import java.util.function.Consumer;
 public interface HandleCustomDeck {
     void onClickRemoveCustomDeck(String deck, Consumer<Boolean> isRemoved);
 
-    void onClickAddOwnedCardsToCustomDeck(String deckName, Consumer<List<OwnedCardFetched>> getSelectedPhysicalCards);
+    void onClickAddOwnedCardsToCustomDeck(String deckName, Consumer<List<OwnedCardFetched>> updatedDeck);
 }

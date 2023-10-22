@@ -3,6 +3,7 @@ package com.sweng.cardsmule.client;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.client.views.DecksManagerView;
 import com.sweng.cardsmule.client.views.GameCardDetailsView;
 import com.sweng.cardsmule.client.views.HomeView;
 import com.sweng.cardsmule.client.views.LoginView;
@@ -25,5 +26,6 @@ public interface ClientSession {
     HomeView getHomeView();
     
     GameCardDetailsView getCardDetailsView();
-
+    
+    DecksManagerView getDecksManagerView();
 }

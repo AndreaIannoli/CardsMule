@@ -20,6 +20,7 @@ import com.sweng.cardsmule.client.CardsImages;
 import com.sweng.cardsmule.client.handlers.HandleAddCardToCollection;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
@@ -213,5 +214,10 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 	@Override
 	public void onClickLogout() {
 		presenter.goTo(new PreAuthenticationPlace());	
+	}
+	
+	@Override
+	public void onClickDeck() {
+		presenter.goTo(new DecksManagerPlace());
 	}
 }

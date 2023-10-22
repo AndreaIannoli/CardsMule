@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .deckLayout {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .newDeck {
+            display: flex;
+            background: #CD5888;
+            color: #eee;
+            padding-left: 1rem;
+            gap: 1rem;
+            border: 5px dashed rgba(148, 46, 148, 0.75);
+            align-items: center;
+        }
+    </ui:style>
+    <g:HTMLPanel styleName="{style.deckLayout}">
+        <h1>User decks</h1>
+        <g:HTMLPanel ui:field="decksContainer"/>
+        <div class="{style.newDeck}">
+            <h2 ui:field="newDeckName" contenteditable="true">Write here your custom deck name</h2>
+            <g:Button ui:field="newDeckButton" styleName="deckButton">&#10003;</g:Button>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

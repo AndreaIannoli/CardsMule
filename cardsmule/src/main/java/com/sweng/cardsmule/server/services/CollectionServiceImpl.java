@@ -334,9 +334,9 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	}
 	//il metodo updateWishedCollection  Scansiona il mazzo alla ricerca di carte fisiche con lo stesso ID della carta ricevuta e con uno status inferiore o uguale. Se trova tali carte, le rimuove dal mazzo.
 	private static void updateWishedCOllection(Collection collection, OwnedCard oCard) {
-	    int cardId = oCard.getCardId();
+	    int cardId = oCard.getReferenceCardId();
 	    List<OwnedCard> cardsToRemove = collection.getOwnedCards().stream()
-	        .filter(wishedCard -> wishedCard.getCardId() == cardId && wishedCard.getGrade().getValue() <= oCard.getGrade().getValue())
+	        .filter(wishedCard -> wishedCard.getReferenceCardId() == cardId && wishedCard.getGrade().getValue() <= oCard.getGrade().getValue())
 	        .collect(Collectors.toList());
 	    for (OwnedCard cardToRemove : cardsToRemove) {
 	        collection.removeOwnedCard(cardToRemove); // Rimuovi ciascuna carta fisica dalla lista

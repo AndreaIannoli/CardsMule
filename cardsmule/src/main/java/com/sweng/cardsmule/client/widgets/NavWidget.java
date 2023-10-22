@@ -48,6 +48,7 @@ public class NavWidget extends Composite {
 		
 		btnLogout.addClickHandler((ClickHandler) event -> parent.onClickLogout());
 		btnHome.addClickHandler((ClickHandler) event -> parent.onClickHome());
+		btnDeck.addClickHandler((ClickHandler) event -> parent.onClickDeck());
 	}
 	
 	

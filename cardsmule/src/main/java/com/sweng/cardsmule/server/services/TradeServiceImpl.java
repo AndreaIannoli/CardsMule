@@ -76,7 +76,7 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
         List<OwnedCardFetched> cardsWithName = new LinkedList<>();
         for (OwnedCard oCard : oCards) {
             cardsWithName.add(new OwnedCardFetched(oCard, CardServiceImpl.getNameCard(
-                    oCard.getCardId(),
+                    oCard.getReferenceCardId(),
                     db.getCachedMap(
                             getServletContext(),
                             CardServiceImpl.getCardMap(oCard.getGameType()),

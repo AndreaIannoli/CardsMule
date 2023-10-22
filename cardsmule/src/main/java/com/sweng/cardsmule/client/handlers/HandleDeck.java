@@ -10,5 +10,5 @@ import com.sweng.cardsmule.shared.models.OwnedCardFetched;
 public interface HandleDeck {
     void onShowDeck(String deckName, BiConsumer<List<OwnedCardFetched>, String> setDeckData);
 
-    void onRemoveOwnedCard(String deckName, OwnedCard pCard);
+    void onRemoveOwnedCard(String deckName, OwnedCard ownedCard);
 }

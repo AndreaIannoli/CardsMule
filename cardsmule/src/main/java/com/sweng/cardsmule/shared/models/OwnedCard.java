@@ -7,20 +7,12 @@ public class OwnedCard extends UserCard implements Serializable{
 	private static final long serialVersionUID = -7343121676086446226L;
     private String id;
     private String description;
-    private int referenceCardId;
 	private static final AtomicInteger uniqueId = new AtomicInteger();
-	private int referenceCardId;
-	private CardsmuleGame cardGame;
-	private String userEmail;
 	
 	public OwnedCard(int referenceCardId, Grade grade, CardsmuleGame cardGame, String userEmail, String description) {
 		super(referenceCardId, grade, cardGame, userEmail);
 		this.id = uniqueId.getAndIncrement() + "";
 		this.description = description;
-		this.referenceCardId = referenceCardId;
-		this.cardGame = cardGame;
-		this.userEmail = userEmail;
-
 	}
 	
 	public OwnedCard() {
@@ -43,21 +35,8 @@ public class OwnedCard extends UserCard implements Serializable{
                                 null;
     }
    
-   
-   public int getCardId() {
-       return referenceCardId;
-   }
-   
-   public CardsmuleGame getCardGame(){
-	   return cardGame;
-   }
-   
-   public String getUserEmail() {
-	   return userEmail;
-   }
-   
    public OwnedCard copyWithModifiedStatusAndDescription(Grade newGrade, String newDescription) {
-       return new OwnedCard(getCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
+       return new OwnedCard(getReferenceCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
    }
 
    
