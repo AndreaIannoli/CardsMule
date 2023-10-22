@@ -57,12 +57,23 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	}
 	
     private static boolean addCollection(String email, String collectionName, boolean isDeck, Map<String, Map<String, Collection>> collectionMap) {
-        Map<String, Collection> userCollections = collectionMap.computeIfAbsent(email, k -> new LinkedHashMap<>());
-        if (userCollections.get(collectionName) != null) {
-            return false;
-        }
-        userCollections.put(collectionName, new Collection(collectionName, isDeck));
-        collectionMap.put(email, userCollections);
+        
+    	try {
+        	Map<String, Collection> userCollections = collectionMap.computeIfAbsent(email, k -> new LinkedHashMap<>());
+        	   System.out.println("email: " + email + "  collectionName: " + collectionName + "  collectionMap " + collectionMap);
+               if (userCollections.get(collectionName) != null) {
+                   return false;
+               }
+               userCollections.put(collectionName, new Collection(collectionName, isDeck));
+               collectionMap.put(email, userCollections);
+               
+               System.out.println(userCollections + " collection");
+               
+    	}catch(Exception error) {
+    		System.out.println(error.toString());
+    		System.out.println(error.getMessage());
+    	}
+    	
         
         for(String collectionEmail: collectionMap.keySet()) {
         	System.out.println("deck id " + collectionEmail);
@@ -91,6 +102,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	}
 	
 	public static boolean createDefaultCollection(String email, Map<String, Map<String, Collection>> CollectionMap) {
+		System.out.println("dentro a createDefaultCollection");
         return addCollection(email, COLLECTION_OWNED, false, CollectionMap) && addCollection(email, COLLECTION_WISHED, false, CollectionMap);
     }
 	
@@ -174,6 +186,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	@Override
 	public List<CollectionVariationPayload> removeOwnedCardFromCollection(String token, String collectionName,
 			OwnedCard ownedCard) throws GeneralException {
+		
         String userEmail = AuthenticationServiceImpl.checkTokenValidity(token, db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
         checkCollectionName(collectionName);
         if (ownedCard == null)
@@ -186,10 +199,18 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
         Collection foundCollection = userCollections.get(collectionName);
         checkNotFound(collectionName, foundCollection);
+        System.out.println("removeOwnedCardFromCollection   collectioName: "  + collectionName);
         if (collectionName.equals("Owned")) {
             for (Collection collection : userCollections.values()) {
-                if (collection.removeOwnedCard(ownedCard)) {
+            	System.out.println("ciclo for");
+            	
+            	System.out.println("ownedCard: " + ownedCard.getId() + "  collection.removeOwnedCard(ownedCard): " + collection.removeOwnedCard(ownedCard));
+            	System.out.println("collection.getOwnedCards(): " + collection.getOwnedCards());
+            	
+                if (collection.removeOwnedCard(ownedCard) == false) {
+                	System.out.println("dentro l'if");
                 	modifiedCollections.add(new CollectionVariationPayload(collection.getName(), fetchOwnedCardNames(collection.getOwnedCards())));
+                	System.out.println("collection.getName(): " + collection.getName() + "   collection.getOwnedCards(): " + collection.getOwnedCards());
                 }
             }
         } else {
@@ -197,6 +218,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         	modifiedCollections.add(new CollectionVariationPayload(foundCollection.getName(), fetchOwnedCardNames(foundCollection.getOwnedCards())));
         }
         db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
+        System.out.println("modifiedCollections: " + modifiedCollections);
         return modifiedCollections;
 	}
 

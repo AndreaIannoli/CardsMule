@@ -2,6 +2,7 @@ package com.sweng.cardsmule.client.widgets;
 
 
 import com.google.gwt.core.client.GWT;
+
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -38,7 +39,7 @@ public class OwnedCardWidget extends Composite {
     OwnedCardFetched pCard;
 
     public OwnedCardWidget(OwnedCardFetched pCard, HandleOwnedCardSelection selectionHandler,
-                              HandleOwnedCardRemove removeHandler, HandleOwnedCardEdit editHandler) {
+    		HandleOwnedCardRemove removeHandler, HandleOwnedCardEdit editHandler) {
         this.pCard = pCard;
         initWidget(uiBinder.createAndBindUi(this));
         cardContainer.add(new Hyperlink("Open Details",

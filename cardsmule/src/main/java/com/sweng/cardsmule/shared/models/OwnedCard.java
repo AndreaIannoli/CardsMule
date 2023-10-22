@@ -1,13 +1,16 @@
 package com.sweng.cardsmule.shared.models;
 
 import java.io.Serializable;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OwnedCard extends UserCard implements Serializable{
-	private static final long serialVersionUID = -7343121676086446226L;
-    private String id;
+    
+	private static final long serialVersionUID = 8585293339499177179L;
+	private String id;
     private String description;
 	private static final AtomicInteger uniqueId = new AtomicInteger();
+
 	
 	public OwnedCard(int referenceCardId, Grade grade, CardsmuleGame cardGame, String userEmail, String description) {
 		super(referenceCardId, grade, cardGame, userEmail);
@@ -26,8 +29,6 @@ public class OwnedCard extends UserCard implements Serializable{
 		return id;
 	}
 
-
-	
    public CardsmuleGame getGameType() {
         return id.charAt(0) == 'm' ? CardsmuleGame.MAGIC :
                 id.charAt(0) == 'y' ? CardsmuleGame.YUGIOH :
@@ -38,10 +39,5 @@ public class OwnedCard extends UserCard implements Serializable{
    public OwnedCard copyWithModifiedStatusAndDescription(Grade newGrade, String newDescription) {
        return new OwnedCard(getReferenceCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
    }
-
-   
-
-
-
 
 }
