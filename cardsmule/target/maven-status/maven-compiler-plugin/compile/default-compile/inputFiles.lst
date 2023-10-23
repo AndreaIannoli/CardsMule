@@ -1,58 +1,114 @@
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/SwengCardMagic.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/RegistrationViewImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/CredentialsPayload.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/ClientSession.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/GreetingServiceImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/HomeView.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/Account.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/LoginSession.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/AuthenticationServiceAsync.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/PreAuthenticationViewImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/authentication/User.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/widgets/NavWidget.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/FieldVerifier.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/RegistrationView.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/SwengCard.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/LoginViewImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/place/RegistrationPlace.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/handlers/HandleNavBar.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/GreetingServiceAsync.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/HomeViewImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/services/AuthenticationServiceImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/activities/LoginActivity.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/activities/RegistrationActivity.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/parseJson/SwengParseCards.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/throwables/AuthenticationException.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/AuthenticationService.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/SwengPokemonCard.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/GreetingService.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/parseJson/SwengParsePokemon.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/CardsmuleGame.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/parseJson/SwengParseJson.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/PreAuthenticationView.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/router/AppActivityMapper.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/parseJson/SwengParseMagic.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/place/LoginPlace.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/BaseAsyncCallback.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/SwengListenerImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/activities/PreAuthenticationActivity.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/parseJson/SwengParseYiGiOhCard.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/mapDB/DBImplements.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/CardServiceAsync.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/views/LoginView.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/mapDB/MapDB.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/router/RouteConstants.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/place/HomePlace.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/place/PreAuthenticationPlace.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/activities/HomeActivity.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/CardService.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/mapDB/MapDBConst.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/gsonserializer/GsonSerializer.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/widgets/SwengCardWidget.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/models/SwengYuGiOhCard.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/server/services/CardServiceImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/Cardsmule.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/throwables/InputException.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/ClientSessionImpl.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/client/router/AppPlaceHistoryMapper.java
-/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/src/main/java/com/sweng/cardsmule/shared/throwables/GeneralException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\AddCardToDeckWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\RegistrationActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\LoginViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\HomeActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\gsonserializer\GsonSerializer.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\AuthenticationServiceAsync.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\InputException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\NewTradeActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\SwengYuGiOhCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\PreAuthenticationPlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\LoginView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\services\CardServiceImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\LoginSession.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CollectionClassificationConstants.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\AddCardToCollectionWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\NewTradeView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\DecksManagerActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\TradeViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\TradeView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\AuthenticationService.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\TradesActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleNavBar.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\GradeWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\authentication\User.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\CardsImages.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\Collection.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\OwnedCardFetched.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\LoginPlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\RegistrationPlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\NewTradePlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\RegistrationView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\CardsmuleGame.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CardService.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\GreetingServiceAsync.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\HomePlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\SwengListenerImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\NavWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\router\RouteConstants.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\SwengCardWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\NewTradeViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\UserCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleCustomDeck.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\FieldVerifier.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CredentialsPayload.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\BaseAsyncCallback.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\SwengPokemonCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\OwnedCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\GreetingServiceImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\parseJson\SwengParseYiGiOhCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\GameCardDetailsPlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleAddCardToDeck.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\LoginActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\TradePlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\OwnedCardWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\services\TradeServiceImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\TradeActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleOwnedCardSelection.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\HomeView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\Account.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\services\CollectionServiceImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\mapDB\MapDB.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\CollectionNotFoundException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\GameCardDetailsViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleOwnedCardRemove.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\Grade.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\AlreadyExistingOfferException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\PreAuthenticationViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\AuthenticationException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\parseJson\SwengParseMagic.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\GameCardDetailsActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\GreetingService.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleDeck.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\Cardsmule.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\place\DecksManagerPlace.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\mapDB\MapDBConst.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CollectionService.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\GameCardDetailsView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\router\AppActivityMapper.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\ClientSession.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\RegistrationViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\ListWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\activities\PreAuthenticationActivity.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\DecksManagerView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\DecksManagerViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CardServiceAsync.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\parseJson\SwengParseJson.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\SwengCardMagic.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\HomeViewImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\OfferNotFoundException.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\services\AuthenticationServiceImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\SwengCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\WishedCard.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\UsersListWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CollectionVariationPayload.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\ClientSessionImpl.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\DeckManagerWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleOfferList.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\SetUpTableWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleOwnedCardEdit.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\handlers\HandleAddCardToCollection.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\TradeCardsServiceAsync.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\SuccessAsyncCallBack.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\CollectionServiceAsync.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\widgets\OfferListWidget.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\parseJson\SwengParseCards.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\parseJson\SwengParsePokemon.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\server\mapDB\DBImplements.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\views\PreAuthenticationView.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\TradeCardsService.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\OfferPayload.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\client\router\AppPlaceHistoryMapper.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\models\Offer.java
+C:\Ingegneria\CardsMule\cardsmule\src\main\java\com\sweng\cardsmule\shared\throwables\GeneralException.java

@@ -135,8 +135,8 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 
         return db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
                 (Map<String, Map<String, Collection>> collectionMap) -> {
-                	collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
-                	collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
+                	//collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
+                	//collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
                     deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
                     return true;
                 }) != null;

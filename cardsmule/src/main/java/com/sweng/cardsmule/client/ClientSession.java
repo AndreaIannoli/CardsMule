@@ -7,8 +7,10 @@ import com.sweng.cardsmule.client.views.DecksManagerView;
 import com.sweng.cardsmule.client.views.GameCardDetailsView;
 import com.sweng.cardsmule.client.views.HomeView;
 import com.sweng.cardsmule.client.views.LoginView;
+import com.sweng.cardsmule.client.views.NewTradeView;
 import com.sweng.cardsmule.client.views.PreAuthenticationView;
 import com.sweng.cardsmule.client.views.RegistrationView;
+import com.sweng.cardsmule.client.views.TradeView;
 
 public interface ClientSession {
     EventBus getEventBus();
@@ -28,4 +30,8 @@ public interface ClientSession {
     GameCardDetailsView getCardDetailsView();
     
     DecksManagerView getDecksManagerView();
+    
+    NewTradeView getNewTradeView();
+
+    TradeView getTradeView();
 }

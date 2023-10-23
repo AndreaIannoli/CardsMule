@@ -11,7 +11,7 @@ import com.sweng.cardsmule.shared.throwables.AuthenticationException;
 import com.sweng.cardsmule.shared.throwables.GeneralException;
 import com.sweng.cardsmule.shared.throwables.OfferNotFoundException;
 
-@RemoteServiceRelativePath("exchanges")
+@RemoteServiceRelativePath("trades")
 public interface TradeCardsService extends RemoteService {
 	boolean addOffer(String token, String receiverUserEmail, List<OwnedCard> senderOwnedCards, List<OwnedCard> receiverOwnedCards) throws GeneralException;
 

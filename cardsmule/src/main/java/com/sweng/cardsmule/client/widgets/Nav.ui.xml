@@ -43,7 +43,7 @@
 					<g:Button styleName="{style.button}" ui:field="btnDeck" text="Deck"/>
 				</li>
 				<li class="{style.list}" id="Login">
-					<g:Button styleName="{style.button}" ui:field="btnScambi" text="Scambi"/>
+					<g:Button styleName="{style.button}" ui:field="btnTrade" text="Trade"/>
 				</li>
 				<li class="{style.list}" id="Register">
 					<g:Button styleName="{style.button}" ui:field="btnLogout" text="Logout"/>

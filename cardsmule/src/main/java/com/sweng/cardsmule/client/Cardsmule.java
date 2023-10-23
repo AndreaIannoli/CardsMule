@@ -6,7 +6,9 @@ import com.sweng.cardsmule.shared.FieldVerifier;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.place.DecksManagerPlace;
+import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradePlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -116,5 +118,9 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 	@Override
 	public void onClickDeck() {
 		placeController.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrade(int offerId) {
+		placeController.goTo(new TradePlace(offerId));
 	}
 }

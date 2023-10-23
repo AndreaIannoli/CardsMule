@@ -8,6 +8,7 @@ public class TradePlace extends Place{
     public TradePlace(Integer offerId) {
         this.offerId = offerId;
     }
+    
 
     public Integer getOfferId() {
         return offerId;

@@ -7,4 +7,6 @@ public interface RouteConstants {
     String homeLink = "home";
     String cardDetailsLink = "carddetails";
     String decksManagerLink = "decksmanger";
+    String newTradeLink = "newTrade";
+    String tradeLink = "trade";
 }
