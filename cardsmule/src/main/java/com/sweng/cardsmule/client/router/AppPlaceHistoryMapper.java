@@ -10,6 +10,7 @@ import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.place.RegistrationPlace;
 import com.sweng.cardsmule.client.place.TradePlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 
@@ -34,7 +35,10 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
         	return new HomePlace();
         } else if(token.equals(decksManagerLink) && user.isLoggedIn()) {
         	return new DecksManagerPlace();
-        } else {
+        }else if(token.equals(tradesLink) && user.isLoggedIn()) {
+        	return new TradesPlace();
+        }
+        else {
         	try {
         		String[] parts = token.split(DELIMITER);
         		if (parts[0].equals(cardDetailsLink)) {
@@ -46,7 +50,7 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
                     String selectedCardId = parts[2];
                     return new NewTradePlace(selectedCardId, receiverUserEmail);
                 } else if (parts[0].equals(tradeLink) && user.isLoggedIn()) {
-                    return new TradePlace(parts[1] != null ? Integer.parseInt(parts[1]) : null);
+                    return new TradePlace(Integer.parseInt(parts[1]));
                 }
         	} catch (Exception exception) {
         		return defaultPlace;
@@ -68,8 +72,8 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper, RouteConstants
         	return decksManagerLink;
         } else if (place instanceof HomePlace) {
         	return homeLink;
-        }else if (place instanceof TradePlace && ((TradePlace) place).getOfferId() == null) {
-            return tradeLink;
+        }else if (place instanceof TradesPlace) {
+            return tradesLink;
         } else if (place instanceof TradePlace) {
         	TradePlace tradePlace = (TradePlace) place;
             return tradeLink + DELIMITER + tradePlace.getOfferId();

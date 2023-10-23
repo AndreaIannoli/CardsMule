@@ -330,39 +330,49 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         return fetchOwnedCardNames(userDeck.getOwnedCards());
 	}
 	
-	public static Map<String, Collection> updateUserCollection(Map<String, Collection> userCollection, List<OwnedCard> received_trades_cards, List<OwnedCard> trades_away_cards) {
-	    for (Collection collection : userCollection.values()) {
-	        String collectionName = collection.getName();
-	        for (OwnedCard oCard : received_trades_cards) {
-	            if (collectionName.equals(COLLECTION_OWNED)) {
-	                updateOwnedCollection(collection, oCard);
-	            } else if (collectionName.equals(COLLECTION_WISHED)) {
-	                updateWishedCollection(collection, oCard);
-	            } else {
-	            	collection.removeOwnedCard(oCard);
-	            }
-	        }
-	        for (OwnedCard oCard : trades_away_cards) {
-	        	collection.removeOwnedCard(oCard);
-	        }
-	    }
-	    return userCollection;
-	}
+	public static Map<String, Collection> updateUserCollection(Map<String, Collection> userCollection,
+            List<OwnedCard> received_trade_cards, List<OwnedCard> trade_away_cards) {
+		System.out.println("userCollection " + userCollection + " received_trade_cards " +received_trade_cards + " trade_away_cards "+ trade_away_cards);
+        for (Collection collection : userCollection.values()) {
+            String collectionName = collection.getName();
+            System.out.println("collection name" + collectionName );
+            if (collectionName.equals(COLLECTION_OWNED)) {
+                for (OwnedCard oCard : received_trade_cards) {
+                	System.out.println("ocard" + oCard );
+                    if (!collection.addOwnedCard(oCard)) {
+                    	System.out.println("mi rompo qui dio cane");
+                        throw new RuntimeException("DB ROLLBACK!");
+                    }
+                    System.out.println("andato a buon fine");
+                }
+                for (OwnedCard pCard : trade_away_cards) {
+                	System.out.println("pcard" + pCard.getUserEmail() + " "+ pCard.getId() + " " + pCard.getDescription());
 
-	private static void updateOwnedCollection(Collection collection, OwnedCard oCard) {
-	    if (!collection.addOwnedCard(oCard)) {
-	        throw new RuntimeException("DB ROLLBACK!");
-	    }
-	}
-	//il metodo updateWishedCollection  Scansiona il mazzo alla ricerca di carte fisiche con lo stesso ID della carta ricevuta e con uno status inferiore o uguale. Se trova tali carte, le rimuove dal mazzo.
-	private static void updateWishedCollection(Collection collection, OwnedCard oCard) {
-	    int cardId = oCard.getReferenceCardId();
-	    List<OwnedCard> cardsToRemove = collection.getOwnedCards().stream()
-	        .filter(wishedCard -> wishedCard.getReferenceCardId() == cardId && wishedCard.getGrade().getValue() <= oCard.getGrade().getValue())
-	        .collect(Collectors.toList());
-	    for (OwnedCard cardToRemove : cardsToRemove) {
-	        collection.removeOwnedCard(cardToRemove); // Rimuovi ciascuna carta fisica dalla lista
-	    }
-	}
+                    if (collection.removeOwnedCard(pCard) == false) {
+                    	System.out.println("mi rompo qui dio porco");
+                        throw new RuntimeException("DB ROLLBACK!");
+                    }
+                }
+            } else if (collectionName.equals(COLLECTION_WISHED)) {
+                Map<Integer, List<OwnedCard>> lookUp = collection.getOwnedCards().stream().collect(
+                        Collectors.groupingBy(OwnedCard::getReferenceCardId, Collectors.toCollection(LinkedList::new)));
+
+                for (OwnedCard received_ocard : received_trade_cards) {
+                    int cardId = received_ocard.getReferenceCardId();
+                    if (!lookUp.containsKey(cardId)) {
+                        continue;
+                    }
+                    for (OwnedCard wished_ocard : lookUp.get(cardId)) {
+                        if (wished_ocard.getGrade().getValue() <= received_ocard.getGrade().getValue()) {
+                            collection.removeOwnedCard(wished_ocard);
+                        }
+                    }
+                }
+            } else {
+                trade_away_cards.forEach(collection::removeOwnedCard);
+            }
+        }
+        return userCollection;
+    }
 
 }

@@ -5,7 +5,7 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
-@Suite
+
 public class CardsmuleSuite extends GWTTestSuite {
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Tests for Cardsmule");

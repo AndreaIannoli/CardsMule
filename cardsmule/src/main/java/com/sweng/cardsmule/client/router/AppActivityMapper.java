@@ -14,6 +14,7 @@ import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.place.RegistrationPlace;
 import com.sweng.cardsmule.client.place.TradePlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.sweng.cardsmule.client.views.LoginView;
 import com.sweng.cardsmule.client.activities.GameCardDetailsActivity;
 import com.sweng.cardsmule.client.activities.HomeActivity;
@@ -55,7 +56,7 @@ public class AppActivityMapper implements ActivityMapper {
         else if (place instanceof NewTradePlace)
             return new NewTradeActivity((NewTradePlace) place, clientSession.getNewTradeView(), GWT.create(CollectionService.class), GWT.create(TradeCardsService.class),
                     clientSession.getUser(), clientSession.getPlaceController());
-        else if (place instanceof TradePlace && ((TradePlace) place).getOfferId() == null)
+        else if (place instanceof TradesPlace)
             return new TradesActivity(clientSession.getTradeView(), GWT.create(TradeCardsService.class), clientSession.getUser(), clientSession.getPlaceController());
         else if (place instanceof TradePlace)
             return new TradeActivity((TradePlace) place, clientSession.getNewTradeView(), GWT.create(TradeCardsService.class),

@@ -80,7 +80,7 @@ public class TradeActivity extends AbstractActivity implements NewTradeView.Trad
                 if (result) {
                     view.showAlert("Successfully accepted offer: " + place.getOfferId());
                 } else
-                    view.showAlert("It seems this offer doesn't exist anymore");
+                    view.showAlert("It seems this offer doesn't exist anymore !!");
             }
         });
 		

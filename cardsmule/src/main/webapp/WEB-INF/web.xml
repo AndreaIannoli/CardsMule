@@ -22,6 +22,10 @@
         <servlet-name>com.sweng.cardsmule.CardsMule CollectionService</servlet-name>
         <servlet-class>com.sweng.cardsmule.server.services.CollectionServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>com.sweng.cardsmule.CardsMule TradeCardsService</servlet-name>
+        <servlet-class>com.sweng.cardsmule.server.services.TradeServiceImpl</servlet-class>
+    </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
@@ -39,6 +43,10 @@
     <servlet-mapping>
   <servlet-name>com.sweng.cardsmule.CardsMule CollectionService</servlet-name>
     <url-pattern>/cardsmule/collections</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	  <servlet-name>com.sweng.cardsmule.CardsMule TradeCardsService</servlet-name>
+	    <url-pattern>/cardsmule/trades</url-pattern>
   </servlet-mapping>
   
   

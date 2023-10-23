@@ -49,7 +49,7 @@ public class NavWidget extends Composite {
 		btnLogout.addClickHandler((ClickHandler) event -> parent.onClickLogout());
 		btnHome.addClickHandler((ClickHandler) event -> parent.onClickHome());
 		btnDeck.addClickHandler((ClickHandler) event -> parent.onClickDeck());
-		btnTrade.addClickHandler((ClickHandler) event -> parent.onClickTrade(offerId));
+		btnTrade.addClickHandler((ClickHandler) event -> parent.onClickTrades());
 	}
 	
 	

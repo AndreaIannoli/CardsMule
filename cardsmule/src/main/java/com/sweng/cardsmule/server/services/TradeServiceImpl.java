@@ -15,6 +15,7 @@ import com.sweng.cardsmule.shared.models.Account;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.LinkedList;
@@ -45,6 +46,7 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
         db = mockDB;
     }
     //metodo per verificare che la mail esista tra gli utenti
+    //DA SISTEMARE NEL CASO
     private boolean checkEmailExistence(String email) {
         Map<String, Account > userMap = db.getPersistentMap(
                 getServletContext(), MAP_USER , Serializer.STRING, new GsonSerializer<>(gson));
@@ -57,7 +59,8 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 			List<OwnedCard> receiverOwnedCards) throws GeneralException {
 		String email = AuthenticationServiceImpl.checkTokenValidity(token,
                 db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
-        if (receiverUserEmail == null || receiverUserEmail.isEmpty() || !checkEmailExistence(receiverUserEmail))
+		System.out.println(receiverUserEmail + "sono l'email del receiver" + checkEmailExistence(receiverUserEmail));
+        if (receiverUserEmail == null || receiverUserEmail.isEmpty())
             throw new InputException("Invalid receiver email");
         if (email.equals(receiverUserEmail))
             throw new InputException("You cannot propose an exchange with yourself.");
@@ -106,7 +109,7 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
         );
 	}
 	//metodo che utilizzo per eliminare la proposta accettata dall'elenco delle mie proposte in  cui almeno una delle carte fisiche del mittente o del ricevente è presente nella lista di carte
-	private void deleteReferredOffer(Map<Integer, Offer> offerMap, List<OwnedCard> receiver_cards, List<OwnedCard> sender_cards) {
+	/*private void deleteReferredOffer(Map<Integer, Offer> offerMap, List<OwnedCard> receiver_cards, List<OwnedCard> sender_cards) {
 	    List<OwnedCard> allCards = Stream.concat(receiver_cards.stream(), sender_cards.stream()).collect(Collectors.toList());
 	    //allCards.stream().anyMatch per verificare se almeno una carta fisica in allCards è presente sia nella lista proposal.getSenderPhysicalCards() o nella lista proposal.getReceiverPhysicalCards.
 	    offerMap.values().removeIf(offer ->
@@ -116,7 +119,16 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 	                offer.getReceiverOwnedCards().contains(card)
 	            )
 	    );
-	}
+	}*/
+	private void deleteReferredOffer(Map<Integer, Offer> offerMap, List<OwnedCard> receiver_cards, List<OwnedCard> sender_cards) {
+        List<OwnedCard> allCards = Stream.concat(receiver_cards.stream(), sender_cards.stream()).collect(Collectors.toList());
+        Map<String, OwnedCard> lookUp = allCards.stream().collect(Collectors.toMap(OwnedCard::getId, Function.identity()));
+
+        offerMap.values().removeIf(offer ->
+	        offer.getSenderOwnedCards().stream().anyMatch(oCard -> lookUp.containsKey(oCard.getId())) ||
+	        offer.getReceiverOwnedCards().stream().anyMatch(oCard -> lookUp.containsKey(oCard.getId()))
+        );
+    }
 
 
 	@Override
@@ -124,10 +136,12 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 			throws AuthenticationException, OfferNotFoundException {
 		String email = AuthenticationServiceImpl.checkTokenValidity(token,
                 db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
-        //mappa delle offerte
+		System.out.println(email + "di colui che ha ricevuto l'offerta");
+		//mappa delle offerte
 		Map<Integer, Offer> offerMap = db.getPersistentMap(getServletContext(), MAP_PROPOSAL, Serializer.INTEGER, new GsonSerializer<>(gson));
         //offerta specifica della mappa
 		Offer offer = offerMap.get(offerId);
+		System.out.println("offer" + offer);
         if (offer == null)
             throw new OfferNotFoundException("Not existing proposal");
         if (!email.equals(offer.getReceiverUserEmail()))
@@ -135,10 +149,21 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 
         return db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
                 (Map<String, Map<String, Collection>> collectionMap) -> {
-                	//collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
-                	//collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
-                    deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
-                    return true;
+                	try {
+                		System.out.println(offer.getReceiverUserEmail()+ " " + offer.getReceiverOwnedCards());
+                		collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
+                    	System.out.println(" ssss");
+                    	collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
+                        System.out.println("put figlio di puttana");
+                        return true;
+                	}catch (Exception e) {
+						System.out.println(e.toString());
+						System.out.println(e.getMessage());
+						return false;
+					}
+                	
+                	//deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
+                    
                 }) != null;
 		
 	}

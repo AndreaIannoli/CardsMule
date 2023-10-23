@@ -28,6 +28,7 @@ import com.sweng.cardsmule.client.handlers.HandleOwnedCardSelection;
 import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.sweng.cardsmule.client.views.DecksManagerView;
 import com.sweng.cardsmule.client.widgets.DeckManagerWidget;
 
@@ -153,5 +154,9 @@ public class DecksManagerViewImpl extends Composite implements DecksManagerView,
 	@Override
 	public void onClickDeck() {
 		presenter.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		presenter.goTo(new TradesPlace());
 	}
 }

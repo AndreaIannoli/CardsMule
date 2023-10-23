@@ -9,6 +9,7 @@ import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.place.TradePlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -120,7 +121,7 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 		placeController.goTo(new DecksManagerPlace());
 	}
 	@Override
-	public void onClickTrade(int offerId) {
-		placeController.goTo(new TradePlace(offerId));
+	public void onClickTrades() {
+		placeController.goTo(new TradesPlace());
 	}
 }

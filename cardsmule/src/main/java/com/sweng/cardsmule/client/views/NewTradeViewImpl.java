@@ -16,7 +16,13 @@ import com.google.gwt.user.client.ui.Widget;
 
 
 import com.google.gwt.user.client.ui.Composite;
+import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.handlers.HandleOwnedCardSelection;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
+import com.sweng.cardsmule.client.place.HomePlace;
+import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
+import com.sweng.cardsmule.client.views.TradeView.Presenter;
 import com.sweng.cardsmule.shared.models.OwnedCardFetched;
 import com.sweng.cardsmule.client.widgets.DeckManagerWidget;
 
@@ -24,12 +30,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewTradeViewImpl extends Composite implements NewTradeView, HandleOwnedCardSelection {
+public class NewTradeViewImpl extends Composite implements NewTradeView, HandleOwnedCardSelection, HandleNavBar {
 
 	
     private static final NewTradeViewImpl.NewTradeViewImplUIBinder uiBinder = GWT.create(NewTradeViewImpl.NewTradeViewImplUIBinder.class);
     NewTradePresenter newTradePresenter;
     TradePresenter tradePresenter;
+    Presenter presenter;
     @UiField
     HeadingElement pageTitle;
     @UiField
@@ -142,7 +149,24 @@ public class NewTradeViewImpl extends Composite implements NewTradeView, HandleO
     private String confirmMessage(String str) {
         return "Do you want to " + str + " this exchange offer?";
     }
-   
+    @Override
+	public void onClickLogout() {
+		presenter.goTo(new PreAuthenticationPlace());	
+	}
+
+	@Override
+	public void onClickHome() {
+		presenter.goTo(new HomePlace());		
+	}
+
+	@Override
+	public void onClickDeck() {
+		presenter.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		presenter.goTo(new TradesPlace());
+	}
 	
 	interface NewTradeViewImplUIBinder extends UiBinder<Widget, NewTradeViewImpl> {
     }

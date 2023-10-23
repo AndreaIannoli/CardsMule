@@ -20,9 +20,12 @@ import com.sweng.cardsmule.client.CardsImages;
 import com.sweng.cardsmule.client.handlers.HandleAddCardToCollection;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.handlers.HandleUserList;
 import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
+import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
 
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
@@ -39,7 +42,7 @@ import com.sweng.cardsmule.client.handlers.HandleAddCardToDeck;
 
 
 
-public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck, HandleNavBar{
+public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck, HandleNavBar, HandleUserList{
     private static final GameCardDetailsImplUIBinder uiBinder = GWT.create(GameCardDetailsImplUIBinder.class);
     @UiField
     SpanElement cardGame;
@@ -151,14 +154,15 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 
 	@Override
 	public void setWishList(List<WishedCard> wisherList) {
-        wishedList.setTable(wisherList, own -> new Button("Exchange", (ClickHandler) e ->
+        wishedList.setTableWished(wisherList, own -> new Button("Exchange", (ClickHandler) e ->
         displayAlert("GoToExchange")));
 	}
 
 	@Override
 	public void setOwnList(List<OwnedCard> ownerList) {
-        ownedList.setTable(ownerList, own -> new Button("Exchange", (ClickHandler) e ->
-        displayAlert("GoToExchange")));
+		
+        ownedList.setTable(ownerList, own -> new Button("Trade", (ClickHandler) e ->presenter.goTo(new NewTradePlace(own.getId(), own.getUserEmail()))));
+        
 	}
 	@Override
     public void onClickAddToDeck() {
@@ -219,5 +223,15 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 	@Override
 	public void onClickDeck() {
 		presenter.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		presenter.goTo(new TradesPlace());
+	}
+
+	@Override
+	public void onClickTrade(String receiverUserEmail, String selectedCardId) {
+		presenter.goTo(new NewTradePlace(receiverUserEmail, selectedCardId));
+		
 	}
 }

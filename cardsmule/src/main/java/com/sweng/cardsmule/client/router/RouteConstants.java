@@ -9,4 +9,5 @@ public interface RouteConstants {
     String decksManagerLink = "decksmanger";
     String newTradeLink = "newTrade";
     String tradeLink = "trade";
+    String tradesLink = "trades";
 }

@@ -1,7 +1,7 @@
 package com.sweng.cardsmule.shared.models;
 
 import java.io.Serializable;
-
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OwnedCard extends UserCard implements Serializable{
@@ -38,6 +38,18 @@ public class OwnedCard extends UserCard implements Serializable{
    
    public OwnedCard copyWithModifiedStatusAndDescription(Grade newGrade, String newDescription) {
        return new OwnedCard(getReferenceCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
+   }
+   @Override
+   public boolean equals(Object o) {
+       if (this == o) return true;
+       if (!(o instanceof OwnedCard)) return false;
+       OwnedCard that = (OwnedCard) o;
+       return Objects.equals(getId(), that.getId());
+   }
+
+   @Override
+   public int hashCode() {
+       return Objects.hash(getId());
    }
 
 }
