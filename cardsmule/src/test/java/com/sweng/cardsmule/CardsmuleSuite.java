@@ -2,8 +2,8 @@ package com.sweng.cardsmule;
 
 import com.sweng.cardsmule.client.CardsmuleTest;
 import com.google.gwt.junit.tools.GWTTestSuite;
-import org.junit.platform.suite.api.SelectClasses;
-import org.junit.platform.suite.api.Suite;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 
 public class CardsmuleSuite extends GWTTestSuite {

@@ -155,14 +155,13 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
                     	System.out.println(" ssss");
                     	collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
                         System.out.println("put figlio di puttana");
+                    	deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
                         return true;
                 	}catch (Exception e) {
 						System.out.println(e.toString());
 						System.out.println(e.getMessage());
 						return false;
 					}
-                	
-                	//deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
                     
                 }) != null;
 		

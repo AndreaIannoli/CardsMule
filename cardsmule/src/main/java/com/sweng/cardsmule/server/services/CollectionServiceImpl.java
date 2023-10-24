@@ -207,7 +207,12 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
             for (Collection collection : userCollections.values()) {
             	try {
         		System.out.println("COLLECTION NAME: " + collection.getName());
-        		boolean removeRes = collection.removeOwnedCard(ownedCard);
+        		System.out.println("OwnedCard instance" + ownedCard.getClass().getName() + " ");
+        		OwnedCard oc = ((OwnedCard) ownedCard);
+        		System.out.println(((OwnedCard) collection.getOwnedCards().toArray()[0]).getId());
+        		System.out.println("OC ID" + oc.getId());
+        		
+        		boolean removeRes = collection.removeOwnedCard(oc);
         		System.out.println("REMOVED RESULT: " + removeRes);
                 if (removeRes) {
                 	System.out.println("CARD REMOVED" + collection.getName());

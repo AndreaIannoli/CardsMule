@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OwnedCard extends UserCard implements Serializable{
-    
 	private static final long serialVersionUID = 8585293339499177179L;
 	private String id;
     private String description;
@@ -18,7 +17,27 @@ public class OwnedCard extends UserCard implements Serializable{
 		this.description = description;
 	}
 	
+	public OwnedCard(String id, int referenceCardId, Grade grade, CardsmuleGame cardGame, String userEmail, String description) {
+		super(referenceCardId, grade, cardGame, userEmail);
+		this.id = id;
+		this.description = description;
+	}
+	
 	public OwnedCard() {
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("ENTERED THE EQUALS");
+		if (this == obj)
+			return true;
+		OwnedCard other = (OwnedCard) obj;
+		return Objects.equals(id, other.id);
 	}
 
 	public String getDescription() {
@@ -38,19 +57,6 @@ public class OwnedCard extends UserCard implements Serializable{
    
    public OwnedCard copyWithModifiedStatusAndDescription(Grade newGrade, String newDescription) {
        return new OwnedCard(getReferenceCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
-   }
-   
-   @Override
-   public boolean equals(Object o) {
-       if (this == o) return true;
-       if (!(o instanceof OwnedCard)) return false;
-       OwnedCard that = (OwnedCard) o;
-       return Objects.equals(getId(), that.getId());
-   }
-
-   @Override
-   public int hashCode() {
-       return Objects.hash(getId());
    }
 
 }
