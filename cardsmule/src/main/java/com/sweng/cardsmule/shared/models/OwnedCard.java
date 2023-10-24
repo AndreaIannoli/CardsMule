@@ -39,6 +39,7 @@ public class OwnedCard extends UserCard implements Serializable{
    public OwnedCard copyWithModifiedStatusAndDescription(Grade newGrade, String newDescription) {
        return new OwnedCard(getReferenceCardId(), newGrade, getCardGame(), getUserEmail(), newDescription);
    }
+   
    @Override
    public boolean equals(Object o) {
        if (this == o) return true;

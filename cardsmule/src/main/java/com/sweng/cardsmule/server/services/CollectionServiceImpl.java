@@ -53,7 +53,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	public boolean addCollection(String token, String collectionName) throws AuthenticationException {
         String email = AuthenticationServiceImpl.checkTokenValidity(token, db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
         return db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
-        		(Map<String, Map<String, Collection>> collectionMap) -> addCollection(email, collectionName, false, collectionMap));
+        		(Map<String, Map<String, Collection>> collectionMap) -> addCollection(email, collectionName, true, collectionMap));
 	}
 	
     private static boolean addCollection(String email, String collectionName, boolean isDeck, Map<String, Map<String, Collection>> collectionMap) {
@@ -186,7 +186,8 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
 	@Override
 	public List<CollectionVariationPayload> removeOwnedCardFromCollection(String token, String collectionName,
 			OwnedCard ownedCard) throws GeneralException {
-		
+		System.out.println("ENTERED IN CARD REMOVE METHOD");
+
         String userEmail = AuthenticationServiceImpl.checkTokenValidity(token, db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
         checkCollectionName(collectionName);
         if (ownedCard == null)
@@ -199,26 +200,33 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
         Collection foundCollection = userCollections.get(collectionName);
         checkNotFound(collectionName, foundCollection);
-        System.out.println("removeOwnedCardFromCollection   collectioName: "  + collectionName);
+        System.out.println("CHECK NOT FOUND PASSED");
+        
         if (collectionName.equals("Owned")) {
+        	System.out.println("USER COLLECTIONS: " + userCollections.values());
             for (Collection collection : userCollections.values()) {
-            	System.out.println("ciclo for");
-            	
-            	System.out.println("ownedCard: " + ownedCard.getId() + "  collection.removeOwnedCard(ownedCard): " + collection.removeOwnedCard(ownedCard));
-            	System.out.println("collection.getOwnedCards(): " + collection.getOwnedCards());
-            	
-                if (collection.removeOwnedCard(ownedCard) == false) {
-                	System.out.println("dentro l'if");
+            	try {
+        		System.out.println("COLLECTION NAME: " + collection.getName());
+        		boolean removeRes = collection.removeOwnedCard(ownedCard);
+        		System.out.println("REMOVED RESULT: " + removeRes);
+                if (removeRes) {
+                	System.out.println("CARD REMOVED" + collection.getName());
                 	modifiedCollections.add(new CollectionVariationPayload(collection.getName(), fetchOwnedCardNames(collection.getOwnedCards())));
-                	System.out.println("collection.getName(): " + collection.getName() + "   collection.getOwnedCards(): " + collection.getOwnedCards());
                 }
+            	} catch(Exception e) {
+            		System.out.println(e.getMessage());
+            	}
             }
         } else {
+        	System.out.println("ENTERED IN CUSTOM DECK DELETE INSTEAD");
         	foundCollection.removeOwnedCard(ownedCard);
         	modifiedCollections.add(new CollectionVariationPayload(foundCollection.getName(), fetchOwnedCardNames(foundCollection.getOwnedCards())));
         }
-        db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
-        System.out.println("modifiedCollections: " + modifiedCollections);
+        try {
+        	db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
+        } catch (Exception e) {
+        	System.out.println(e.getMessage());
+        }
         return modifiedCollections;
 	}
 
