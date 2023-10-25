@@ -37,6 +37,8 @@ public class DecksManagerViewImpl extends Composite implements DecksManagerView,
     private static final String DEFAULT_CUSTOM_DECK_TEXT = "Write here your custom deck name";
     Presenter presenter;
     @UiField
+    HTMLPanel collectionContainer;
+    @UiField
     HTMLPanel decksContainer;
     @UiField
     HeadingElement newDeckName;
@@ -94,13 +96,19 @@ public class DecksManagerViewImpl extends Composite implements DecksManagerView,
             boolean isOwned = deckName.equals("Owned");
             DeckManagerWidget deck = createDeck(deckName);
             if (isOwned) ownedDeck = deck;
-            decksContainer.add(deck);
+            if(deckName.equals("Owned") || deckName.equals("Wished")) {
+            	collectionContainer.add(deck);
+            } else {
+            	decksContainer.add(deck);
+            }
+            
         }
 		
 	}
 
 	@Override
 	public void resetData() {
+		collectionContainer.clear();
 		decksContainer.clear();
 	}
 

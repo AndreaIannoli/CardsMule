@@ -4,8 +4,7 @@
     <ui:style>
         .deck {
             width: 100%;
-            max-width: 85vw;
-            background: #942e94;
+            background: black;
         }
 
         .deckHeader {
@@ -28,27 +27,30 @@
         }
 
         .showButton {
-            transform: rotate(90deg);
+			background-color: transparent;
+			color: white;
+			border-color: white;
+   			border-radius: 50%;
         }
 
         .cards {
             display: flex;
             gap: 1rem;
-            padding: 1rem;
             min-height: 10rem;
             height: 100%;
             width: 100%;
             justify-content: flex-start;
             align-items: stretch;
             overflow-x: auto;
-            background: #eee;
+            background: transparent;
+            flex-wrap: wrap;
         }
     </ui:style>
     <g:HTMLPanel styleName="{style.deck}">
         <div class="{style.deckHeader}">
             <div class="{style.deckNameWrapper}">
                 <h2 ui:field="deckName"/>
-                <g:Button styleName="deckButton {style.showButton}" ui:field="showButton"></g:Button>
+                <g:Button styleName="deckButton {style.showButton}" ui:field="showButton">▼</g:Button>
             </div>
             <g:HTMLPanel styleName="{style.actions}" ui:field="actions"/>
         </div>

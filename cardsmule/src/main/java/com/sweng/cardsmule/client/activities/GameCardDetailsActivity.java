@@ -55,9 +55,19 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
         view.setPresenter(this);
         containerWidget.setWidget(view.asWidget());
         fetchCard();
-        view.createUserWidgets(user.isLoggedIn());
+        
         fetchCollectionCards();
         fetchWishedCollectionCards();
+        isOwnerCheck();
+    }
+    
+    public void isOwnerCheck() { 
+    	collectionService.isOwnerOfACard(user.getToken(), place.getIdCard(), new BaseAsyncCallback<Boolean>() {
+			@Override
+			public void onSuccess(Boolean result) {
+				view.createUserWidgets(user.isLoggedIn(), result);
+			}
+    	});
     }
     
     
@@ -82,7 +92,7 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
     
     @Override
     public void update() {
-        view.createUserWidgets(user.isLoggedIn());
+        isOwnerCheck();
         fetchCollectionCards();
         fetchWishedCollectionCards();
     }

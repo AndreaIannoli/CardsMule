@@ -30,5 +30,5 @@ public interface GameCardDetailsView extends IsWidget {
 
     void setOwnList(List<OwnedCard> ownerList);
     
-    void createUserWidgets(boolean isLoggedIn);
+    void createUserWidgets(boolean isLoggedIn, boolean isOwner);
 }

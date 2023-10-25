@@ -87,7 +87,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
     
     public GameCardDetailsViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
-        updateBtn.addClickHandler(clickEvent -> presenter.update() );
+        updateBtn.addClickHandler(clickEvent -> presenter.update());
     }
     
     public void setData(SwengCard data) {
@@ -179,7 +179,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
     }
 	
     @Override
-    public void createUserWidgets(boolean isLoggedIn) {
+    public void createUserWidgets(boolean isLoggedIn, boolean isOwner) {
     	addCardToDeckContainer.clear();
         userLists.clear();
         // create AddCartToDeckWidget
@@ -188,7 +188,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
         }
         // create UserListWidget 'Exchange' buttons
         ownedList = new UsersListWidget("Owned by", isLoggedIn);
-        wishedList = new UsersListWidget("Wished by", isLoggedIn);
+        wishedList = new UsersListWidget("Wished by", isLoggedIn && isOwner);
         userLists.add(ownedList);
         userLists.add(wishedList);
     }

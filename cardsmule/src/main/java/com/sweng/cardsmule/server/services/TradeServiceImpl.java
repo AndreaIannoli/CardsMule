@@ -82,7 +82,7 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
                     oCard.getReferenceCardId(),
                     db.getCachedMap(
                             getServletContext(),
-                            CardServiceImpl.getCardMap(oCard.getGameType()),
+                            CardServiceImpl.getCardMap(oCard.getCardGame()),
                             Serializer.INTEGER,
                             new GsonSerializer<>(gson)
                     )

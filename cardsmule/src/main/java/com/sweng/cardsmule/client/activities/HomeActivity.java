@@ -37,7 +37,7 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
     public void start(AcceptsOneWidget acceptsOneWidget, EventBus eventBus) {
         view.setPresenter(this);
         acceptsOneWidget.setWidget(view.asWidget());
- 
+        fetchCardsValues(CardsmuleGame.MAGIC);
     }
     
 

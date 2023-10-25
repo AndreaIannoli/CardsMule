@@ -241,11 +241,13 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         String userEmail = AuthenticationServiceImpl.checkTokenValidity(token, db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
         checkCollectionName(collectionName);
         if (!collectionName.equals(COLLECTION_OWNED) && !collectionName.equals(COLLECTION_WISHED))
-            throw new InputException("Sorry, you can only edit physical cards in Default decks.");
+            throw new InputException("You can only edit cards in dafults deck!");
         if (ownedCard == null)
-            throw new InputException("Invalid physical card");
+            throw new InputException("Invalid card");
         //TODO: Controllare che la carta sia in eventuali proposte di scambio e rimuoverla o lanciare errore
         Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson));
+        System.out.println("Email Querried" + userEmail);
+        System.out.println("Emails existing" + collectionMap.keySet());
         Map<String, Collection> userCollections = collectionMap.get(userEmail);
         List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
         userCollections.values().forEach(collection -> {
@@ -321,7 +323,21 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         }
         return wishedCards;
 	}
-
+	
+	@Override
+	public boolean isOwnerOfACard(String token, int cardId) throws AuthenticationException {
+		String userEmail = AuthenticationServiceImpl.checkTokenValidity(token, db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
+		Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson));
+		Map<String, Collection> userCollections = collectionMap.get(userEmail);
+		Collection ownedCollection = userCollections.get("Owned");
+		for(OwnedCard oc : ownedCollection.getOwnedCards()) {
+			if(oc.getReferenceCardId() == cardId) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public List<OwnedCardFetched> addOwnedCardsToDeck(String token, String deckName, List<OwnedCard> ownedCards)
 			throws GeneralException {
@@ -358,10 +374,10 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
                     }
                     System.out.println("andato a buon fine");
                 }
-                for (OwnedCard pCard : trade_away_cards) {
-                	System.out.println("pcard" + pCard.getUserEmail() + " "+ pCard.getId() + " " + pCard.getDescription());
+                for (OwnedCard ownedCard : trade_away_cards) {
+                	System.out.println("pcard" + ownedCard.getUserEmail() + " "+ ownedCard.getId() + " " + ownedCard.getDescription());
 
-                    if (collection.removeOwnedCard(pCard) == false) {
+                    if (collection.removeOwnedCard(ownedCard) == false) {
                     	System.out.println("mi rompo qui dio porco");
                         throw new RuntimeException("DB ROLLBACK!");
                     }

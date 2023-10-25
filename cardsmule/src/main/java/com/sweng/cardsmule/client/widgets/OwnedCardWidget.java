@@ -36,14 +36,14 @@ public class OwnedCardWidget extends Composite {
     Button editButton;
     boolean isSelected = false;
     boolean isEditable = false;
-    OwnedCardFetched pCard;
+    OwnedCardFetched ownedCard;
 
-    public OwnedCardWidget(OwnedCardFetched pCard, HandleOwnedCardSelection selectionHandler,
+    public OwnedCardWidget(OwnedCardFetched ownedCard, HandleOwnedCardSelection selectionHandler,
     		HandleOwnedCardRemove removeHandler, HandleOwnedCardEdit editHandler) {
-        this.pCard = pCard;
+        this.ownedCard = ownedCard;
         initWidget(uiBinder.createAndBindUi(this));
         cardContainer.add(new Hyperlink("Open Details",
-                "cards/" + pCard.getGameType() + "/" + pCard.getReferenceCardId()));
+                "carddetails/" + ownedCard.getCardGame() + "/" + ownedCard.getReferenceCardId()));
 
         // selezione carta
         if (selectionHandler != null) {
@@ -58,7 +58,7 @@ public class OwnedCardWidget extends Composite {
             editButton = new Button("&#9998", (ClickHandler) e -> {
                 e.stopPropagation();
                 if (isEditable) {
-                    editHandler.onConfirmCardEdit(null, pCard.copyWithModifiedStatusAndDescription(
+                    editHandler.onConfirmCardEdit(null, ownedCard.copyWithModifiedStatusAndDescription(
                             Grade.getGrade(Integer.parseInt(((GradeWidget) cardStatus.getWidget(0)).getSelection())),
                             cardDescription.getInnerText()
                     ));
@@ -74,19 +74,19 @@ public class OwnedCardWidget extends Composite {
             Button deleteButton = new Button("X", (ClickHandler) e -> {
                 e.stopPropagation();
                 if (Window.confirm("Are you sure you want to remove this card?")) {
-                    removeHandler.onClickDeleteButton(pCard);
+                    removeHandler.onClickDeleteButton(ownedCard);
                 }
             });
             deleteButton.setStyleName(style.deleteButton());
             cardActions.add(deleteButton);
         }
 
-        cardName.setInnerText(pCard.getName());
+        cardName.setInnerText(ownedCard.getName());
         setOwnedCard();
     }
 
     public OwnedCardFetched getOwnedCard() {
-        return pCard;
+        return ownedCard;
     }
 
     public boolean getSelected() {
@@ -121,8 +121,8 @@ public class OwnedCardWidget extends Composite {
     }
 
     private void setOwnedCard() {
-        cardStatus.getElement().setInnerText(pCard.getGrade().name());
-        cardDescription.setInnerText(pCard.getDescription());
+        cardStatus.getElement().setInnerText(ownedCard.getGrade().name());
+        cardDescription.setInnerText(ownedCard.getDescription());
     }
 
     interface OwnedCardStyle extends CssResource {

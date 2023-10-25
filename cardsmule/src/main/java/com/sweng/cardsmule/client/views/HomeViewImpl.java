@@ -95,7 +95,8 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 	interface HomeViewImplUIBinder extends UiBinder<Widget, HomeViewImpl> {
 	}
 	
-    public HomeViewImpl() {
+    @SuppressWarnings("deprecation")
+	public HomeViewImpl() {
     	
 		initWidget(uiBinder.createAndBindUi(this));
     	magicRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.MAGIC));
@@ -103,6 +104,7 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
     	YuGiOhRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.YUGIOH));
         cleanFiltersButton.addClickHandler(e -> cleanFilters());
         applyFiltersButton.addClickHandler(e -> applyFilters());
+        
 
 
     	attributeList = new HashMap<>();
@@ -142,6 +144,8 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
         RootPanel root2= RootPanel.get("nav");
     	navbarWidget.setStyleName("nav");
     	root2.add(navbarWidget);
+    	magicRadio.setChecked(true);
+    	isGameChanged(CardsmuleGame.MAGIC);
     }
     
     

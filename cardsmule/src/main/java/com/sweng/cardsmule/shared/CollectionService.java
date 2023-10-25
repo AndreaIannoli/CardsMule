@@ -37,4 +37,5 @@ public interface CollectionService extends RemoteService {
 
     List<OwnedCardFetched> addOwnedCardsToDeck(String token, String deckName, List<OwnedCard> ownedCards) throws GeneralException;
     
+    boolean isOwnerOfACard(String token, int cardId) throws AuthenticationException;
 }
