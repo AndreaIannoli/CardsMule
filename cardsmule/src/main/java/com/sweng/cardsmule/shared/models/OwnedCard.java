@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sweng.cardsmule.shared.GUID;
+
 public class OwnedCard extends UserCard implements Serializable{
 	private static final long serialVersionUID = 8585293339499177179L;
 	private String id;
@@ -13,7 +15,7 @@ public class OwnedCard extends UserCard implements Serializable{
 	
 	public OwnedCard(int referenceCardId, Grade grade, CardsmuleGame cardGame, String userEmail, String description) {
 		super(referenceCardId, grade, cardGame, userEmail);
-		this.id = uniqueId.getAndIncrement() + "";
+		this.id = GUID.get() + "";
 		this.description = description;
 	}
 	
@@ -34,8 +36,6 @@ public class OwnedCard extends UserCard implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 		System.out.println("ENTERED THE EQUALS");
-		if (this == obj)
-			return true;
 		OwnedCard other = (OwnedCard) obj;
 		return Objects.equals(id, other.id);
 	}

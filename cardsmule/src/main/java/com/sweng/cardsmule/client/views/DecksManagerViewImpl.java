@@ -65,6 +65,11 @@ public class DecksManagerViewImpl extends Composite implements DecksManagerView,
             CollectionVariationPayload modifiedDeck = lookup.get(deckManagerWidget.getDeckName());
             if (modifiedDeck != null) deckManagerWidget.setData(modifiedDeck.getOwnedCards(), null);
         });
+        collectionContainer.forEach(w -> {
+        	DeckManagerWidget deckManagerWidget = ((DeckManagerWidget) w);
+            CollectionVariationPayload modifiedDeck = lookup.get(deckManagerWidget.getDeckName());
+            if (modifiedDeck != null) deckManagerWidget.setData(modifiedDeck.getOwnedCards(), null);
+        });
 		
 	}
 	

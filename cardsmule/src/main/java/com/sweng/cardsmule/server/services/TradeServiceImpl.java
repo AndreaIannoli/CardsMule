@@ -151,10 +151,10 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
                 (Map<String, Map<String, Collection>> collectionMap) -> {
                 	try {
                 		System.out.println(offer.getReceiverUserEmail()+ " " + offer.getReceiverOwnedCards());
-                		collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
-                    	System.out.println(" ssss");
-                    	collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
-                        System.out.println("put figlio di puttana");
+                		System.out.println("TRYING THE FIRST PUT");
+                		collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(offer.getReceiverUserEmail(), collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
+                		System.out.println("TRYING THE SECOND PUT");
+                		collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(offer.getSenderUserEmail(), collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
                     	deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
                         return true;
                 	}catch (Exception e) {

@@ -359,7 +359,7 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         return fetchOwnedCardNames(userDeck.getOwnedCards());
 	}
 	
-	public static Map<String, Collection> updateUserCollection(Map<String, Collection> userCollection,
+	public static Map<String, Collection> updateUserCollection(String userEmail, Map<String, Collection> userCollection,
             List<OwnedCard> received_trade_cards, List<OwnedCard> trade_away_cards) {
 		System.out.println("userCollection " + userCollection + " received_trade_cards " +received_trade_cards + " trade_away_cards "+ trade_away_cards);
         for (Collection collection : userCollection.values()) {
@@ -367,10 +367,19 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
             System.out.println("collection name" + collectionName );
             if (collectionName.equals(COLLECTION_OWNED)) {
                 for (OwnedCard oCard : received_trade_cards) {
-                	System.out.println("ocard" + oCard );
+                	System.out.println("Trying to add " + oCard + " in " + userCollection.get(COLLECTION_OWNED).getOwnedCards());
+                	System.out.println("OwnedCard id" + oCard.getId());
+                	System.out.println("ALREADY CONTAINED: " + userCollection.get(COLLECTION_OWNED).getOwnedCards().contains(oCard));
+                	System.out.println("OwnedCard reference id" + oCard.getReferenceCardId());
+                	System.out.println("Collection OwnedCards reference ids");
+                	for(OwnedCard oc: userCollection.get(COLLECTION_OWNED).getOwnedCards()) {
+                		System.out.println("REF " + oc.getReferenceCardId() + " ID " + oc.getId());
+                	}
                     if (!collection.addOwnedCard(oCard)) {
                     	System.out.println("mi rompo qui dio cane");
                         throw new RuntimeException("DB ROLLBACK!");
+                    } else {
+                    	oCard.setUserEmail(userEmail);
                     }
                     System.out.println("andato a buon fine");
                 }

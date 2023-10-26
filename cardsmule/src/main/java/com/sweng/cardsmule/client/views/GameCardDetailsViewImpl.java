@@ -154,8 +154,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 
 	@Override
 	public void setWishList(List<WishedCard> wisherList) {
-        wishedList.setTableWished(wisherList, own -> new Button("Exchange", (ClickHandler) e ->
-        displayAlert("GoToExchange")));
+		wishedList.setTableWished(wisherList, wish -> new Button("Exchange", (ClickHandler) e -> presenter.goTo(new NewTradePlace(null, wish.getUserEmail()))));
 	}
 
 	@Override
