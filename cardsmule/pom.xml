@@ -67,6 +67,17 @@
         <artifactId>jbcrypt</artifactId>
         <version>0.4</version>
      </dependency>
+     <dependency>
+
+		<groupId>org.easymock</groupId>
+		
+		<artifactId>easymock</artifactId>
+		
+		<version>4.0.2</version> <!-- Sostituisci con l'ultima versione disponibile -->
+		
+		<scope>test</scope>
+
+	</dependency>
   </dependencies>
   <build>
     <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->

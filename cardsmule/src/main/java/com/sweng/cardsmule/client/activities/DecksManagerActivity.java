@@ -8,6 +8,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.sweng.cardsmule.client.authentication.User;
@@ -219,7 +220,12 @@ public class DecksManagerActivity extends AbstractActivity implements DecksManag
 
             @Override
             public void onSuccess(List<CollectionVariationPayload> result) {
-                view.replaceData(result);
+            	if(result == null) {
+            		Window.alert("The card selected is inside a trade, you can't edit");
+            	}else {
+                    view.replaceData(result);
+
+            	}
             }
         });
 	}

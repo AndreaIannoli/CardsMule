@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Offer implements Serializable{
 	private static final long serialVersionUID = 997487558313555532L;
+	//è stato tolto uno static nel caso si spaccasse a riga 12
     private static final AtomicInteger uniqueId = new AtomicInteger();
     private int id;
     private String senderUserEmail;

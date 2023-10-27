@@ -16,6 +16,8 @@ import org.mapdb.Serializer;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.sweng.cardsmule.server.mapDB.DBImplements;
 import com.sweng.cardsmule.server.mapDB.MapDB;
@@ -26,6 +28,7 @@ import com.sweng.cardsmule.shared.CollectionVariationPayload;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.Collection;
 import com.sweng.cardsmule.shared.models.Grade;
+import com.sweng.cardsmule.shared.models.Offer;
 import com.sweng.cardsmule.shared.models.OwnedCard;
 import com.sweng.cardsmule.shared.models.UserCard;
 import com.sweng.cardsmule.shared.models.WishedCard;
@@ -182,6 +185,25 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
                 new GsonSerializer<>(gson)
         ));
 	}
+	public boolean checkOwnedCardExistenceInOffer(String token, OwnedCard oCard) throws GeneralException {
+		String email = AuthenticationServiceImpl.checkTokenValidity(token,
+                db.getPersistentMap(getServletContext(),MAP_LOGIN , Serializer.STRING, new GsonSerializer<>(gson)));
+        Map<Integer, Offer> offerMap = db.getPersistentMap(getServletContext(), MAP_PROPOSAL, Serializer.INTEGER, new GsonSerializer<>(gson));
+        boolean check=false;
+        for (Offer item : offerMap.values()) {
+        		System.out.println("id dell'item " + item.getId());
+        		if(item.getSenderOwnedCards().contains(oCard) || item.getReceiverOwnedCards().contains(oCard) ) {
+        				System.out.println("La carta è nell'offerta");
+        				db.writeOperation(getServletContext(), () -> offerMap.remove(item.getId(), item));
+        				check=true;
+        		}else{
+        			System.out.println("la carta non è nell'offerta");
+        			check= false;
+        		}
+        		
+        }
+        return check;
+	}
 
 	@Override
 	public List<CollectionVariationPayload> removeOwnedCardFromCollection(String token, String collectionName,
@@ -192,9 +214,8 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         checkCollectionName(collectionName);
         if (ownedCard == null)
             throw new InputException("Invalid physical card");
-        
-        //TODO: Controllare che la carta sia in eventuali proposte di scambio e rimuoverla o lanciare errore
-        
+                
+        checkOwnedCardExistenceInOffer(token,ownedCard);
         Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type));
         Map<String, Collection> userCollections = collectionMap.get(userEmail);
         List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
@@ -234,6 +255,8 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         }
         return modifiedCollections;
 	}
+	
+	
 
 	@Override
 	public List<CollectionVariationPayload> editOwnedCard(String token, String collectionName, OwnedCard ownedCard)
@@ -245,19 +268,37 @@ public class CollectionServiceImpl extends RemoteServiceServlet implements Colle
         if (ownedCard == null)
             throw new InputException("Invalid card");
         //TODO: Controllare che la carta sia in eventuali proposte di scambio e rimuoverla o lanciare errore
-        Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson));
-        System.out.println("Email Querried" + userEmail);
-        System.out.println("Emails existing" + collectionMap.keySet());
-        Map<String, Collection> userCollections = collectionMap.get(userEmail);
-        List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
-        userCollections.values().forEach(collection -> {
-            if (collection.removeOwnedCard(ownedCard)) {
-            	collection.addOwnedCard(ownedCard);
-            	modifiedCollections.add(new CollectionVariationPayload(collection.getName(), fetchOwnedCardNames(collection.getOwnedCards())));
-            }
-        });
-        db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
-        return modifiedCollections;
+        
+        Map<Integer, Offer> offerMap = db.getPersistentMap(getServletContext(), MAP_PROPOSAL, Serializer.INTEGER, new GsonSerializer<>(gson));
+        boolean check=false;
+        for (Offer item : offerMap.values()) {
+        		System.out.println("id dell'item " + item.getId());
+        		if(item.getSenderOwnedCards().contains(ownedCard) || item.getReceiverOwnedCards().contains(ownedCard) ) {
+        				System.out.println("La carta è nell'offerta");
+        				check=true;
+        		}else{
+        			System.out.println("la carta non è nell'offerta");
+        			check= false;
+        		}        		
+        }
+        if(check == false) {
+        	Map<String, Map<String, Collection>> collectionMap = db.getPersistentMap(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson));
+            System.out.println("Email Querried" + userEmail);
+            System.out.println("Emails existing" + collectionMap.keySet());
+            Map<String, Collection> userCollections = collectionMap.get(userEmail);
+            List<CollectionVariationPayload> modifiedCollections = new LinkedList<>();
+            userCollections.values().forEach(collection -> {
+                if (collection.removeOwnedCard(ownedCard)) {
+                	collection.addOwnedCard(ownedCard);
+                	modifiedCollections.add(new CollectionVariationPayload(collection.getName(), fetchOwnedCardNames(collection.getOwnedCards())));
+                }
+            });
+            db.writeOperation(getServletContext(), () -> collectionMap.put(userEmail, userCollections));
+            return modifiedCollections;
+        }else {
+        	return null;
+        }
+        
 	}
 
 	@Override
