@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 80E7012E1F0FD26B556B291ABB3756E4.cache.js
 user.agent safari
 
 F2E0C858E2BC3F3B25610B9A97197958.cache.js
+=======
+40F7A13583903EB825989F0320E3702A.cache.js
+user.agent safari
+
+993B4AB57ADB23999EE4FBB2605AC5D6.cache.js
+>>>>>>> Stashed changes
 user.agent gecko1_8
 
 Devmode:devmode.js

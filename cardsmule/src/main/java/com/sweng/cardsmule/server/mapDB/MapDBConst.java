@@ -11,4 +11,5 @@ public interface MapDBConst {
     String MAP_USER = "db_USER_MAP";
     String MAP_LOGIN = "db_LOGIN_MAP";
     String MAP_PROPOSAL = "db_PROPOSAL_MAP";
+    String MAP_ACCOUNT = "db_ACCOUNT_MAP";
 }

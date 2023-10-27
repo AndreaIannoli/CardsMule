@@ -216,6 +216,8 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 
 	@Override
 	public void onClickLogout() {
+			
+		presenter.logout();
 		presenter.goTo(new PreAuthenticationPlace());	
 	}
 	

@@ -47,6 +47,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
 
     public static boolean validateEmail(String email) {
         Matcher matcher = emailPattern.matcher(email);
+        
         return matcher.find();
     }
 
@@ -122,12 +123,26 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
             throw new AuthenticationException("Invalid credentials");
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
+        
+        Map<String, Account> accountEmailMap = db.getPersistentMap(
+                getServletContext(), MAP_ACCOUNT, Serializer.STRING, new GsonSerializer<>(gson));
+
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
-        //TODO problema del fatto che puoi registrarti con la stessa mail
-        if (accountMap.get(email) != null)
+        
+        System.out.println("contiene email?: " + accountEmailMap.containsValue(email));
+        System.out.println("MAp Account " + accountEmailMap.size());
+        
+        
+        if (accountEmailMap.get(email) != null)
             throw new AuthenticationException("Email already exists");
         if (accountMap.get(username) != null)
             throw new AuthenticationException("Username already exists");
+        
+        db.writeOperation(getServletContext(), MAP_ACCOUNT, Serializer.STRING, new GsonSerializer<>(gson),
+                (Map<String, Account> userMap) -> {
+                	accountEmailMap.put(email, account);
+                    return null;
+                });
         
         db.writeOperation(getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson),
                   (Map<String, Account> userMap) -> {
