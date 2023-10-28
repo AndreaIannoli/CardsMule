@@ -124,15 +124,6 @@ public class HomeActivityTest {
                 Collections.emptyList(), Collections.emptyList()).get(0), expectedCard);
     }
 
-    /*@ParameterizedTest
-    @MethodSource("provideMockCards")
-    public void testFilterGameCardsForDescriptionParameter(CardsmuleGame game, List<SwengCard> mockCards) throws InputException {
-        SwengCard expectedCard = mockCards.get(mockCards.size());
-        setupFetchGameCardsTest(game, mockCards);
-        Assertions.assertEquals(homeActivity.filteredCards("all", "all",
-                "Description", expectedCard.getDescription(),
-                Collections.emptyList(), Collections.emptyList()).get(0), expectedCard);
-    }*/
 
     private static Stream<Arguments> provideMockCardsAndBooleanFields() {
         Map<Integer, SwengCardMagic> MagicDummy = DummyData.createMagicDummyMap();
