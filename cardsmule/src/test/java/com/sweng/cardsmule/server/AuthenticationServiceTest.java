@@ -115,9 +115,9 @@ public class AuthenticationServiceTest {
         public void testCheckTokenValidityForInvalidToken() {
             ctrl.replay();
             Assertions.assertThrows(AuthenticationException.class, () -> authService.checkTokenValidity("invalidToken", new HashMap() {{
-                put("validToken1", new Account("test1", System.currentTimeMillis()));
-                put("validToken2", new Account("test2", System.currentTimeMillis() - 2000));
-                put("validToken3", new Account("test3", System.currentTimeMillis() - 4000));
+                put("validToken1", new Account("test@test1.it", "test", "passw"));
+                put("validToken2", new Account("test@test1.it", "test", "passw"));
+                put("validToken3", new Account("test@test1.it", "test", "passw"));
             }}));
             ctrl.verify();
         }

@@ -60,7 +60,7 @@ public class CollectionServiceTest {
 
         private void setupForValidToken() {
             Map<String, Account> mockLoginMap = new HashMap() {{
-                put("validToken", new Account("test@test.it", System.currentTimeMillis() - 10000));
+                put("validToken", new Account("test@test1.it", "test", "passw"));
             }};
             expect(mockConfig.getServletContext()).andReturn(mockCtx);
             expect(mockDB.getPersistentMap(isA(ServletContext.class), anyString(), isA(Serializer.class), isA(Serializer.class)))
@@ -69,9 +69,9 @@ public class CollectionServiceTest {
 
         private void setupForInvalidToken() {
             Map<String, Account> mockLoginMap = new HashMap() {{
-                put("validToken1", new Account("test@test1.it", System.currentTimeMillis() - 10000));
-                put("validToken2", new Account("test@test2.it", System.currentTimeMillis() - 20000));
-                put("validToken3", new Account("test@test3.it", System.currentTimeMillis() - 30000));
+                put("validToken1", new Account("test@test1.it", "test", "passw"));
+                put("validToken2", new Account("test@test1.it", "test", "passw"));
+                put("validToken3", new Account("test@test1.it", "test", "passw"));
             }};
             expect(mockConfig.getServletContext()).andReturn(mockCtx);
             expect(mockDB.getPersistentMap(isA(ServletContext.class), anyString(), isA(Serializer.class), isA(Serializer.class)))
