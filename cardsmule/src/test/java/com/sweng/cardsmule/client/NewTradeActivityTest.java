@@ -53,10 +53,10 @@ public class NewTradeActivityTest {
 	    @Test
 	    public void testCreateOfferForInvalidLists() {
 	        List<OwnedCard> senderList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 	        List<OwnedCard> receiverList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 
 	        mockView.showAlert(anyString());
@@ -83,10 +83,10 @@ public class NewTradeActivityTest {
 	    public void testCreateOfferForFailure(Exception error) {
 	        // init
 	        List<OwnedCard> senderList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 	        List<OwnedCard> receiverList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 
 	        // expects
@@ -108,10 +108,10 @@ public class NewTradeActivityTest {
 	    public void testCreateOfferForFalseResult() {
 	        // init
 	        List<OwnedCard> senderList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 	        List<OwnedCard> receiverList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 
 	        // expects
@@ -133,10 +133,10 @@ public class NewTradeActivityTest {
 	    public void testCreateOfferForTrueResult() {
 	        // init
 	        List<OwnedCard> senderList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(111, Grade.Mint, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 	        List<OwnedCard> receiverList = new ArrayList<OwnedCard>() {{
-	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "this is a valid description."));
+	            add(new OwnedCard(222, Grade.Good, CardsmuleGame.MAGIC, "test@test.it",   "descrizione"));
 	        }};
 
 	        // expects

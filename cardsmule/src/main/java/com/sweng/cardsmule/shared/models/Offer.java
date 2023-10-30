@@ -54,7 +54,6 @@ public class Offer implements Serializable{
     }
 
     
-    ///da guardare e capire questa roba, entrambe i metodi
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

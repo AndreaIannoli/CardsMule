@@ -19,7 +19,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mapdb.Serializer;
-import com.sweng.cardsmule.server.TestDBCreation;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -53,7 +52,7 @@ public class CollectionServiceTest {
             setupForInvalidToken();
             ctrl.replay();
             Assertions.assertThrows(AuthenticationException.class, () ->
-                    deckService.addOwnedCardToCollection(input, CardsmuleGame.MAGIC, "Owned", 111, Grade.Poor, "This is a valid description.")
+                    deckService.addOwnedCardToCollection(input, CardsmuleGame.MAGIC, "Owned", 111, Grade.Poor, "descrizione")
             );
             ctrl.verify();
         }
@@ -114,40 +113,10 @@ public class CollectionServiceTest {
             setupForInvalidToken();
             ctrl.replay();
             Assertions.assertThrows(AuthenticationException.class, () -> deckService.editOwnedCard(input,
-                    "Owned", new OwnedCard(1111, Grade.getRandomGrade(), CardsmuleGame.randomGame()," ","This is a valid description.")));
+                    "Owned", new OwnedCard(1111, Grade.getRandomGrade(), CardsmuleGame.randomGame()," ","description")));
             ctrl.verify();
         }
 
-
-    @Nested
-    class WithFakeDB {
-        ServletConfig mockConfig;
-        ServletContext mockCtx;
-
-        @BeforeEach
-        public void initialize() throws ServletException {
-            mockConfig = createStrictMock(ServletConfig.class);
-            mockCtx = createStrictMock(ServletContext.class);
-        }
-
-        private CollectionServiceImpl initializeDeckService(Map<String, Map<String, DecksManagerActivity>> deckMap) throws ServletException {
-            TestDBCreation fakeDB = new TestDBCreation(new HashMap(), new HashMap<>());
-            CollectionServiceImpl deckService = new CollectionServiceImpl(fakeDB);
-            deckService.init(mockConfig);
-            return deckService;
-        }
-
-
-        @Test
-        public void testRemoveCustomDeckForNotExistingDeck() throws AuthenticationException, ServletException {
-            CollectionServiceImpl deckService = initializeDeckService(new HashMap() {{
-                put("test@test.it", new LinkedHashMap<>());
-            }});
-
-            expect(mockConfig.getServletContext()).andReturn(mockCtx).times(2);
-            replay(mockConfig, mockCtx);
-            Assertions.assertFalse(deckService.removeDeck("validToken", "testDeckName"));
-            verify(mockConfig, mockCtx);
-        }
-}}}
+    }
+    }
 

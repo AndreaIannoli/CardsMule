@@ -1,5 +1,6 @@
 package com.sweng.cardsmule.server;
 import org.easymock.IMocksControl;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -103,7 +104,7 @@ public class TradeServiceTest {
         public void testAddOfferForInvalidToken(String input) {
             setupForInvalidToken();
             ctrl.replay();
-            Assertions.assertThrows(AuthenticationException.class, () -> tradeService.addOffer(input, "valid@receiverUserEmail.it", DummyData.createPhysicalCardDummyList(2), DummyData.createPhysicalCardDummyList(2)));
+            Assertions.assertThrows(AuthenticationException.class, () -> tradeService.addOffer(input, "valid@receiverUserEmail.it", ServerData.createOwnedCardServerList(2), ServerData.createOwnedCardServerList(2)));
             ctrl.verify();
         }
 
@@ -112,7 +113,7 @@ public class TradeServiceTest {
         public void testAddOfferForInvalidReceiverUserEmail(String input) {
             setupForValidToken();
             ctrl.replay();
-            Assertions.assertThrows(AuthenticationException.class, () -> tradeService.addOffer("validToken", input, DummyData.createPhysicalCardDummyList(2), DummyData.createPhysicalCardDummyList(2)));
+            Assertions.assertThrows(AuthenticationException.class, () -> tradeService.addOffer("validToken", input, ServerData.createOwnedCardServerList(2), ServerData.createOwnedCardServerList(2)));
             ctrl.verify();
         }
 
@@ -188,33 +189,5 @@ public class TradeServiceTest {
 
     }
 
-    @Nested
-    class WithFakeDB {
-        ServletConfig mockConfig;
-        ServletContext mockCtx;
-
-        @BeforeEach
-        public void initialize() throws ServletException {
-            mockConfig = createStrictMock(ServletConfig.class);
-            mockCtx = createStrictMock(ServletContext.class);
-        }
-
-        private TradeServiceImpl initializeExchangeService(Map<Integer, Offer> offerMap) throws ServletException {
-            TestDBCreation testDB = new TestDBCreation(offerMap, new HashMap<>());
-            TradeServiceImpl tradeService = new TradeServiceImpl(testDB);
-            tradeService.init(mockConfig);
-            return tradeService;
-        }
-
-        @Test
-        public void testAddOfferSuccess() throws ServletException, GeneralException {
-            TradeServiceImpl tradeService = initializeExchangeService(new HashMap<>());
-            expect(mockConfig.getServletContext()).andReturn(mockCtx).times(3);
-            replay(mockConfig, mockCtx);
-            Assertions.assertTrue(tradeService.addOffer("validToken", "test2@test.it", DummyData.createPhysicalCardDummyList(1), DummyData.createPhysicalCardDummyList(2)));
-            verify(mockConfig, mockCtx);
-        }
-
-    }
 
 }

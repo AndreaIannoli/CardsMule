@@ -1,6 +1,6 @@
 package com.sweng.cardsmule.shared;
 
-import com.sweng.cardsmule.server.DummyData;
+import com.sweng.cardsmule.server.ServerData;
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
 import com.sweng.cardsmule.shared.models.Grade;
 import com.sweng.cardsmule.shared.models.OwnedCard;
@@ -18,7 +18,7 @@ public class OwnedCardFetchedTest {
 
     @BeforeEach
     public void initialize() {
-        card = DummyData.createPokemonDummyCard();
+        card = ServerData.createPokemonServerCard();
         String sampleDesc = "this is a valid test description";
         ownedCard = new OwnedCard(card.getId(), Grade.Good, CardsmuleGame.POKEMON,  "test@test.it", sampleDesc);
         ownedCardWithName = new OwnedCardFetched(ownedCard, card.getName());

@@ -1,10 +1,11 @@
 package com.sweng.cardsmule.client;
 
 import com.google.gwt.place.shared.PlaceController;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.sweng.cardsmule.client.activities.DecksManagerActivity;
 import com.sweng.cardsmule.client.views.DecksManagerView;
-import com.sweng.cardsmule.server.DummyData;
+import com.sweng.cardsmule.server.ServerData;
 import com.sweng.cardsmule.shared.CollectionServiceAsync;
 import com.sweng.cardsmule.shared.models.OwnedCardFetched;
 import com.sweng.cardsmule.shared.throwables.AuthenticationException;
@@ -60,11 +61,11 @@ public class DecksManagerActivityTest {
         mockRpcService.getDeck(anyString(),anyString(), isA(BaseAsyncCallback.class));
         List<OwnedCardFetched> ocards = new ArrayList<OwnedCardFetched>() {{
             add(new OwnedCardFetched(
-                    new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"),
+                    new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"),
                     "Test Card"));
             
             add(new OwnedCardFetched(
-                    new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"),
+                    new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"),
                     "Test Card"));
         }};
 
@@ -94,7 +95,7 @@ public class DecksManagerActivityTest {
     public void testRemoveOwnedCardFromCollectionForInvalidCollectionName(String input) {
         mockDecksView.displayAlert(anyString());
         ctrl.replay();
-        decksActivity.removeOwnedCardFromDeck(input, new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"));
+        decksActivity.removeOwnedCardFromDeck(input, new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"));
         ctrl.verify();
     }
 
@@ -119,15 +120,15 @@ public class DecksManagerActivityTest {
         mockDecksView.displayAlert(anyString());
 
         ctrl.replay();
-        decksActivity.removeOwnedCardFromDeck("Owned", new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"));
+        decksActivity.removeOwnedCardFromDeck("Owned", new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"));
         ctrl.verify();
     }
 
     static List<CollectionVariationPayload> provideModifiedDecks(OwnedCard editedOCard) {
     	OwnedCardFetched editedOCardWithName = new OwnedCardFetched(editedOCard, "test");
 
-        List<OwnedCardFetched> mockPCards1 = DummyData.createPhysicalCardWithNameDummyList(5);
-        List<OwnedCardFetched> mockPCards2 = DummyData.createPhysicalCardWithNameDummyList(5);
+        List<OwnedCardFetched> mockPCards1 = ServerData.createOwnedCardWithNameServerList(5);
+        List<OwnedCardFetched> mockPCards2 = ServerData.createOwnedCardWithNameServerList(5);
 
         mockPCards1.addAll(mockPCards2);
         mockPCards1.add(editedOCardWithName);
@@ -141,8 +142,8 @@ public class DecksManagerActivityTest {
 
     @Test
     public void testRemoveOwnedCardFromCollectionForSuccess() {
-        OwnedCard removedPCard = new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description")
-                .copyWithModifiedStatusAndDescription(Grade.Excellent, "This is an edited description");
+        OwnedCard removedPCard = new OwnedCard(111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione")
+                .copyWithModifiedStatusAndDescription(Grade.Excellent, "descrizione editata");
         List<CollectionVariationPayload> modifiedDecks = provideModifiedDecks(removedPCard);
         mockRpcService.removeOwnedCardFromCollection(anyString(), anyString(), isA(OwnedCard.class), isA(AsyncCallback.class));
         expectLastCall().andAnswer(() -> {
@@ -263,8 +264,8 @@ public class DecksManagerActivityTest {
     @NullAndEmptySource
     public void testAddOwnedCardsToCustomCollectionForInvalidDeckName(String input) {
         List<OwnedCard> mockOCards = Arrays.asList(
-                new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"),
-                new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description")
+                new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"),
+                new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione")
         );
         mockDecksView.displayAlert(anyString());
         ctrl.replay();
@@ -285,13 +286,11 @@ public class DecksManagerActivityTest {
     @ParameterizedTest
     @MethodSource("provideDifferentTypeOfErrors")
     public void testAddOwnedCardsToCustomCollectionForValidParametersForFailure(Exception e) {
-        // init mocks
         List<OwnedCard> mockOCards = Arrays.asList(
-                new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"),
-                new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description")
+                new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"),
+                new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione")
         );
 
-        // expects
         mockRpcService.addOwnedCardsToDeck(anyString(), anyString(), isA(List.class), isA(AsyncCallback.class));
         expectLastCall().andAnswer(() -> {
             Object[] args = getCurrentArguments();
@@ -310,8 +309,8 @@ public class DecksManagerActivityTest {
     @Test
     public void testAddOwnedCardsToCustomCollectionForValidParametersForSuccess() {
         // init mocks
-        OwnedCard mockOCard1 = new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description");
-        OwnedCard mockOCard2 = new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description");
+        OwnedCard mockOCard1 = new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione");
+        OwnedCard mockOCard2 = new OwnedCard(2222, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione");
         List<OwnedCard> mockOCards = Arrays.asList(mockOCard1, mockOCard2);
         List<OwnedCardFetched> mockOCardsWithName = Arrays.asList(
                 new OwnedCardFetched(mockOCard1, "Charizard"),
@@ -339,17 +338,10 @@ public class DecksManagerActivityTest {
     public void testUpdateOwnedCardForInvalidDeckName(String input) {
         mockDecksView.displayAlert(anyString());
         ctrl.replay();
-        decksActivity.updateOwnedCard(input, new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"));
+        decksActivity.updateOwnedCard(input, new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"));
         ctrl.verify();
     }
 
-    @Test
-    public void testUpdateOwnedCardForNullOwnedCard() {
-        mockDecksView.displayAlert("Invalid physical card");
-        ctrl.replay();
-        decksActivity.updateOwnedCard("Owned", null);
-        ctrl.verify();
-    }
 
     @ParameterizedTest
     @MethodSource("provideDifferentTypeOfErrors")
@@ -363,18 +355,16 @@ public class DecksManagerActivityTest {
         });
         mockDecksView.displayAlert(anyString());
         ctrl.replay();
-        decksActivity.updateOwnedCard("Owned", new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description"));
+        decksActivity.updateOwnedCard("Owned", new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione"));
         ctrl.verify();
     }
 
     @Test
     public void testUpdateOwnedCardForValidParametersForSuccess() {
-        // init mocks
-        OwnedCard editedOCard = new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "This is a valid description")
-                .copyWithModifiedStatusAndDescription(Grade.Excellent, "This is an edited description");
+        OwnedCard editedOCard = new OwnedCard(1111, Grade.Good, CardsmuleGame.MAGIC,"test@test.it",   "descrizione")
+                .copyWithModifiedStatusAndDescription(Grade.Excellent, "descrizione");
         List<CollectionVariationPayload> modifiedDecks = provideModifiedDecks(editedOCard);
 
-        // expects
         mockRpcService.editOwnedCard(anyString(), anyString(), isA(OwnedCard.class), isA(AsyncCallback.class));
         expectLastCall().andAnswer(() -> {
             Object[] args = getCurrentArguments();

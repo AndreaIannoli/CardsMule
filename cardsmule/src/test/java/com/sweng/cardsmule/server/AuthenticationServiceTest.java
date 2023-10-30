@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.server;
 
 import com.sweng.cardsmule.client.authentication.User;
+
 import com.sweng.cardsmule.server.mapDB.MapDB;
 import com.sweng.cardsmule.server.TestDBCreation;
 import com.sweng.cardsmule.server.services.AuthenticationServiceImpl;
@@ -53,19 +54,19 @@ public class AuthenticationServiceTest {
 
         @Test
         public void testsignInForEmptyStringUsername1() {
-            Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("","", "password"));
+            Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("", "", "password"));
         }
 
         @Test
         public void testsignInForIncorrectUsernames1() {
             Assertions.assertAll(() -> {
-                Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("test","test", "password"));
+                Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("test", "test", "password"));
             });
         }
 
         @Test
         public void testsignInForNullPassword1() {
-            Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("test","test", ""));
+            Assertions.assertThrows(AuthenticationException.class, () -> authService.signUp("test", "test", ""));
         }
 
         @Test
@@ -132,7 +133,7 @@ public class AuthenticationServiceTest {
 
 
     @Nested
-    class WithFakeDB {
+    class DBcreation {
         IMocksControl ctrl;
         AuthenticationServiceImpl authService;
         ServletConfig mockConfig;
@@ -141,8 +142,8 @@ public class AuthenticationServiceTest {
         @BeforeEach
         public void initialize() throws ServletException {
             ctrl = createStrictControl();
-            TestDBCreation fakeDB = new TestDBCreation(new HashMap(), new HashMap<>());
-            authService = new AuthenticationServiceImpl(fakeDB);
+            TestDBCreation cDB = new TestDBCreation(new HashMap(), new HashMap<>());
+            authService = new AuthenticationServiceImpl(cDB);
             mockConfig = ctrl.createMock(ServletConfig.class);
             mockCtx = ctrl.createMock(ServletContext.class);
             authService.init(mockConfig);

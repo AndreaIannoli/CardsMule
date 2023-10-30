@@ -1,10 +1,11 @@
 package com.sweng.cardsmule.client;
 import com.google.gwt.place.shared.PlaceController;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.sweng.cardsmule.client.activities.GameCardDetailsActivity;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
 import com.sweng.cardsmule.client.views.GameCardDetailsView;
-import com.sweng.cardsmule.server.DummyData;
+import com.sweng.cardsmule.server.ServerData;
 import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
 import com.sweng.cardsmule.shared.CardServiceAsync;
 import com.sweng.cardsmule.shared.CollectionServiceAsync;
@@ -59,7 +60,7 @@ public class GameCardDetailsActivityTest {
 
     @Test
     public void testFetchCardForOnSuccess() throws InputException {
-        SwengCard card = DummyData.createPokemonDummyCard();
+        SwengCard card = ServerData.createPokemonServerCard();
         mockCardService.getGameCard(isA(CardsmuleGame.class), anyInt(), isA(AsyncCallback.class));
         expectLastCall().andAnswer(() -> {
             Object[] args = getCurrentArguments();
@@ -86,7 +87,7 @@ public class GameCardDetailsActivityTest {
         });
         mockView.displayAlert(anyString());
         ctrl.replay();
-        cardActivity.addCardToDeck("Owned", "1", "This is a valid description.");
+        cardActivity.addCardToDeck("Owned", "1", "descrizione");
         ctrl.verify();
     }
 
@@ -104,7 +105,7 @@ public class GameCardDetailsActivityTest {
         mockView.displayAlert(anyString());
         mockView.hideModal();
         ctrl.replay();
-        cardActivity.addCardToDeck("Owned", "1", "This is a valid description.");
+        cardActivity.addCardToDeck("Owned", "1", "descrizione");
         ctrl.verify();
     }
 
@@ -119,7 +120,7 @@ public class GameCardDetailsActivityTest {
         });
         mockView.displayAlert(anyString());
         ctrl.replay();
-        cardActivity.addCardToDeck("Owned", "1", "This is a valid description.");
+        cardActivity.addCardToDeck("Owned", "1", "descrizione");
         ctrl.verify();
     }
 }

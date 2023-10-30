@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.client;
 
 import com.google.gwt.place.shared.Place;
+
 import com.google.gwt.place.shared.PlaceController;
 import com.sweng.cardsmule.client.activities.TradesActivity;
 import com.sweng.cardsmule.client.authentication.User;

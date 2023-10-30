@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.client.activities;
 
 import java.util.List;
+
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -197,11 +198,11 @@ public class DecksManagerActivity extends AbstractActivity implements DecksManag
             return;
         }
         if (!deckName.equals("Owned") && !deckName.equals("Wished")) {
-            view.displayAlert("Sorry, you can only edit physical cards in Default decks.");
+            view.displayAlert("Sorry, you can only edit owned cards in Default decks.");
             return;
         }
         if (editedOwnedCard == null) {
-            view.displayAlert("Invalid physical card");
+            view.displayAlert("Invalid owned card");
             return;
         }
         rpcService.editOwnedCard(user.getToken(), deckName, editedOwnedCard, new AsyncCallback<List<CollectionVariationPayload>>() {

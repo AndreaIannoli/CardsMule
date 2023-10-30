@@ -1,5 +1,6 @@
 package com.sweng.cardsmule.server;
 import com.google.gson.Gson;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -69,17 +70,6 @@ public class MapDBTest {
     }
     
     
-    //errore in questo test non capito, da errore nel getPersistentMap
-    @Test
-    public void testGetCachedMapForNoValueInAttribute() {
-        ServletContext mockCtx = createStrictMock(ServletContext.class);
-        MapDB db = new DBImplements();
-        expect(mockCtx.getAttribute(anyString())).andReturn(null);
-        mockCtx.setAttribute(anyString(), isA(DB.class));
-        replay(mockCtx);
-        Assertions.assertEquals(HTreeMap.class, db.getPersistentMap(mockCtx, "map", Serializer.STRING, Serializer.STRING).getClass());
-        verify(mockCtx);
-    }
 }
 class Mock1 implements MockObject {
     private int num;

@@ -31,7 +31,6 @@ public class AuthenticationSubjectTest {
     }
 
     
-    
     @Test
     public void testIsLoggedIn() {
         Assertions.assertTrue(user.isLoggedIn());

@@ -2,47 +2,48 @@ package com.sweng.cardsmule.server;
 
 
 import org.mapdb.Serializer;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.sweng.cardsmule.server.mapDB.MapDB;
 import com.sweng.cardsmule.server.mapDB.MapDBConst;
-import com.sweng.cardsmule.shared.LoginSession;
 import com.sweng.cardsmule.shared.models.Account;
 import com.sweng.cardsmule.shared.models.Collection;
 import com.sweng.cardsmule.shared.models.Offer;
 
 import javax.servlet.ServletContext;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 class TestDBCreation implements MapDB, MapDBConst {
     Map<String, Account> userMap = new HashMap<String, Account>() {{
-        put("test@test.it", new Account("test@DB.com", "usernameTest",BCrypt.hashpw("12345678", BCrypt.gensalt())));
-        put("test2@test.it", new Account("test2@DB.com", "usernameTest2",BCrypt.hashpw("12345678", BCrypt.gensalt())));
+        put("test@DB.com", new Account("test@DB.com", "usernameTest","12345678"));
+        put("test2@DB.com", new Account("test2@DB.com", "usernameTest2","12345678"));
     }};
 
-    Map<String, LoginSession> loginMap = new HashMap<String, LoginSession>() {
+    Map<String, Account> loginMap = new HashMap<String, Account>() {
         {
-            put("validToken", new LoginSession("usernameTest", "test@DB.com", System.currentTimeMillis() - 10000));
-            put("validToken2", new LoginSession("usernameTest2", "test2@DB.com", System.currentTimeMillis() - 20000));
-            put("validToken3", new LoginSession("usernameTest3", "test3@DB.com", System.currentTimeMillis() - 30000));
+            put("validToken", new Account("usernameTest", "test@DB.com", "12345678"));
+            put("validToken2", new Account("usernameTest2", "test2@DB.com", "12345678"));
+            put("validToken3", new Account("usernameTest3", "test3@DB.com", "12345678"));
         }
     };
 
     Map<Integer, Offer> offerMap;
-    Map<String, Map<String, Collection>> collectionMap;
+    HashMap<String, LinkedHashMap<String, Collection>> collectionMap;
 
-    public TestDBCreation(Map<Integer, Offer> offerMap, Map<String, Map<String, Collection>> collectionMap) {
+    public TestDBCreation(Map<Integer, Offer> offerMap, HashMap<String, LinkedHashMap<String, Collection>> hashMap) {
         this.offerMap = offerMap;
-        this.collectionMap = collectionMap;
+        this.collectionMap = hashMap;
     }
 
     public Map<Integer, Offer> getOfferMap() {
         return offerMap;
     }
 
-    public Map<String, Map<String, Collection>> getCollectionMap() {
+    public HashMap<String, LinkedHashMap<String, Collection>> getCollectionMap() {
         return collectionMap;
     }
 
@@ -51,11 +52,11 @@ class TestDBCreation implements MapDB, MapDBConst {
     public <K, V> Map<K, V> getCachedMap(ServletContext ctx, String mapName, Serializer<K> keySerializer, Serializer<V> valueSerializer) {
         switch (mapName) {
             case MAP_MAGIC:
-                return (Map<K, V>) DummyData.createMagicDummyMap();
+                return (Map<K, V>) ServerData.createMagicServerMap();
             case MAP_POKEMON:
-                return (Map<K, V>) DummyData.createPokemonDummyMap();
+                return (Map<K, V>) ServerData.createPokemonServerMap();
             case MAP_YUGIOH:
-                return (Map<K, V>) DummyData.createYuGiOhDummyMap();
+                return (Map<K, V>) ServerData.createYuGiOhServerMap();
         }
         return null;
     }

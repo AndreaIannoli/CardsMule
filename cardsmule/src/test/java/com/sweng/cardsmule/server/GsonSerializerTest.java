@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class    GsonSerializerTest implements CardTestConstant {
+public class GsonSerializerTest implements CardTestConstant {
 
     private static Stream<Arguments> provideSubClasses() {
         return Stream.of(
@@ -103,10 +103,10 @@ public class    GsonSerializerTest implements CardTestConstant {
 
         DataOutput2 out = new DataOutput2();
         Collection ownedDeck = new Collection("Owned");
-        OwnedCard mockPCard1 = new OwnedCard(111, Grade.Excellent, CardsmuleGame.MAGIC, "owner@email.com", "This is valid description");
-        OwnedCard mockPCard2 = new OwnedCard(222, Grade.Poor, CardsmuleGame.POKEMON, "owner@email.com", "This is valid description");
-        ownedDeck.addOwnedCard(mockPCard1);
-        ownedDeck.addOwnedCard(mockPCard2);
+        OwnedCard mockOCard1 = new OwnedCard(111, Grade.Excellent, CardsmuleGame.MAGIC, "owner@email.com", "descrizione");
+        OwnedCard mockOCard2 = new OwnedCard(222, Grade.Poor, CardsmuleGame.POKEMON, "owner@email.com", "descrizione");
+        ownedDeck.addOwnedCard(mockOCard1);
+        ownedDeck.addOwnedCard(mockOCard2);
         serializer.serialize(out, ownedDeck);
 
         byte[] data = out.copyBytes();
@@ -116,8 +116,8 @@ public class    GsonSerializerTest implements CardTestConstant {
         Assertions.assertAll(() -> {
             Assertions.assertEquals(ownedDeck, deserializedDeck);
             Assertions.assertEquals(2, ownedDeck.getOwnedCards().size());
-            Assertions.assertTrue(ownedDeck.getOwnedCards().contains(mockPCard1));
-            Assertions.assertTrue(ownedDeck.getOwnedCards().contains(mockPCard2));
+            Assertions.assertTrue(ownedDeck.getOwnedCards().contains(mockOCard1));
+            Assertions.assertTrue(ownedDeck.getOwnedCards().contains(mockOCard2));
         });
     }
 
@@ -135,10 +135,10 @@ public class    GsonSerializerTest implements CardTestConstant {
             put("Owned", new Collection("Owned"));
             put("Wished", new Collection("Wished"));
         }};
-        OwnedCard mockPCard1 = new OwnedCard(111, Grade.Excellent, CardsmuleGame.MAGIC, "owner@email.com",  "This is valid description");
-        OwnedCard mockPCard2 = new OwnedCard(222, Grade.Poor, CardsmuleGame.POKEMON,  "owner@email.com", "This is valid description");
-        mockDecks.get("Owned").addOwnedCard(mockPCard1);
-        mockDecks.get("Wished").addOwnedCard(mockPCard2);
+        OwnedCard mockOCard1 = new OwnedCard(111, Grade.Excellent, CardsmuleGame.MAGIC, "owner@email.com",  "descrizione");
+        OwnedCard mockOCard2 = new OwnedCard(222, Grade.Poor, CardsmuleGame.POKEMON,  "owner@email.com", "descrizione");
+        mockDecks.get("Owned").addOwnedCard(mockOCard1);
+        mockDecks.get("Wished").addOwnedCard(mockOCard2);
         deckMap.put("test@test.it", mockDecks);
         serializer.serialize(out, deckMap);
 
@@ -148,8 +148,8 @@ public class    GsonSerializerTest implements CardTestConstant {
 
         Assertions.assertAll(() -> {
             Assertions.assertNotNull(deserializedDeckMap.get("test@test.it"));
-            Assertions.assertTrue(deserializedDeckMap.get("test@test.it").get("Owned").containsOwnedCard(mockPCard1));
-            Assertions.assertTrue(deserializedDeckMap.get("test@test.it").get("Wished").containsOwnedCard(mockPCard2));
+            Assertions.assertTrue(deserializedDeckMap.get("test@test.it").get("Owned").containsOwnedCard(mockOCard1));
+            Assertions.assertTrue(deserializedDeckMap.get("test@test.it").get("Wished").containsOwnedCard(mockOCard2));
         });
     }
 }
