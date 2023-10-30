@@ -55,7 +55,7 @@ public class OwnedCardWidget extends Composite {
 
         // modifico una carta
         if (editHandler != null) {
-            editButton = new Button("&#9998", (ClickHandler) e -> {
+            editButton = new Button("Edit", (ClickHandler) e -> {
                 e.stopPropagation();
                 if (isEditable) {
                     editHandler.onConfirmCardEdit(null, ownedCard.copyWithModifiedStatusAndDescription(
@@ -71,7 +71,7 @@ public class OwnedCardWidget extends Composite {
 
         // rimuovo una carta
         if (removeHandler != null) {
-            Button deleteButton = new Button("X", (ClickHandler) e -> {
+            Button deleteButton = new Button("Delete", (ClickHandler) e -> {
                 e.stopPropagation();
                 if (Window.confirm("Are you sure you want to remove this card?")) {
                     removeHandler.onClickDeleteButton(ownedCard);
