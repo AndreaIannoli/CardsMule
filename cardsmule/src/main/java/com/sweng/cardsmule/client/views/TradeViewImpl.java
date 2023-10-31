@@ -43,8 +43,8 @@ public class TradeViewImpl extends Composite implements TradeView, HandleOfferLi
 	@Override
 	public void setFromYouOfferList(List<Offer> offer) {
 		offer.forEach(offers -> {
-            String proposalDate = DateTimeFormat.getFormat("dd/MM/yyyy").format(new Date(offers.getDate()));
-            fromYouOfferList.addRow(offers.getId(), proposalDate, offers.getReceiverUserEmail(), this);
+            String offerDate = DateTimeFormat.getFormat("dd/MM/yyyy").format(new Date(offers.getDate()));
+            fromYouOfferList.addRow(offers.getId(), offerDate, offers.getReceiverUserEmail(), this);
         });
 		
 	}
@@ -52,8 +52,8 @@ public class TradeViewImpl extends Composite implements TradeView, HandleOfferLi
 	@Override
 	public void setToYouOfferList(List<Offer> offer) {
 		offer.forEach(offers -> {
-            String proposalDate = DateTimeFormat.getFormat("dd/MM/yyyy").format(new Date(offers.getDate()));
-            toYouOfferList.addRow(offers.getId(), proposalDate, offers.getSenderUserEmail(), this);
+            String offerDate = DateTimeFormat.getFormat("dd/MM/yyyy").format(new Date(offers.getDate()));
+            toYouOfferList.addRow(offers.getId(), offerDate, offers.getSenderUserEmail(), this);
         });
 		
 	}
@@ -62,7 +62,6 @@ public class TradeViewImpl extends Composite implements TradeView, HandleOfferLi
 	public void resetOfferLists() {
 		fromYouOfferList.resetTable();
 		toYouOfferList.resetTable();
-		
 	}
 
 	@Override
