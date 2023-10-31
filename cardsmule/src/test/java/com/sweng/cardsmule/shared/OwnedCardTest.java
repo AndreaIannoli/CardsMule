@@ -68,8 +68,8 @@ public class OwnedCardTest {
 
         byte[] data = out.copyBytes();
         GsonSerializer<OwnedCard> deserializer = new GsonSerializer<>(gson);
-        OwnedCard deserializedPCard = deserializer.deserialize(new DataInput2.ByteArray(data), 0);
+        OwnedCard deserializedOCard = deserializer.deserialize(new DataInput2.ByteArray(data), 0);
 
-        Assertions.assertEquals(oCard, deserializedPCard);
+        Assertions.assertEquals(oCard, deserializedOCard);
     }
 }

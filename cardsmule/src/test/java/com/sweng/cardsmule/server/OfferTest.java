@@ -51,10 +51,9 @@ public class OfferTest {
 
     @Test
     public void testAcceptProposalForValidParameters() throws ServletException, OfferNotFoundException, AuthenticationException {
-        // init fakes, mocks
         TestDBCreation dbC = new TestDBCreation(dummyProposalMap,
-                // deck map
-                new HashMap<String, LinkedHashMap<String, Collection>>() {{
+
+        		new HashMap<String, LinkedHashMap<String, Collection>>() {{
                     Collection receiverOwnedDeck = createDummyOwnedDeck();
                     Collection senderOwnedDeck = createDummyOwnedDeck();
                     Collection receiverWishedDeck = new Collection("Wished", true);
@@ -94,7 +93,6 @@ public class OfferTest {
 
     @Test
     public void testAcceptProposalForNoLongerOwnedSenderPhysicalCard() throws ServletException {
-        // init fakes, mocks
     	TestDBCreation dbC = new TestDBCreation(dummyProposalMap, new HashMap<String, LinkedHashMap<String, Collection>>() {{
             Collection senderDeck = createDummyOwnedDeck();
             Collection receiverDeck = createDummyOwnedDeck();
@@ -118,7 +116,6 @@ public class OfferTest {
 
     @Test
     public void testAcceptProposalForNoLongerOwnedReceiverPhysicalCard() throws ServletException {
-        // init fakes, mocks
     	TestDBCreation dbC = new TestDBCreation(dummyProposalMap, new HashMap<String, LinkedHashMap<String, Collection>>() {{
             Collection senderDeck = createDummyOwnedDeck();
             Collection receiverDeck = createDummyOwnedDeck();
