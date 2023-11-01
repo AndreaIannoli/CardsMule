@@ -42,10 +42,10 @@
 				<li class="{style.list}" id="Deck">
 					<g:Button styleName="{style.button}" ui:field="btnDeck" text="Deck"/>
 				</li>
-				<li class="{style.list}" id="Login">
-					<g:Button styleName="{style.button}" ui:field="btnScambi" text="Scambi"/>
+				<li class="{style.list}" id="Trade">
+					<g:Button styleName="{style.button}" ui:field="btnTrade" text="Trade"/>
 				</li>
-				<li class="{style.list}" id="Register">
+				<li class="{style.list}" id="Login">
 					<g:Button styleName="{style.button}" ui:field="btnLogout" text="Logout"/>
 				</li>
 			</ul>

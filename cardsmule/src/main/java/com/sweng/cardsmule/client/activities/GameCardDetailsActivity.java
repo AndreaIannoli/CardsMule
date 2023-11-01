@@ -12,8 +12,10 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
+import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.client.views.GameCardDetailsView;
 import com.sweng.cardsmule.server.gsonserializer.GsonSerializer;
 import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
@@ -118,6 +120,13 @@ public class GameCardDetailsActivity extends AbstractActivity implements GameCar
                 		view.setWishList(result);
                 }
             });
+    }
+    
+    public void logout() {
+    	user.resetToken();
+    	RootPanel.get("nav").clear();
+    	//goTo(new PreAuthenticationPlace());
+    	
     }
 
 	@Override

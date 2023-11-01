@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.client.activities;
 
 import java.util.List;
+
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -8,6 +9,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.sweng.cardsmule.client.authentication.User;
@@ -196,11 +198,11 @@ public class DecksManagerActivity extends AbstractActivity implements DecksManag
             return;
         }
         if (!deckName.equals("Owned") && !deckName.equals("Wished")) {
-            view.displayAlert("Sorry, you can only edit physical cards in Default decks.");
+            view.displayAlert("Sorry, you can only edit owned cards in Default decks.");
             return;
         }
         if (editedOwnedCard == null) {
-            view.displayAlert("Invalid physical card");
+            view.displayAlert("Invalid owned card");
             return;
         }
         rpcService.editOwnedCard(user.getToken(), deckName, editedOwnedCard, new AsyncCallback<List<CollectionVariationPayload>>() {
@@ -219,7 +221,12 @@ public class DecksManagerActivity extends AbstractActivity implements DecksManag
 
             @Override
             public void onSuccess(List<CollectionVariationPayload> result) {
-                view.replaceData(result);
+            	if(result == null) {
+            		Window.alert("The card selected is inside a trade, you can't edit");
+            	}else {
+                    view.replaceData(result);
+
+            	}
             }
         });
 	}

@@ -8,8 +8,8 @@ public class SwengCardMagic extends SwengCard {
     private String artist;
     private String rarity;
 
-    public SwengCardMagic(String name, String description, String type, String artist, String rarity, String... variants) {
-        super(name, description, type, variants);
+    public SwengCardMagic(String name, String description, String type, String artist, String rarity, String... state) {
+        super(name, description, type, state);
         this.artist = artist;
         this.rarity = rarity;
     }

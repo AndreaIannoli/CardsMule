@@ -7,7 +7,8 @@ import com.sweng.cardsmule.shared.models.Offer;
 import com.sweng.cardsmule.shared.models.OwnedCard;
 
 public interface TradeCardsServiceAsync {
-	void addOffer(String token, String receiverUserEmail, List<OwnedCard> senderOwnedCards, List<OwnedCard> receiverOwnedCards, AsyncCallback<Boolean> callback);
+	void addOffer(String token, String receiverUserEmail, List<OwnedCard> senderOwnedCards, 
+			List<OwnedCard> receiverOwnedCards, AsyncCallback<Boolean> callback);
 
     void getOffer(String token, int proposalId, AsyncCallback<OfferPayload> callback);
 
@@ -17,5 +18,5 @@ public interface TradeCardsServiceAsync {
 
     void getOfferListSent(String token, AsyncCallback<List<Offer>> callback);
 
-    void refuseOrWithdrawOffer(String token, int proposalId, AsyncCallback<Boolean> async);
+    void refuseOrWithdrawOffer(String token, int offerId, AsyncCallback<Boolean> async);
 }

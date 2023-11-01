@@ -27,14 +27,15 @@
         }
 
         .table tbody tr:hover {
-            color: #efefef !important;
-            background-color: #FF5656 !important;
+            color: white !important;
+            background-color: lightgreen !important;
         }
 
         .table thead {
             position: sticky;
             top: 0;
-            background-color: #32BEFF;
+            background-color: black;
+            color: white;
             font-weight: bold;
         }
 

@@ -73,11 +73,7 @@ public class CardServiceImpl extends RemoteServiceServlet implements MapDBConst,
         checkGameValidity(game);
         Map<Integer, SwengCard> map = db.getCachedMap(getServletContext(), getCardMap(game),
                 Serializer.INTEGER, serializer);
-        System.out.println("INIZIO CARTE DI " + game);
-        for(Integer i: map.keySet()) {
-        	System.out.println(map.get(i));
-        }
-        System.out.println("FINE CARTE DI " + game);
+
         return new ArrayList<>(map.values());
     }
 

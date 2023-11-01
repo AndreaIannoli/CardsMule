@@ -12,20 +12,39 @@
 
         .newDeck {
             display: flex;
-            background: #CD5888;
+            background: black;
             color: #eee;
             padding-left: 1rem;
             gap: 1rem;
-            border: 5px dashed rgba(148, 46, 148, 0.75);
+            border: 2px dashed red;
             align-items: center;
         }
+        
+        .heading {
+			color: white;
+		}
+		
+		.deckContainer {
+			width: 50%;
+		}
+		.decksContainer {
+			display: flex;
+			flex-direction: row;
+		}
     </ui:style>
     <g:HTMLPanel styleName="{style.deckLayout}">
-        <h1>User decks</h1>
-        <g:HTMLPanel ui:field="decksContainer"/>
-        <div class="{style.newDeck}">
-            <h2 ui:field="newDeckName" contenteditable="true">Write here your custom deck name</h2>
-            <g:Button ui:field="newDeckButton" styleName="deckButton">&#10003;</g:Button>
+        <h1 class="{style.heading}">Your collection</h1>
+        <div class="{style.decksContainer}">
+	        <div class="{style.deckContainer}">
+	        	<g:HTMLPanel ui:field="collectionContainer"/>
+	        </div>
+	        <div class="{style.deckContainer}">
+		        <g:HTMLPanel ui:field="decksContainer"/>
+		        <div class="{style.newDeck}">
+		            <h2 ui:field="newDeckName" contenteditable="true">New deck name...</h2>
+		            <g:Button ui:field="newDeckButton" styleName="deckButton">&#10003;</g:Button>
+		        </div>
+	        </div>
         </div>
     </g:HTMLPanel>
 </ui:UiBinder>

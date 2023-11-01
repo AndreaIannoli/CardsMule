@@ -1,7 +1,2 @@
 # Module cardsmule
 # RPC service class, partial path of RPC policy file
-com.sweng.cardsmule.shared.CollectionService, CF3AA4AB7A012B1A1F043C404ABA7143.gwt.rpc
-com.sweng.cardsmule.shared.CardService, 084A157CB9A37D832804A8E7E21ACFEB.gwt.rpc
-com.sweng.cardsmule.shared.TradeCardsService, C90F18C6B3FF052CB0E4E7B388852E9D.gwt.rpc
-com.sweng.cardsmule.shared.AuthenticationService, F11B845521FF1E74071AD2035B5674E9.gwt.rpc
-com.sweng.cardsmule.client.GreetingService, 6C345B690B377931D36B6DE2103BB3DB.gwt.rpc

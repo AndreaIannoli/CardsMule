@@ -16,5 +16,6 @@ public interface HomeView extends IsWidget{
 	        void goTo(Place place);
 	        void fetchCardsValues(CardsmuleGame game);
 	        List<SwengCard> filteredCards(String selectedValue, String value, String textOptionsSelectedValue, String text, List<String> booleanInputNames, List<Boolean> booleanInputValues);
-	    }
+	        void logout();
+	 }
 }

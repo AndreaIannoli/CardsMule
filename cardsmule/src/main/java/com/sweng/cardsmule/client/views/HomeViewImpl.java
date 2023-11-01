@@ -243,7 +243,7 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 	
 	@Override
 	public void onClickLogout() {
-		presenter.goTo(new PreAuthenticationPlace());	
+		presenter.logout();
 	}
 
 	@Override
