@@ -18,7 +18,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
 import com.sweng.cardsmule.shared.models.Grade;
+import com.sweng.cardsmule.shared.models.OwnedCard;
 import com.sweng.cardsmule.shared.models.UserCard;
+import com.sweng.cardsmule.shared.models.WishedCard;
 
 public class UsersListWidget extends ListWidget{
     private static final UserListUIBinder uiBinder = GWT.create(UserListUIBinder.class);
@@ -44,7 +46,11 @@ public class UsersListWidget extends ListWidget{
         if (showExchangeButton) row.insertCell(2).setInnerText("");
     }
 
-    public void setTable(List<? extends UserCard> pCards, Function<UserCard, Button> createButton) {
+    public void setTable(List<? extends OwnedCard> pCards, Function<OwnedCard, Button> createButton) {
+        if (!pCards.isEmpty()) table.removeRow(noItemsRow);
+        pCards.forEach(pCard -> addRow(pCard.getUserEmail(), pCard.getGrade(), createButton.apply(pCard)));
+    }
+    public void setTableWished(List<? extends WishedCard> pCards, Function<WishedCard, Button> createButton) {
         if (!pCards.isEmpty()) table.removeRow(noItemsRow);
         pCards.forEach(pCard -> addRow(pCard.getUserEmail(), pCard.getGrade(), createButton.apply(pCard)));
     }

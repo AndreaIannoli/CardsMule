@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 gwtMavenModuleName=com.sweng.cardsmule.Cardsmule
 gwtMavenModuleShortName=Cardsmule
-lastWarOutDir=/Users/andreaiannoli/Desktop/Uni/Progetto SWENG/CardsMule2.0/CardsMule/cardsmule/target/Cardsmule-1.0-SNAPSHOT
+<<<<<<< Updated upstream
+lastWarOutDir=C\:/Ingegneria/CardsMule/cardsmule/target/Cardsmule-1.0-SNAPSHOT
+=======
+lastWarOutDir=C\:/Users/aless/OneDrive/Desktop/progettoIngegneria/CardsMule/cardsmule/target/Cardsmule-1.0-SNAPSHOT
+>>>>>>> Stashed changes
 warSrcDir=src/main/webapp
 warSrcDirIsOutput=false

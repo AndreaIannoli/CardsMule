@@ -25,7 +25,7 @@ public class NavWidget extends Composite {
 	Button btnDeck;
 
 	@UiField
-	Button btnScambi;
+	Button btnTrade;
 
 	@UiField
 	Button btnLogout;
@@ -48,6 +48,8 @@ public class NavWidget extends Composite {
 		
 		btnLogout.addClickHandler((ClickHandler) event -> parent.onClickLogout());
 		btnHome.addClickHandler((ClickHandler) event -> parent.onClickHome());
+		btnDeck.addClickHandler((ClickHandler) event -> parent.onClickDeck());
+		btnTrade.addClickHandler((ClickHandler) event -> parent.onClickTrades());
 	}
 	
 	

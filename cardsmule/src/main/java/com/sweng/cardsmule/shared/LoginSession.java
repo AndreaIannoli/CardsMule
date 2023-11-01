@@ -11,8 +11,7 @@ public class LoginSession implements Serializable {
     public LoginSession(String username, String email, long loginTime) {
         this.username = username;
         this.email=email;
-        this.loginTime = loginTime;
-        
+        this.loginTime = loginTime;        
     }
 
     public LoginSession() {

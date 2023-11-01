@@ -2,6 +2,7 @@ package com.sweng.cardsmule.server.services;
 
 import java.security.MessageDigest;
 
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -47,6 +48,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
 
     public static boolean validateEmail(String email) {
         Matcher matcher = emailPattern.matcher(email);
+        
         return matcher.find();
     }
 
@@ -122,46 +124,50 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
             throw new AuthenticationException("Invalid credentials");
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
+        
+        Map<String, Account> accountEmailMap = db.getPersistentMap(
+                getServletContext(), MAP_ACCOUNT, Serializer.STRING, new GsonSerializer<>(gson));
+
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
-        //TO-Do problema del fatto che puoi registrarti con la stessa mail
-        if (accountMap.get(email) != null)
+        
+        
+        
+        if (accountEmailMap.get(email) != null)
             throw new AuthenticationException("Email already exists");
         if (accountMap.get(username) != null)
             throw new AuthenticationException("Username already exists");
         
-        db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
-                (Map<String, Map<String, Collection>> deckMap) -> {
-                	accountMap.put(username, account);
-                	CollectionServiceImpl.createDefaultCollection(email, deckMap);
+        db.writeOperation(getServletContext(), MAP_ACCOUNT, Serializer.STRING, new GsonSerializer<>(gson),
+                (Map<String, Account> userMap) -> {
+                	accountEmailMap.put(email, account);
                     return null;
                 });
-        /*System.out.println("MAP START");
-        for(Entry entry : accountMap.entrySet()) {
-        	System.out.println(entry.getValue());
-        	System.out.println(entry.getKey());
-        }
-        System.out.println("MAP END");*/
+        
+        db.writeOperation(getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson),
+                  (Map<String, Account> userMap) -> {
+                      accountMap.put(username, account);
+                      return null;
+                  });
+          db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
+                  (Map<String, Map<String, Collection>> collectionMap) -> {
+               
+                      CollectionServiceImpl.createDefaultCollection(email, collectionMap);
+                      return null;
+                  });
         return new CredentialsPayload(generateAndStoreLoginToken(account), username, email);
     }
 
     @Override
     public CredentialsPayload signIn(String username, String password) throws AuthenticationException {
-    	System.out.println(username + " " + password);
         if (validateCredentials(username, password)) {
-        	System.out.println(username + " " + password);
             throw new AuthenticationException("Invalid credentials" + username + " " + password);
         }
         
         Map<String, Account> accountMap = db.getPersistentMap(
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = accountMap.get(username);
-        String email=account.getEmail();
-        System.out.println("MAP START");
-        for(Entry entry : accountMap.entrySet()) {
-        	System.out.println(entry.getValue());
-        	System.out.println(entry.getKey());
-        }
-        System.out.println("MAP END");
+        String email = account.getEmail();
+        
         if (account == null) {
             throw new AuthenticationException("User not found" + accountMap.toString());
         }

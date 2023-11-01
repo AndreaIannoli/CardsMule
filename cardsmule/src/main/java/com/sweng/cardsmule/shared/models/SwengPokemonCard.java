@@ -9,8 +9,8 @@ public class SwengPokemonCard extends SwengCard {
     private String imageUrl;
     private String rarity;
 
-    public SwengPokemonCard(String name, String description, String type, String artist, String imageUrl, String rarity, String... variants) {
-        super(name, description, type, variants);
+    public SwengPokemonCard(String name, String description, String type, String artist, String imageUrl, String rarity, String... state) {
+        super(name, description, type, state);
         this.artist = artist;
         this.imageUrl = imageUrl;
         this.rarity = rarity;

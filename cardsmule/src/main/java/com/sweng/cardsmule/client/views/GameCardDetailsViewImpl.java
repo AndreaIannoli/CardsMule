@@ -20,8 +20,12 @@ import com.sweng.cardsmule.client.CardsImages;
 import com.sweng.cardsmule.client.handlers.HandleAddCardToCollection;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.handlers.HandleUserList;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
+import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.sweng.cardsmule.client.widgets.UsersListWidget;
 
 import com.sweng.cardsmule.shared.models.CardsmuleGame;
@@ -38,7 +42,7 @@ import com.sweng.cardsmule.client.handlers.HandleAddCardToDeck;
 
 
 
-public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck, HandleNavBar{
+public class GameCardDetailsViewImpl extends Composite implements GameCardDetailsView, HandleAddCardToCollection,HandleAddCardToDeck, HandleNavBar, HandleUserList{
     private static final GameCardDetailsImplUIBinder uiBinder = GWT.create(GameCardDetailsImplUIBinder.class);
     @UiField
     SpanElement cardGame;
@@ -83,7 +87,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
     
     public GameCardDetailsViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
-        updateBtn.addClickHandler(clickEvent -> presenter.update() );
+        updateBtn.addClickHandler(clickEvent -> presenter.update());
     }
     
     public void setData(SwengCard data) {
@@ -150,14 +154,14 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 
 	@Override
 	public void setWishList(List<WishedCard> wisherList) {
-        wishedList.setTable(wisherList, own -> new Button("Exchange", (ClickHandler) e ->
-        displayAlert("GoToExchange")));
+		wishedList.setTableWished(wisherList, wish -> new Button("Exchange", (ClickHandler) e -> presenter.goTo(new NewTradePlace(null, wish.getUserEmail()))));
 	}
 
 	@Override
 	public void setOwnList(List<OwnedCard> ownerList) {
-        ownedList.setTable(ownerList, own -> new Button("Exchange", (ClickHandler) e ->
-        displayAlert("GoToExchange")));
+		
+        ownedList.setTable(ownerList, own -> new Button("Trade", (ClickHandler) e ->presenter.goTo(new NewTradePlace(own.getId(), own.getUserEmail()))));
+        
 	}
 	@Override
     public void onClickAddToDeck() {
@@ -174,7 +178,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
     }
 	
     @Override
-    public void createUserWidgets(boolean isLoggedIn) {
+    public void createUserWidgets(boolean isLoggedIn, boolean isOwner) {
     	addCardToDeckContainer.clear();
         userLists.clear();
         // create AddCartToDeckWidget
@@ -183,7 +187,7 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
         }
         // create UserListWidget 'Exchange' buttons
         ownedList = new UsersListWidget("Owned by", isLoggedIn);
-        wishedList = new UsersListWidget("Wished by", isLoggedIn);
+        wishedList = new UsersListWidget("Wished by", isLoggedIn && isOwner);
         userLists.add(ownedList);
         userLists.add(wishedList);
     }
@@ -212,6 +216,23 @@ public class GameCardDetailsViewImpl extends Composite implements GameCardDetail
 
 	@Override
 	public void onClickLogout() {
+			
+		presenter.logout();
 		presenter.goTo(new PreAuthenticationPlace());	
+	}
+	
+	@Override
+	public void onClickDeck() {
+		presenter.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		presenter.goTo(new TradesPlace());
+	}
+
+	@Override
+	public void onClickTrade(String receiverUserEmail, String selectedCardId) {
+		presenter.goTo(new NewTradePlace(receiverUserEmail, selectedCardId));
+		
 	}
 }

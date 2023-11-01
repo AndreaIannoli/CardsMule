@@ -1,6 +1,7 @@
 package com.sweng.cardsmule.server.gsonserializer;
 
 import com.google.gson.Gson;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -11,6 +12,8 @@ import org.mapdb.Serializer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+
+
 //La serializzazione e la deserializzazione sono processi per convertire oggetti in una rappresentazione binaria in modo che possano essere 
 //memorizzati su disco come nel nostro caso con MapDB e quindi ripristinati in un oggetto quando necessario
 public class GsonSerializer<T> implements Serializer<T> {

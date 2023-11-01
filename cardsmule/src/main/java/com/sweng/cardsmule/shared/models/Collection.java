@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Collection implements Serializable{
-	private static final long serialVersionUID = -5223575894652548192L;
+	private static final long serialVersionUID = 6420706384078663122L;
 	private String name;
     private Set<OwnedCard> ownedCards;
     private boolean isDeck;

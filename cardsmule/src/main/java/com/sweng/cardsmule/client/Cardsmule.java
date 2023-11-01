@@ -5,7 +5,11 @@ import com.sweng.cardsmule.shared.FieldVerifier;
 //import com.sweng.cardsmule.client.Home;
 import com.sweng.cardsmule.client.authentication.User;
 import com.sweng.cardsmule.client.handlers.HandleNavBar;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
+import com.sweng.cardsmule.client.place.NewTradePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradePlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -110,6 +114,14 @@ public class Cardsmule implements EntryPoint, HandleNavBar {
 	@Override
 	public void onClickHome() {
 		placeController.goTo(new PreAuthenticationPlace());	
-		
+	}
+	
+	@Override
+	public void onClickDeck() {
+		placeController.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		placeController.goTo(new TradesPlace());
 	}
 }

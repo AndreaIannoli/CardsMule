@@ -2,6 +2,7 @@ package com.sweng.cardsmule.client.activities;
 
 
 import com.sweng.cardsmule.client.authentication.User;
+import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
 import com.sweng.cardsmule.shared.models.*;
 import com.sweng.cardsmule.shared.throwables.InputException;
 import com.sweng.cardsmule.client.BaseAsyncCallback;
@@ -12,6 +13,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.RootPanel;
+
 import java.util.List;
 import java.util.stream.*;
 
@@ -37,9 +40,16 @@ public class HomeActivity extends AbstractActivity implements HomeView.Presenter
     public void start(AcceptsOneWidget acceptsOneWidget, EventBus eventBus) {
         view.setPresenter(this);
         acceptsOneWidget.setWidget(view.asWidget());
- 
+        fetchCardsValues(CardsmuleGame.MAGIC);
     }
     
+    
+    public void logout() {
+    	user.resetToken();
+    	RootPanel.get("nav").clear();
+    	goTo(new PreAuthenticationPlace());
+    	
+    }
 
     @Override
     public void onStop() {

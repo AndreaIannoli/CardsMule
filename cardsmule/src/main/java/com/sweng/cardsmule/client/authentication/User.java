@@ -14,6 +14,11 @@ public class User {
     public String getToken() {
         return token;
     }
+    
+    public void resetToken() {
+    	this.token = null;
+    }
+    
 
     public String getUsername() {
         return username;

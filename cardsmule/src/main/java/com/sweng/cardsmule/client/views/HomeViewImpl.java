@@ -28,6 +28,8 @@ import com.sweng.cardsmule.client.handlers.HandleNavBar;
 import com.sweng.cardsmule.client.place.GameCardDetailsPlace;
 import com.sweng.cardsmule.client.place.HomePlace;
 import com.sweng.cardsmule.client.place.PreAuthenticationPlace;
+import com.sweng.cardsmule.client.place.TradesPlace;
+import com.sweng.cardsmule.client.place.DecksManagerPlace;
 import com.sweng.cardsmule.client.widgets.NavWidget;
 import com.sweng.cardsmule.shared.AuthenticationService;
 import com.sweng.cardsmule.shared.AuthenticationServiceAsync;
@@ -93,7 +95,8 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 	interface HomeViewImplUIBinder extends UiBinder<Widget, HomeViewImpl> {
 	}
 	
-    public HomeViewImpl() {
+    @SuppressWarnings("deprecation")
+	public HomeViewImpl() {
     	
 		initWidget(uiBinder.createAndBindUi(this));
     	magicRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.MAGIC));
@@ -101,6 +104,7 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
     	YuGiOhRadio.addValueChangeHandler(e->isGameChanged(CardsmuleGame.YUGIOH));
         cleanFiltersButton.addClickHandler(e -> cleanFilters());
         applyFiltersButton.addClickHandler(e -> applyFilters());
+        
 
 
     	attributeList = new HashMap<>();
@@ -140,6 +144,8 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
         RootPanel root2= RootPanel.get("nav");
     	navbarWidget.setStyleName("nav");
     	root2.add(navbarWidget);
+    	magicRadio.setChecked(true);
+    	isGameChanged(CardsmuleGame.MAGIC);
     }
     
     
@@ -237,7 +243,7 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 	
 	@Override
 	public void onClickLogout() {
-		presenter.goTo(new PreAuthenticationPlace());	
+		presenter.logout();
 	}
 
 	@Override
@@ -245,7 +251,12 @@ public class HomeViewImpl extends Composite implements HomeView, HandleCard, Han
 		presenter.goTo(new HomePlace());		
 	}
 
-
-
-	
+	@Override
+	public void onClickDeck() {
+		presenter.goTo(new DecksManagerPlace());
+	}
+	@Override
+	public void onClickTrades() {
+		presenter.goTo(new TradesPlace());
+	}
 }

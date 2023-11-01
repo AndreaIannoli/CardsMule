@@ -8,6 +8,7 @@ import com.sweng.cardsmule.shared.models.Grade;
 import com.sweng.cardsmule.shared.models.OwnedCard;
 import com.sweng.cardsmule.shared.models.OwnedCardFetched;
 import com.sweng.cardsmule.shared.models.WishedCard;
+import com.sweng.cardsmule.shared.throwables.AuthenticationException;
 
 public interface CollectionServiceAsync {
     void addCollection(String token, String collectionName, AsyncCallback<Boolean> callback);
@@ -31,4 +32,6 @@ public interface CollectionServiceAsync {
     void getWishedCardsByCardId(int cardId, AsyncCallback<List<WishedCard>> callback);
 
     void addOwnedCardsToDeck(String token, String deckName, List<OwnedCard> ownedCards, AsyncCallback<List<OwnedCardFetched>> callback);
+    
+    void isOwnerOfACard(String token, int cardId, AsyncCallback<Boolean> callback);
 }

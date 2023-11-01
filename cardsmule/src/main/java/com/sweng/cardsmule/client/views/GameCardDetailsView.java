@@ -24,11 +24,15 @@ public interface GameCardDetailsView extends IsWidget {
         void addCardToDeck(String deckName, String grade, String description);
         void update();
         void fetchCard();
+        void logout();
+        
     }
     
     void setWishList(List<WishedCard> wisherList);
 
     void setOwnList(List<OwnedCard> ownerList);
     
-    void createUserWidgets(boolean isLoggedIn);
+    void createUserWidgets(boolean isLoggedIn, boolean isOwner);
+    
+    
 }
