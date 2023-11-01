@@ -11,7 +11,11 @@
     <!--                                                               -->
     <!-- Consider inlining CSS to reduce the number of requested files -->
     <!--                                                               -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="Cardsmule.css">
+    
 
     <!--                                           -->
     <!-- Any title is fine                         -->
@@ -31,6 +35,21 @@
   			justify-elements: center;
   			background-color: black;
   		}
+  		#container{
+  			display:flex;
+			height: 100vh;
+			flex-direction:column;
+  		}
+  		.main{
+  			flex-grow:1;
+  			flex-direction:column;
+			display:flex;
+  		}
+  		#main{
+			flex-grow:1;
+			flex-direction:column;
+			display:flex;
+		}
   	</style>
   </head>
 
@@ -48,24 +67,12 @@
         in order for this application to display correctly.
       </div>
     </noscript>
+    <div id="container">
     <div id="nav">
 		<img src="cardsmule.svg" style="width:150px; height:100px;">
 		
 	</div>
-
-    <h1>Web Application Starter Project</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+	<div id="main"></div>
+	</div>
   </body>
 </html>

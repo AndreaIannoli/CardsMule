@@ -1,5 +1,7 @@
 /** Add css rules here for your application. */
-
+*{
+	font-family: 'Young Serif', serif;
+}
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -90,4 +92,9 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#main{
+	flew-grow:1;
+	flex-direction:column;
 }

@@ -1,0 +1,2 @@
+serviceClass: com.sweng.cardsmule.shared.TradeCardsService
+path: C90F18C6B3FF052CB0E4E7B388852E9D.gwt.rpc

@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .tableHeading {
+            text-align: center;
+        }
+
+        .table {
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px #aaa;
+            text-align: left;
+            border-spacing: 0;
+            display: block;
+            max-height: 60vh;
+            overflow-y: scroll;
+        }
+
+        .table::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table th, td {
+            text-align: center;
+            padding: 0.2rem 1rem 0.2rem 0.7rem;
+        }
+
+        .table tbody tr:hover {
+            color: white !important;
+            background-color: lightgreen !important;
+        }
+
+        .table thead {
+            position: sticky;
+            top: 0;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table tbody > tr {
+            cursor: pointer;
+        }
+
+        .table thead td:first-child {
+            border-top-left-radius: 5px;
+        }
+
+        .table thead td:last-child {
+            border-top-right-radius: 5px;
+        }
+
+        /*noinspection ALL*/
+        .table tbody > tr:nth-child\(odd\) {
+            background-color: #FFFFFF;
+        }
+
+        .table tbody > tr:last-child > td:first-child {
+            border-bottom-left-radius: 5px;
+        }
+
+        .table tbody > tr:last-child > td:last-child {
+            border-bottom-right-radius: 5px;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <h2 ui:field="tableHeading" class="{style.tableHeading}"/>
+        <g:FlexTable ui:field="table" styleName="{style.table}"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

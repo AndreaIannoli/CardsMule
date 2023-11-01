@@ -1,0 +1,100 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style type='com.sweng.cardsmule.client.widgets.OwnedCardWidget.OwnedCardStyle'>
+        .cardSelected {
+            box-shadow: 0 0 0 4px green inset !important;
+            opacity: 80%;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            gap: .5em;
+            flex-basis: 10rem;
+            min-width: 10rem;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 1rem 1rem 1rem;
+            background: white;
+            border-radius: 25px;
+            color: black;
+            box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px, rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+            outline: 5px solid black;
+    		outline-offset: -13px;
+        }
+
+        .cardStatus {
+            color: #444;
+            padding: 1rem 0;
+            font-size: .9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .cardDescription {
+            word-break: break-word;
+            padding: 0.55rem 0.55rem;
+            background: lightgrey;
+    		border-radius: 10px;
+        }
+
+        .cardDescription[contenteditable="true"] {
+            outline: none;
+            border: 2px dashed green;
+            border-radius: 6px;
+            background: lightgreen;
+        }
+
+        .cardActions {
+			width: 100%;
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .cardActions > button {
+            font-size: 1.1em;
+            height: 1.5rem;
+            background: #fff;
+            border-radius: 15px;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .editButton {
+            border: 1px solid green;
+            color: green;
+            width: 50%;
+        }
+
+        .editButton:hover, .toggle {
+            background: lightgreen !important;
+        }
+
+        .deleteButton {
+            color: red;
+            border: 1px solid red;
+            width: 50%;
+        }
+
+        .deleteButton:hover {
+            background: #ffe9e9;
+        }
+        
+        .cardHeading {
+			background: black;
+		    color: goldenrod;
+		    padding: 10px;
+		    border-radius: 0px 0px 30px 30px;
+		    margin: 0;
+		}
+    </ui:style>
+    <g:HTMLPanel styleName="{style.card}" ui:field="cardContainer">
+        <h2 ui:field="cardName" class="{style.cardHeading}"/>
+        <g:HTMLPanel ui:field="cardStatus" styleName="{style.cardStatus}"/>
+        <div ui:field="cardDescription" class="{style.cardDescription}"/>
+        <g:HTMLPanel ui:field="cardActions" styleName="{style.cardActions}"/>
+    </g:HTMLPanel>
+</ui:UiBinder>
