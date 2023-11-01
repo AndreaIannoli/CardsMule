@@ -35,7 +35,6 @@ public class OwnedCard extends UserCard implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-		System.out.println("ENTERED THE EQUALS");
 		OwnedCard other = (OwnedCard) obj;
 		return Objects.equals(id, other.id);
 	}
