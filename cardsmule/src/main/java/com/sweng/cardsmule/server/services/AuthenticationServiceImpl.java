@@ -130,8 +130,6 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
 
         Account account = new Account(email, username, BCrypt.hashpw(password, BCrypt.gensalt()));
         
-        System.out.println("contiene email?: " + accountEmailMap.containsValue(email));
-        System.out.println("MAp Account " + accountEmailMap.size());
         
         
         if (accountEmailMap.get(email) != null)
@@ -153,24 +151,15 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
           db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
                   (Map<String, Map<String, Collection>> collectionMap) -> {
                
-                      System.out.println(collectionMap + "che palle" + "  email: " + email);
                       CollectionServiceImpl.createDefaultCollection(email, collectionMap);
                       return null;
                   });
-        System.out.println("MAP START");
-        for(Entry entry : accountMap.entrySet()) {
-        	System.out.println(entry.getValue());
-        	System.out.println(entry.getKey());
-        }
-        System.out.println("MAP END");
         return new CredentialsPayload(generateAndStoreLoginToken(account), username, email);
     }
 
     @Override
     public CredentialsPayload signIn(String username, String password) throws AuthenticationException {
-    	System.out.println(username + " " + password);
         if (validateCredentials(username, password)) {
-        	System.out.println(username + " " + password);
             throw new AuthenticationException("Invalid credentials" + username + " " + password);
         }
         
@@ -178,12 +167,7 @@ public class AuthenticationServiceImpl extends RemoteServiceServlet implements A
                 getServletContext(), MAP_USER, Serializer.STRING, new GsonSerializer<>(gson));
         Account account = accountMap.get(username);
         String email = account.getEmail();
-        System.out.println("MAP START");
-        for(Entry entry : accountMap.entrySet()) {
-        	System.out.println(entry.getValue());
-        	System.out.println(entry.getKey());
-        }
-        System.out.println("MAP END");
+        
         if (account == null) {
             throw new AuthenticationException("User not found" + accountMap.toString());
         }

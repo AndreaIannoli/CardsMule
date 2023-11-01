@@ -59,7 +59,6 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 			List<OwnedCard> receiverOwnedCards) throws GeneralException {
 		String email = AuthenticationServiceImpl.checkTokenValidity(token,
                 db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
-		System.out.println(receiverUserEmail + "sono l'email del receiver" + checkEmailExistence(receiverUserEmail));
         if (receiverUserEmail == null || receiverUserEmail.isEmpty())
             throw new InputException("Invalid receiver email");
         if (email.equals(receiverUserEmail))
@@ -136,12 +135,10 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
 			throws AuthenticationException, OfferNotFoundException {
 		String email = AuthenticationServiceImpl.checkTokenValidity(token,
                 db.getPersistentMap(getServletContext(), MAP_LOGIN, Serializer.STRING, new GsonSerializer<>(gson)));
-		System.out.println(email + "di colui che ha ricevuto l'offerta");
 		//mappa delle offerte
 		Map<Integer, Offer> offerMap = db.getPersistentMap(getServletContext(), MAP_PROPOSAL, Serializer.INTEGER, new GsonSerializer<>(gson));
         //offerta specifica della mappa
 		Offer offer = offerMap.get(offerId);
-		System.out.println("offer" + offer);
         if (offer == null)
             throw new OfferNotFoundException("Not existing proposal");
         if (!email.equals(offer.getReceiverUserEmail()))
@@ -150,10 +147,7 @@ public class TradeServiceImpl extends RemoteServiceServlet implements TradeCards
         return db.writeOperation(getServletContext(), MAP_DECK, Serializer.STRING, new GsonSerializer<>(gson, type),
                 (Map<String, Map<String, Collection>> collectionMap) -> {
                 	try {
-                		System.out.println(offer.getReceiverUserEmail()+ " " + offer.getReceiverOwnedCards());
-                		System.out.println("TRYING THE FIRST PUT");
                 		collectionMap.put(offer.getReceiverUserEmail(), CollectionServiceImpl.updateUserCollection(offer.getReceiverUserEmail(), collectionMap.get(offer.getReceiverUserEmail()), offer.getSenderOwnedCards(), offer.getReceiverOwnedCards()));
-                		System.out.println("TRYING THE SECOND PUT");
                 		collectionMap.put(offer.getSenderUserEmail(), CollectionServiceImpl.updateUserCollection(offer.getSenderUserEmail(), collectionMap.get(offer.getSenderUserEmail()), offer.getReceiverOwnedCards(), offer.getSenderOwnedCards()));
                     	deleteReferredOffer(offerMap, offer.getSenderOwnedCards(), offer.getReceiverOwnedCards());
                         return true;
